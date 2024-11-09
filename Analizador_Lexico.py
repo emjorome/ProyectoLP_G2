@@ -2,7 +2,9 @@
 import ply.lex as lex
 import ply.yacc as yacc
 
-reserved= {'if':'IF',
+reserved= {
+            #control de Flujo
+            'if':'IF',
            'else':'ELSE',
            'while':'WHILE',
            'for':'FOR',
@@ -10,6 +12,7 @@ reserved= {'if':'IF',
            'do':'DO',
            'continue':'CONTINUE',
            'break':'BREAK',
+            'return':'RETURN',
            #Modificadores de flujo
            'public':'PUBLIC',
            'private':'PRIVATE',
@@ -48,9 +51,25 @@ reserved= {'if':'IF',
            'true':'TRUE',
            'false':'FALSE',
            #Modificadores y Anotaciones de Funciones
-           'suspend':'SUSPEND'
-
-
+           'suspend':'SUSPEND',
+           'inline':'INLINE',
+           'noinline':'NOINLINE',
+           'crossinline':'CROSSINLINE',
+           'tailrec':'TAILREC',
+           'operator':'OPERATOR',
+           'infix':'INFIX',
+           'out':'OUT',
+           'reified':'REIFIED',
+           #Control de Concurrencia y Delegación
+           'by':'BY',
+           'delegate':'DELEGATE',
+           'yield':'YIELD',
+           #Otros
+           'package':'PACKAGE',
+           'import':'IMPORT',
+           'where':'WHERE',
+           'typeof':'TYPEOF',
+           'field':'FIELD'
            }
 
 # List of token names.   This is always required
@@ -69,7 +88,6 @@ tokens = ((
     'LCOR',
      'RCOR')+ tuple(reserved.values()))
 
-
 # Regular expression rules for simple tokens
 t_PLUS    = r'\+'
 t_MINUS   = r'-'
@@ -81,6 +99,9 @@ t_MOD   =   r'%'
 t_PUYCO = r';'
 t_LCOR = r'\['
 t_RCOR  = r'\]'
+
+#Fin aporte Pedro Luna 9/11
+
 
 def t_FLOAT(t):
     r'\d+\.\d+'
