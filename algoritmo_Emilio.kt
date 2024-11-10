@@ -1,5 +1,5 @@
-// Comentario de una sola línea
-/* Comentario de varias líneas */
+// Comentario de una sola linea
+/* Comentario de varias lineas */
 
 val lista = listOf(1, 2, 3)  //Lista de enteros
 val mapa = mapOf("clave1" to "valor1", "clave2" to "valor2")  //Mapa con claves y valores

@@ -193,11 +193,13 @@ now = datetime.datetime.now()
 log_emjorome = f"lexico-emjorome-{now.strftime('%d%m%Y-%Hh%M')}.txt"
 
 # Give the lexer some input
-lexer.input(data)
+lexer.input(data2)
 
 # Tokenize
-while True:
-    tok = lexer.token()
-    if not tok:
-        break      # No more input
-    print(tok)
+with open(log_emjorome,"w") as log_file: #creacion archivo log
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break      # No more input
+        print(tok)
+        log_file.write(f"{tok}\n") #escribir el archivo
