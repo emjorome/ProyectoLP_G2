@@ -51,7 +51,7 @@ reserved= {'if':'IF',
            'null':'NULL',
            'true':'TRUE',
            'false':'FALSE',
-           #Modificadores y Anotaciones de Funciones
+           #Modificadores y Anotaciones de Funciones -Aporte Kevin
            'suspend':'SUSPEND',
            'inline':'INLINE', 
            'noinline':'NOINLINE', 
@@ -68,32 +68,56 @@ reserved= {'if':'IF',
            'import':'IMPORT',
            'where':'WHERE',
            'typeof':'field',
-            'listOf':'LISTOF'
-
-
+            'listOf':'LISTOF', #fin aporte Kevin Quintuña
+           'inline':'INLINE',
+           'noinline':'NOINLINE',
+           'crossinline':'CROSSINLINE',
+           'tailrec':'TAILREC',
+           'operator':'OPERATOR',
+           'infix':'INFIX',
+           'out':'OUT',
+           'reified':'REIFIED',
+           #Control de Concurrencia y Delegación
+           'by':'BY',
+           'delegate':'DELEGATE',
+           'yield':'YIELD',
+           #Otros
+           'package':'PACKAGE',
+           'import':'IMPORT',
+           'where':'WHERE',
+           'typeof':'TYPEOF',
+           'field':'FIELD',
+           #Palabras reservadas de Emilio Romero - listas, mapas y conjuntos
+           'listOf':'LISTOF',
+           'mapOf':'MAPOF',
+           'setOf':'SETOF',
+           'mutableListOf': 'MUTABLELISTOF',
+           'mutableMapOf': 'MUTABLEMAPOF',
+           'mutableSetOf': 'MUTABLESETOF',
+           #Fin aporte de palabras reservadas de Emilio Romero
+            'println':'PRINT',
+           'println':'PRINTLN',
            }
 
 # List of token names.   This is always required
 tokens = ((
-   'NUMBER',
-   'PLUS',
-   'MINUS',
-   'TIMES',
-   'DIVIDE',
-   'LPAREN',
-   'RPAREN',
+    'NUMBER',
+    'PLUS',
+    'MINUS',
+    'TIMES',
+    'DIVIDE',
+    'LPAREN',
+    'RPAREN',
     'MOD',
     'VARIABLE',
     'PUYCO',
     'FLOAT',
     'LCOR',
     'RCOR',
+    #Kevin Quintuna   
     'COMMA',
     'DOUBLE_QUOTA',
-    'INMUT_LISTOF',
-    'VALUE',
     'STRING',
-#Kevin Quintuna     
     'EQUALS', #------VERIFICAR SI ES PALABRA RESERVADA
     'ASIGN',
     'SUMASIGN',
@@ -109,8 +133,18 @@ tokens = ((
     'AND',
     'OR',
     'NOT',
-     )+ tuple(reserved.values()))
-
+    'RANGE_TO',
+    'COLON',
+    #Tokens - Parte de Emilio Romero
+    'LLLAVE',
+    'RLLAVE',
+    'COMMENTLINEA',
+    'COMMENTMULTI',
+    'INTERPOLACION',
+    'DOLAR'
+    #Fin aporte de Tokens - Emilio Romero
+    )+ tuple(reserved.values()))
+    
 
 # Regular expression rules for simple tokens
 #operadores aritmeticos
@@ -126,16 +160,29 @@ t_LCOR = r'\['
 t_RCOR  = r'\]'
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
+#Aporte Kevin Quintuña
 t_DOUBLE_QUOTA= r'"' 
 t_COMMA= r','
+t_COLON= r':'
+#Fin aporte Kevin Quintuña
+#Fin aporte Pedro Luna 9/11
+#Regular expression of Emilio Romero
+t_LLLAVE = r'\{'
+t_RLLAVE = r'\}'
+#Fin aporte de expresiones regulares - Emilio Romero
 
-# De asignacion
+# operadores De asignacion -Aporte Kevin  uintuña
 t_ASIGN = r'='
 t_SUMASIGN = r'\+='
 t_RESTASIGN = r'-='
 t_MULTASIGN = r'\*='
 t_DIVASIGN = r'/='
 t_MODASIGN = r'%='
+
+#operadores logicos-- operadores logicos
+t_AND = r'&&' 
+t_OR  = r"\|\|"
+t_NOT = r"!"
 
 # Operadores de comparación
 t_EQUALS = r'=='
@@ -145,11 +192,12 @@ t_LESS = r'<'
 t_GREATER_EQUALS = r'>='
 t_LESS_EQUALS = r'<='
 
+#operadores extra 
+t_RANGE_TO = r'\.\.'
 
-def t_STRING(t):
-    r'"[^"]*"'  # Coincide con cualquier secuencia de caracteres entre comillas dobles
-    t.value = t.value[1:-1]  # Remueve las comillas al principio y al final
-    return t
+
+#Fin Aporte Kevin Quintuña
+
 def t_FLOAT(t):
     r'\d+\.\d+'
     t.value= float(t.value)
@@ -165,26 +213,31 @@ def t_VARIABLE(t):
     t.type = reserved.get(t.value,'VARIABLE')
     return t
 #OPERADORES LOGICOS
-def t_AND(t):
-    r'&&'
-    t.type = bool(t.value)
-    return t
 
-def t_OR(t):
-    r'\|\|'
-    t.type = bool(t.value)
-    return t
-
-def t_NOT(t):
-    r'!'
-    t.type = bool(t.value)
-    return t
-
+#Fin Aporte Kevin Quintuña
 
 # Define a rule so we can track line numbers
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
+# Funciones de Emilio Romero
+def t_COMMENTLINEA(t): #funcion comment linea
+    r'//.*'
+    return t
+
+def t_COMMENTMULTI(t): #funcion comment multilinea
+    r'\/\*([^*]|\*+[^*/])*\*+\/'
+    return t
+
+def t_INTERPOLACION(t): #funcion interpolacion
+    r'\$[a-zA-Z_][a-zA-Z_0-9]*'
+    return t
+    
+def t_DOLAR(t): #funcion dolar
+    r'\$'
+    return t
+#Fin aporte funciones de Emilio Romero
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t'
@@ -200,29 +253,55 @@ lexer = lex.lex()
 
 # Test it out
 data = '''
-fun main() {
-    var a = 10
-    var b = 20
-    var c = a + b * 2
-
-    if (c >= 30 && b != 0) {
-        println("Resultado: $c")
-    } else {
-        println("Valor de b es cero")
-    }
-
-    for (i in 1..5) {
-        println("Iteración $i")
-    }
-}
+3 + 4 * 10 ABC _123 123 print(variable)
+  + -20 *2  - ; 3.5
 '''
 
+"""
+#Extraer datos de algoritmo_Emilio.kt
+with open("algoritmo_Emilio.kt", "r") as file:
+    data_Emilio = file.read()
+
+#Creacion de archivo log
+import datetime
+now = datetime.datetime.now()
+log_emjorome = f"lexico-emjorome-{now.strftime('%d%m%Y-%Hh%M')}.txt"
+
 # Give the lexer some input
-lexer.input(data)
+lexer.input(data_Emilio)
 
 # Tokenize
-while True:
-    tok = lexer.token()
-    if not tok:
-        break      # No more input
-    print(tok)
+with open(log_emjorome,"w") as log_file: #creacion archivo log
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break      # No more input
+        print(tok)
+        log_file.write(f"{tok}\n") #escribir el archivo
+
+"""
+#Extraer datos
+with open("algoritmoKevinQuintuna.kt", "r") as file:
+    data_ = file.read()
+
+#Creacion de archivo log
+import datetime
+now = datetime.datetime.now()
+#creacion de logs
+log_ = f"lexico-Kevin-QQ-82-{now.strftime('%d%m%Y-%Hh%M')}.txt"
+
+# Give the lexer some input
+lexer.input(data_)
+
+# Tokenize
+with open(log_,"w") as log_file: #creacion archivo log
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break      # No more input
+        print(tok)
+        log_file.write(f"{tok}\n") #escribir el archivo
+
+
+
+

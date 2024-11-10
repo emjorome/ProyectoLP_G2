@@ -8,8 +8,7 @@ fun main() {
     } else {
         println("Valor de b es cero")
     }
-
     for (i in 1..5) {
-        println("Iteración $i")
+        println("Iteracion $i")
     }
 }
