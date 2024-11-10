@@ -183,6 +183,15 @@ data = '''
   + -20 *2  - ; 3.5
 '''
 
+#Extraer datos de algoritmo_Emilio.kt
+with open("algoritmo_Emilio.kt", "r") as file:
+    data2 = file.read()
+
+#Creacion de archivo log
+import datetime
+now = datetime.datetime.now()
+log_emjorome = f"lexico-emjorome-{now.strftime('%d%m%Y-%Hh%M')}.txt"
+
 # Give the lexer some input
 lexer.input(data)
 
