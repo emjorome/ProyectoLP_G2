@@ -69,7 +69,14 @@ reserved= {
            'import':'IMPORT',
            'where':'WHERE',
            'typeof':'TYPEOF',
-           'field':'FIELD'
+           'field':'FIELD',
+           #Palabras reservadas de Emilio Romero - listas, mapas y conjuntos
+           'listOf':'LISTOF',
+           'mapOf':'MAPOF',
+           'setOf':'SETOF',
+           'mutableListOf': 'MUTABLELISTOF',
+           'mutableMapOf': 'MUTABLEMAPOF',
+           'mutableSetOf': 'MUTABLESETOF'
            }
 
 # List of token names.   This is always required
@@ -99,9 +106,7 @@ t_MOD   =   r'%'
 t_PUYCO = r';'
 t_LCOR = r'\['
 t_RCOR  = r'\]'
-
 #Fin aporte Pedro Luna 9/11
-
 
 def t_FLOAT(t):
     r'\d+\.\d+'
