@@ -1,0 +1,10 @@
+val a: Int = 10
+val b: Int? = null
+var c: String = "Hello"
+var d: Float? = 3.14
+val e: Boolean = true
+val f: Char = 'x'
+var g: Double = 10.5
+val h: Byte = 0
+val i: Short = 300
+var j: Long = 123456789L

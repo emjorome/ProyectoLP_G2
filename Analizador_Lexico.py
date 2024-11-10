@@ -95,7 +95,7 @@ reserved= {'if':'IF',
            'mutableMapOf': 'MUTABLEMAPOF',
            'mutableSetOf': 'MUTABLESETOF',
            #Fin aporte de palabras reservadas de Emilio Romero
-            'println':'PRINT',
+            'print':'PRINT',
            'println':'PRINTLN',
            }
 
@@ -141,7 +141,15 @@ tokens = ((
     'COMMENTLINEA',
     'COMMENTMULTI',
     'INTERPOLACION',
-    'DOLAR'
+    'DOLAR',
+    'BYTE',
+    'SHORT',
+    'INT',
+    'LONG',
+    'DOUBLE',
+    'BOOLEAN',
+    'CHAR',
+    'NULLABLE_TYPE'
     #Fin aporte de Tokens - Emilio Romero
     )+ tuple(reserved.values()))
     
@@ -165,7 +173,18 @@ t_DOUBLE_QUOTA= r'"'
 t_COMMA= r','
 t_COLON= r':'
 #Fin aporte Kevin Quintuña
-#Fin aporte Pedro Luna 9/11
+#Inicio Aporte Pedro Luna
+# Expresiones regulares para tipos de datos en Kotlin
+t_BYTE = r'Byte'
+t_SHORT = r'Short'
+t_INT = r'Int'
+t_LONG = r'Long'
+t_DOUBLE = r'Double'
+t_BOOLEAN = r'Boolean'
+t_CHAR = r'Char'
+t_NULLABLE_TYPE = r'(Byte|Short|Int|Long|Float|Double|Boolean|Char|String)\?'
+
+#Fin aporte Pedro Luna
 #Regular expression of Emilio Romero
 t_LLLAVE = r'\{'
 t_RLLAVE = r'\}'
@@ -239,6 +258,15 @@ def t_DOLAR(t): #funcion dolar
     return t
 #Fin aporte funciones de Emilio Romero
 
+#Inicio Aporte Pedro Luna
+def t_LONG_NUMBER(t):
+    r'\d+L'
+    t.value = int(t.value[:-1])
+    return t
+
+
+
+
 # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t'
 
@@ -279,7 +307,6 @@ with open(log_emjorome,"w") as log_file: #creacion archivo log
         print(tok)
         log_file.write(f"{tok}\n") #escribir el archivo
 
-"""
 #Extraer datos
 with open("algoritmoKevinQuintuna.kt", "r") as file:
     data_ = file.read()
@@ -301,7 +328,26 @@ with open(log_,"w") as log_file: #creacion archivo log
             break      # No more input
         print(tok)
         log_file.write(f"{tok}\n") #escribir el archivo
+"""
+#Extraer datos de algoritmo_Emilio.kt
+with open("algoritmo_Pedro.kt", "r") as file:
+    data_Pedro = file.read()
 
+#Creacion de archivo log
+import datetime
+now = datetime.datetime.now()
+log_LunaPedro17 = f"lexico-LunaPedro17-{now.strftime('%d%m%Y-%Hh%M')}.txt"
 
+# Give the lexer some input
+lexer.input(data_Pedro)
+
+# Tokenize
+with open(log_LunaPedro17,"w") as log_file: #creacion archivo log
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break      # No more input
+        print(tok)
+        log_file.write(f"{tok}\n") #escribir el archivo
 
 
