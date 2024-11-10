@@ -77,23 +77,34 @@ reserved= {
            'mutableListOf': 'MUTABLELISTOF',
            'mutableMapOf': 'MUTABLEMAPOF',
            'mutableSetOf': 'MUTABLESETOF'
+           #Fin aporte de palabras reservadas de Emilio Romero
            }
 
 # List of token names.   This is always required
 tokens = ((
-   'NUMBER',
-   'PLUS',
-   'MINUS',
-   'TIMES',
-   'DIVIDE',
-   'LPAREN',
-   'RPAREN',
+    'NUMBER',
+    'PLUS',
+    'MINUS',
+    'TIMES',
+    'DIVIDE',
+    'LPAREN',
+    'RPAREN',
     'MOD',
     'VARIABLE',
     'PUYCO',
     'FLOAT',
     'LCOR',
-     'RCOR')+ tuple(reserved.values()))
+    'RCOR',
+    #Tokens - Parte de Emilio Romero
+    'LLLAVE',
+    'RLLAVE',
+    'COMMENTLINEA',
+    'COMMENTMULTI',
+    'INTERPOLACION',
+    'DOLAR'
+    #Fin aporte de Tokens - Emilio Romero
+    )+ tuple(reserved.values()))
+    
 
 # Regular expression rules for simple tokens
 t_PLUS    = r'\+'
@@ -107,6 +118,10 @@ t_PUYCO = r';'
 t_LCOR = r'\['
 t_RCOR  = r'\]'
 #Fin aporte Pedro Luna 9/11
+#Regular expression of Emilio Romero
+t_LLLAVE = r'\{'
+t_RLLAVE = r'\}'
+#Fin aporte de expresiones regulares - Emilio Romero
 
 def t_FLOAT(t):
     r'\d+\.\d+'
