@@ -12,3 +12,8 @@ val conjunto2 = mutableSetOf(false, true)
 val nombre = "Jenny"
 
 println("Hola, $nombre $")
+
+//FUNCIONAAAAAA
+//2+2 ES cuatro
+
+/**/

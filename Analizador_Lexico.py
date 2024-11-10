@@ -185,7 +185,7 @@ data = '''
 
 #Extraer datos de algoritmo_Emilio.kt
 with open("algoritmo_Emilio.kt", "r") as file:
-    data2 = file.read()
+    data_Emilio = file.read()
 
 #Creacion de archivo log
 import datetime
@@ -193,7 +193,7 @@ now = datetime.datetime.now()
 log_emjorome = f"lexico-emjorome-{now.strftime('%d%m%Y-%Hh%M')}.txt"
 
 # Give the lexer some input
-lexer.input(data2)
+lexer.input(data_Emilio)
 
 # Tokenize
 with open(log_emjorome,"w") as log_file: #creacion archivo log
