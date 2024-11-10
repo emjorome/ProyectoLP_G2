@@ -147,6 +147,24 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+# Funciones de Emilio Romero
+def t_COMMENTLINEA(t): #funcion comment linea
+    r'//.*'
+    return t
+
+def t_COMMENTMULTI(t): #funcion comment multilinea
+    r'\/\*([^*]|\*+[^*/])*\*+\/'
+    return t
+
+def t_INTERPOLACION(t): #funcion interpolacion
+    r'\$[a-zA-Z_][a-zA-Z_0-9]*'
+    return t
+    
+def t_DOLAR(t): #funcion dolar
+    r'\$'
+    return t
+#Fin aporte funciones de Emilio Romero
+
 # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t'
 
