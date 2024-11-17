@@ -19,7 +19,9 @@ def p_sentencia(p):
                 | condicion'''
 
 def p_asignacion(p):
-    '''asignacion : VARIABLE ASIGN VARIABLE'''
+    '''asignacion : VARIABLE ASIGN VARIABLE
+                    | VARIABLE ASIGN expresion
+                    | VARIABLE ASIGN condicion'''
 
 def p_impresionVacia(p):
     'impresion_vacia : PRINT RPAREN LPAREN'
@@ -51,7 +53,10 @@ def p_expresionParentesis(p):
 
 def p_expresionConstante(p):
     """expresion : NUMBER
-                | FLOAT"""
+                | FLOAT
+                | TRUE
+                | FALSE
+                | condicion"""
 
 def p_expresionVariable(p):
     """expresion : VARIABLE"""
@@ -62,14 +67,15 @@ def p_condicionComparacion(p):
     | expresion GREATER_EQUALS expresion 
     | expresion LESS_EQUALS expresion 
     | expresion EQUALS expresion 
-    | expresion NOT_EQUALS"""
+    | expresion NOT_EQUALS expresion"""
 
 def p_condicionLogica(p):
     """condicion : condicion AND condicion 
                 | condicion OR condicion"""
 
 def p_condicinNegacion(p):
-    """condicion : NOT condicion"""
+    """condicion : NOT condicion
+                | NOT expresion"""
 
 def p_condicionParentecis(p):
     """condicion : LPAREN condicion RPAREN"""
@@ -77,7 +83,7 @@ def p_condicionParentecis(p):
 #Guardar datos
 now = datetime.datetime.now()
 usuario = "emjorome"
-log_filename = f"sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
+log_filename = f"logsSintacticos/sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
 
 def guardar_log(mensaje):
     with open(log_filename, 'a') as log_file:
@@ -98,10 +104,9 @@ while True:
    except EOFError:
        break
    if not s: continue
-   result = parser.parse(s)
 
-   if result:
-        mensaje = f"Entrada: {s}\nResultado: Correcto\n"
+   result = parser.parse(s)
+   mensaje = f"Entrada: {s}\nResultado: {result}\n"
 
    print(result)
    guardar_log(mensaje)

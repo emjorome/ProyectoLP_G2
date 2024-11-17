@@ -1,0 +1,21 @@
+Error de sintaxis en la linea 1!
+Entrada: true != false
+Resultado: Correcto
+
+Error de sintaxis en la linea 1!
+Entrada: true!=false
+Resultado: Correcto
+
+Entrada: 2!=5
+Resultado: Correcto
+
+Error de sintaxis en la linea 1!
+Entrada: x = 10 + 20
+Resultado: Correcto
+
+Entrada: x > 10 && y <= 20
+Resultado: Correcto
+
+Entrada: x >= 10 + 20
+Resultado: Correcto
+

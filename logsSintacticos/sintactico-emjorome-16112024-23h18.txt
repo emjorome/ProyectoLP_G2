@@ -1,0 +1,14 @@
+Entrada: 2*3*5+3/(3+5)
+Resultado: Correcto
+
+Error de sintaxis en la linea 1!
+Entrada: true != true
+Resultado: Correcto
+
+Error de sintaxis en la linea 1!
+Entrada: true!=true
+Resultado: Correcto
+
+Entrada: (2+2) != vari
+Resultado: Correcto
+

@@ -1,0 +1,6 @@
+Entrada: true != (peso == 56.5)
+Resultado: None
+
+Entrada: true == (3.5 <= 3 && (2+2) == 4)
+Resultado: None
+
