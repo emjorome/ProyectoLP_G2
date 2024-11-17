@@ -15,6 +15,25 @@ def p_sentencias(p):
                 | comparacionNumero 
                 | comparacionBool'''
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #Guardar datos
 now = datetime.datetime.now()
 usuario = "emjorome"

@@ -117,7 +117,7 @@ tokens = ((
     #Kevin Quintuna   
     'COMMA',
     'DOUBLE_QUOTA',
-    'STRING',
+    'DOT',
     'EQUALS', #------VERIFICAR SI ES PALABRA RESERVADA
     'ASIGN',
     'SUMASIGN',
@@ -135,6 +135,12 @@ tokens = ((
     'NOT',
     'RANGE_TO',
     'COLON',
+    'PROPERTY',
+    'METHOD',
+    #Tipos de datos
+    'STRING',
+    'GENERIC_TYPE',
+
     #Tokens - Parte de Emilio Romero
     'LLLAVE',
     'RLLAVE',
@@ -172,6 +178,7 @@ t_RPAREN  = r'\)'
 t_DOUBLE_QUOTA= r'"' 
 t_COMMA= r','
 t_COLON= r':'
+t_DOT= r'\.'
 #Fin aporte Kevin Quintuña
 #Inicio Aporte Pedro Luna
 # Expresiones regulares para tipos de datos en Kotlin
@@ -217,6 +224,27 @@ t_RANGE_TO = r'\.\.'
 
 #Fin Aporte Kevin Quintuña
 
+#---------aportes extra kevin q------------revisar el string no funciona
+
+
+def t_STRING(t):
+    r'"([^"\\]|\\.)*"'
+    return t
+def t_GENERIC_TYPE(t):
+    r'<[^>]+>'  # Identificador seguido de <contenido> y cerrado por >
+    return t
+def t_METHOD(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*\.[a-zA-Z_][a-zA-Z_0-9]*\([^\)]*\)'  # Identificador seguido de un punto y otro identificador que termina con paréntesis
+    return t
+
+def t_PROPERTY(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*\.[a-zA-Z_][a-zA-Z_0-9]*'  # Identificador seguido de un punto y otro identificador
+    return t
+
+
+
+#----------
+
 def t_FLOAT(t):
     r'\d+\.\d+'
     t.value= float(t.value)
@@ -231,6 +259,7 @@ def t_VARIABLE(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reserved.get(t.value,'VARIABLE')
     return t
+
 #OPERADORES LOGICOS
 
 #Fin Aporte Kevin Quintuña
@@ -263,10 +292,6 @@ def t_LONG_NUMBER(t):
     r'\d+L'
     t.value = int(t.value[:-1])
     return t
-
-
-
-
 # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t'
 
@@ -281,10 +306,73 @@ lexer = lex.lex()
 
 # Test it out
 data = '''
-3 + 4 * 10 ABC _123 123 print(variable)
-  + -20 *2  - ; 3.5
+// Clase con propiedades y funciones
+class Calculator {
+    var history: MutableList<String> = mutableListOf()
+
+    // Función para sumar
+    fun add(a: Int, b: Int): Int {
+        val result = a + b
+        history.add("Sum: $a + $b = $result")
+        return result
+    }
+
+    // Función para multiplicar
+    fun multiply(a: Int, b: Int): Int {
+        val result = a * b
+        history.add("Multiply: $a * $b = $result")
+        return result
+    }
+
+    // Función para mostrar el historial
+    fun showHistory() {
+        history.forEach { println(it) }
+    }
+}
+
+// Función principal
+fun main() {
+    val calc = Calculator()
+    
+    val x = 15
+    val y = 10
+    val sum = calc.add(x, y)
+    val product = calc.multiply(x, y)
+    
+    // Expresiones condicionales
+    if (sum > 20) {
+        println("The sum is greater than 20")
+    } else {
+        println("The sum is less or equal to 20")
+    }
+
+    // Expresión when
+    when {
+        product % 2 == 0 -> println("The product is even")
+        else -> println("The product is odd")
+    }
+
+    // Bucle con lambda
+    (1..5).forEach { i ->
+        println("Lambda iteration: $i")
+    }
+
+    // Uso de una función anónima
+    val square = { num: Int -> num * num }
+    println("Square of 5: ${square(5)}")
+    
+    // Invocar el historial
+    calc.showHistory()
+}
+
 '''
 
+lexer.input(data)
+while True:
+    tok = lexer.token()
+    if not tok:
+        break      # No more input
+    print(tok)
 """
 #Extraer datos de algoritmo_Emilio.kt
 with open("algoritmo_Emilio.kt", "r") as file:
@@ -328,7 +416,7 @@ with open(log_,"w") as log_file: #creacion archivo log
             break      # No more input
         print(tok)
         log_file.write(f"{tok}\n") #escribir el archivo
-"""
+
 #Extraer datos de algoritmo_Emilio.kt
 with open("algoritmo_Pedro.kt", "r") as file:
     data_Pedro = file.read()
@@ -351,3 +439,4 @@ with open(log_LunaPedro17,"w") as log_file: #creacion archivo log
         log_file.write(f"{tok}\n") #escribir el archivo
 
 
+"""
