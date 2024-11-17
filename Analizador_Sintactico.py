@@ -5,34 +5,74 @@ import datetime
 from Analizador_Lexico import tokens
 
 def p_programa(p):
-    '''programa : sentencias 
-                | programa'''
-    
+    '''programa : sentencias '''
+
 def p_sentencias(p):
+    '''sentencias : sentencia
+                | sentencias sentencia'''
+    
+def p_sentencia(p):
     '''sentencia : asignacion 
                 | impresion
-                |impresion_vacia
-                | funcion 
-                | comparacionNumero 
-                | comparacionBool'''
+                | impresion_vacia
+                | expresion
+                | condicion'''
+
+def p_asignacion(p):
+    '''asignacion : VARIABLE ASIGN VARIABLE'''
 
 def p_impresionVacia(p):
-    'impresion_vacia: PRINT RPAREN LPAREN'
+    'impresion_vacia : PRINT RPAREN LPAREN'
 
 def p_impresion(p):
-    'impresion: PRINT RPAREN repiteValores LPAREN'
+    'impresion : PRINT RPAREN repiteValores LPAREN'
 
 def p_valor(p):
-  '''valor : ENTERO
-          | FLOTANTE
+  '''valor : NUMBER
+          | FLOAT
           | VARIABLE'''
 def p_valor_bol(p):
-  '''valor : VERDADERO
-          | FALSO'''
+  '''valor : TRUE
+          | FALSE'''
 
 def p_repiteValores(p):
-  '''repiteValores : valor COMA repiteValores
+  '''repiteValores : valor COMMA repiteValores
                   | valor'''
+
+def p_expresionAritmetica(p):
+    """expresion : expresion PLUS expresion 
+    | expresion MINUS expresion
+    | expresion TIMES expresion 
+    | expresion DIVIDE expresion
+    | expresion MOD expresion"""
+
+def p_expresionParentesis(p):
+    """expresion : LPAREN expresion RPAREN"""
+
+def p_expresionConstante(p):
+    """expresion : NUMBER
+                | FLOAT"""
+
+def p_expresionVariable(p):
+    """expresion : VARIABLE"""
+
+def p_condicionComparacion(p):
+    """condicion : expresion GREATER expresion 
+    | expresion LESS expresion 
+    | expresion GREATER_EQUALS expresion 
+    | expresion LESS_EQUALS expresion 
+    | expresion EQUALS expresion 
+    | expresion NOT_EQUALS"""
+
+def p_condicionLogica(p):
+    """condicion : condicion AND condicion 
+                | condicion OR condicion"""
+
+def p_condicinNegacion(p):
+    """condicion : NOT condicion"""
+
+def p_condicionParentecis(p):
+    """condicion : LPAREN condicion RPAREN"""
 
 #Guardar datos
 now = datetime.datetime.now()
@@ -40,7 +80,6 @@ usuario = "emjorome"
 log_filename = f"sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
 
 def guardar_log(mensaje):
-    """Escribe un mensaje en el archivo de log."""
     with open(log_filename, 'a') as log_file:
         log_file.write(mensaje + '\n')
 
@@ -51,7 +90,7 @@ def p_error(p):
     guardar_log(msg_error)
 
 # Build the parser
-parser = yacc.yacc()
+parser = yacc.yacc(debug=True)
 
 while True:
    try:
