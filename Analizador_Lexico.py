@@ -1,11 +1,10 @@
 #Aporte de PEDRO LUNA
 import ply.lex as lex
-import ply.yacc as yacc
 
             #Modificadores de flujo
 reserved= {'if':'IF',
            'else':'ELSE',
-           'when': 'WHEN', 
+           'when': 'WHEN',
            'while':'WHILE',
            'for':'FOR',
            'print':'PRINT',
@@ -53,18 +52,18 @@ reserved= {'if':'IF',
            'false':'FALSE',
            #Modificadores y Anotaciones de Funciones -Aporte Kevin
            'suspend':'SUSPEND',
-           'inline':'INLINE', 
-           'noinline':'NOINLINE', 
+           'inline':'INLINE',
+           'noinline':'NOINLINE',
            'crossinline':'CROSSINLINE',
            'trailrec': 'TRAILREC',
            'operator':'OPERATOR',
            'infix':'INFIX',
            'out':'OUT',
-           'reified':'REIFIED', 
+           'reified':'REIFIED',
            'by':'BY',
            'delegate':'DELEGATE',
            'yield':'YIELD',
-           'package':'PACKAGE', 
+           'package':'PACKAGE',
            'import':'IMPORT',
            'where':'WHERE',
            'typeof':'field',
@@ -114,7 +113,7 @@ tokens = ((
     'FLOAT',
     'LCOR',
     'RCOR',
-    #Kevin Quintuna   
+    #Kevin Quintuna
     'COMMA',
     'DOUBLE_QUOTA',
     'STRING',
@@ -152,7 +151,7 @@ tokens = ((
     'NULLABLE_TYPE'
     #Fin aporte de Tokens - Emilio Romero
     )+ tuple(reserved.values()))
-    
+
 
 # Regular expression rules for simple tokens
 #operadores aritmeticos
@@ -169,7 +168,7 @@ t_RCOR  = r'\]'
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
 #Aporte Kevin Quintuña
-t_DOUBLE_QUOTA= r'"' 
+t_DOUBLE_QUOTA= r'"'
 t_COMMA= r','
 t_COLON= r':'
 #Fin aporte Kevin Quintuña
@@ -199,7 +198,7 @@ t_DIVASIGN = r'/='
 t_MODASIGN = r'%='
 
 #operadores logicos-- operadores logicos
-t_AND = r'&&' 
+t_AND = r'&&'
 t_OR  = r"\|\|"
 t_NOT = r"!"
 
@@ -211,7 +210,7 @@ t_LESS = r'<'
 t_GREATER_EQUALS = r'>='
 t_LESS_EQUALS = r'<='
 
-#operadores extra 
+#operadores extra
 t_RANGE_TO = r'\.\.'
 
 
@@ -231,6 +230,7 @@ def t_VARIABLE(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reserved.get(t.value,'VARIABLE')
     return t
+
 #OPERADORES LOGICOS
 
 #Fin Aporte Kevin Quintuña
@@ -252,7 +252,7 @@ def t_COMMENTMULTI(t): #funcion comment multilinea
 def t_INTERPOLACION(t): #funcion interpolacion
     r'\$[a-zA-Z_][a-zA-Z_0-9]*'
     return t
-    
+
 def t_DOLAR(t): #funcion dolar
     r'\$'
     return t
@@ -328,7 +328,7 @@ with open(log_,"w") as log_file: #creacion archivo log
             break      # No more input
         print(tok)
         log_file.write(f"{tok}\n") #escribir el archivo
-"""
+
 #Extraer datos de algoritmo_Emilio.kt
 with open("algoritmo_Pedro.kt", "r") as file:
     data_Pedro = file.read()
@@ -350,4 +350,4 @@ with open(log_LunaPedro17,"w") as log_file: #creacion archivo log
         print(tok)
         log_file.write(f"{tok}\n") #escribir el archivo
 
-
+"""

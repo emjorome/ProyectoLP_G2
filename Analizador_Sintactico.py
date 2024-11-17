@@ -10,10 +10,29 @@ def p_programa(p):
     
 def p_sentencias(p):
     '''sentencia : asignacion 
-                | impresion 
+                | impresion
+                |impresion_vacia
                 | funcion 
                 | comparacionNumero 
                 | comparacionBool'''
+
+def p_impresionVacia(p):
+    'impresion_vacia: PRINT RPAREN LPAREN'
+
+def p_impresion(p):
+    'impresion: PRINT RPAREN repiteValores LPAREN'
+
+def p_valor(p):
+  '''valor : ENTERO
+          | FLOTANTE
+          | VARIABLE'''
+def p_valor_bol(p):
+  '''valor : VERDADERO
+          | FALSO'''
+
+def p_repiteValores(p):
+  '''repiteValores : valor COMA repiteValores
+                  | valor'''
 
 #Guardar datos
 now = datetime.datetime.now()
