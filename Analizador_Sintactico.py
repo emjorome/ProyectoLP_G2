@@ -4,6 +4,7 @@ import datetime
 # Get the token map from the lexer.  This is required.
 from Analizador_Lexico import tokens
 
+# APORTE DE EMILIO ROMERO
 def p_programa(p):
     '''programa : sentencias '''
 
@@ -91,12 +92,14 @@ def p_condicinNegacion(p):
 
 def p_condicionParentecis(p):
     """condicion : LPAREN condicion RPAREN"""
+#FIN DE APORTE DE EMILIO ROMERO
 
 #Aporte kevin Quintuña-----------
 #reglas para la listas
 def p_elementos_lista(p):
     """elementos_lista : valor COMMA elementos_lista
                        | valor"""
+
 
 def p_estructura_lista(p):
     """estructura_lista : LISTOF LPAREN elementos_lista RPAREN
@@ -118,6 +121,9 @@ def p_clave(p):
 
 def p_estructura_conjunto(p):
     """estructura_conjunto : MUTABLESETOF LPAREN elementos_lista RPAREN"""
+
+
+
 #Guardar datos
 # Guardar datos
 # now = datetime.datetime.now()
