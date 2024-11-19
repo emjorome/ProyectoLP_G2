@@ -16,6 +16,7 @@ def p_sentencia(p):
     '''sentencia : asignacion 
                 | impresion
                 | impresion_vacia
+                | solicitud
                 | expresion
                 | condicion
                 | estructura_lista
@@ -53,7 +54,14 @@ def p_valor_bol(p):
 def p_repiteValores(p):
   '''repiteValores : valor COMMA repiteValores
                   | valor'''
+
+def p_solicitud(p):
+    'solicitud : INPUT LPAREN DOUBLE_QUOTA DOUBLE_QUOTA RPAREN'
+
+
 #Termina Aporte Pedro Luna
+
+
 def p_expresionAritmetica(p):
     """expresion : expresion PLUS expresion 
                 | expresion MINUS expresion
@@ -125,20 +133,20 @@ def p_estructura_conjunto(p):
 
 
 #Guardar datos
-# Guardar datos
-# now = datetime.datetime.now()
-# usuario = "emjorome"
-# log_filename = f"logsSintacticos/sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
+#Guardar datos
+now = datetime.datetime.now()
+usuario = "LunaPedro17"
+log_filename = f"logsSintacticos/sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
 
-# def guardar_log(mensaje):
-#     with open(log_filename, 'a') as log_file:
-#         log_file.write(mensaje + '\n')
+def guardar_log(mensaje):
+    with open(log_filename, 'a') as log_file:
+        log_file.write(mensaje + '\n')
 
 # Error rule for syntax errors
 def p_error(p):
     msg_error = "Error de sintaxis en la linea %d!" % p.lineno
     print(msg_error)
-    #guardar_log(msg_error)
+    guardar_log(msg_error)
 
     
 
@@ -157,4 +165,4 @@ while True:
 
    print(result)
    print(mensaje)
-   #guardar_log(mensaje)
+   guardar_log(mensaje)

@@ -1,0 +1,17 @@
+Entrada: print(0,1,2,3,4,5)
+Resultado: None
+
+Entrada: print(var1,var2,var3,var4)
+Resultado: None
+
+Error de sintaxis en la linea 1!
+Entrada: print(var)
+Resultado: None
+
+Entrada: print()
+Resultado: None
+
+Error de sintaxis en la linea 1!
+Entrada: print(")
+Resultado: None
+
