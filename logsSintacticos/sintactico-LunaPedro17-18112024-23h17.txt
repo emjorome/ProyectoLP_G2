@@ -1,0 +1,9 @@
+Entrada: input(")
+Resultado: None
+
+Entrada: input("")
+Resultado: None
+
+Entrada: input("hola como estas")
+Resultado: None
+

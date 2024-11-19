@@ -95,7 +95,8 @@ reserved= {'if':'IF',
            #Fin aporte de palabras reservadas de Emilio Romero
             'print':'PRINT',
            'println':'PRINTLN',
-            'to': 'TO_FROM_KV'
+            'to': 'TO_FROM_KV',
+           'input':'INPUT',
            }
 
 # List of token names.   This is always required

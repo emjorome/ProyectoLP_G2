@@ -19,6 +19,7 @@ def p_empty(p):
 
 def p_sentencia(p):
     '''sentencia : asignacion 
+<<<<<<< HEAD
                  | impresion
                  | impresion_vacia
                  | expresion
@@ -27,7 +28,8 @@ def p_sentencia(p):
                  | declaracion_variable
                  | funcion
                 | empty'''   
-
+    
+#declaracion de variables -----------Aporte kQ
 def p_declaracion_variable(p):
     '''declaracion_variable : VAL VARIABLE ASIGN valor
                             | VAR VARIABLE ASIGN valor
@@ -39,13 +41,16 @@ def p_asignacion(p):
     '''asignacion : VARIABLE ASIGN VARIABLE
                     | VARIABLE ASIGN expresion
                     | VARIABLE ASIGN condicion
+<<<<<<< HEAD
                     | VARIABLE ASIGN estructura''' #---------agrega la estructura de lista
 
+
+#Inicia aporte Pedro Luna
 def p_impresionVacia(p):
-    'impresion_vacia : PRINT RPAREN LPAREN'
+    'impresion_vacia : PRINT LPAREN RPAREN'
 
 def p_impresion(p):
-    'impresion : PRINT RPAREN repiteValores LPAREN'
+    'impresion : PRINT LPAREN repiteValores RPAREN'
 
 def p_valor(p):
   '''valor : NUMBER
@@ -60,6 +65,13 @@ def p_valor_bol(p):
 def p_repiteValores(p):
   '''repiteValores : valor COMMA repiteValores
                   | valor'''
+
+def p_solicitud(p):
+    'solicitud : INPUT LPAREN DOUBLE_QUOTA DOUBLE_QUOTA RPAREN'
+
+
+#Termina Aporte Pedro Luna
+
 
 def p_expresionAritmetica(p):
     """expresion : expresion PLUS expresion 
@@ -127,12 +139,14 @@ def p_estructura_conjunto(p):
                   | MUTABLESETOF LPAREN repiteValores RPAREN
                   | MUTABLESETOF LPAREN RPAREN'''
 
+
 # Manejo de errores
 def p_error(p):
     if p:
         print(f"Error de sintaxis en el token '{p.value}' (tipo: {p.type}, línea: {p.lineno}, posición: {p.lexpos})")
     else:
         print("Error de sintaxis: Fin inesperado de entrada")
+
 
 # ESTRUCTURAS DE CONTROL
 def p_estructura_control_for(p):
@@ -154,7 +168,23 @@ def p_funcion(p):
                | FUN VARIABLE LPAREN parametros RPAREN LLLAVE empty RLLAVE'''
 
 
-#Aporte kevin Quintuña-----------
+#TEMRMINA Aporte kevin Quintuña-----------
+
+#Guardar datos
+#Guardar datos
+now = datetime.datetime.now()
+usuario = "LunaPedro17"
+log_filename = f"logsSintacticos/sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
+
+def guardar_log(mensaje):
+    with open(log_filename, 'a') as log_file:
+        log_file.write(mensaje + '\n')
+
+# Error rule for syntax errors
+#def p_error(p):
+#   msg_error = "Error de sintaxis en la linea %d!" % p.lineno
+#   print(msg_error)
+#   guardar_log(msg_error)
 
 # Guardar datos
 import datetime  # Asegúrate de importar este módulo si aún no lo has hecho
