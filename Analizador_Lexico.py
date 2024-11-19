@@ -1,11 +1,10 @@
 #Aporte de PEDRO LUNA
 import ply.lex as lex
-import ply.yacc as yacc
 
             #Modificadores de flujo
 reserved= {'if':'IF',
            'else':'ELSE',
-           'when': 'WHEN', 
+           'when': 'WHEN',
            'while':'WHILE',
            'for':'FOR',
            'print':'PRINT',
@@ -53,22 +52,21 @@ reserved= {'if':'IF',
            'false':'FALSE',
            #Modificadores y Anotaciones de Funciones -Aporte Kevin
            'suspend':'SUSPEND',
-           'inline':'INLINE', 
-           'noinline':'NOINLINE', 
+           'inline':'INLINE',
+           'noinline':'NOINLINE',
            'crossinline':'CROSSINLINE',
            'trailrec': 'TRAILREC',
            'operator':'OPERATOR',
            'infix':'INFIX',
            'out':'OUT',
-           'reified':'REIFIED', 
+           'reified':'REIFIED',
            'by':'BY',
            'delegate':'DELEGATE',
            'yield':'YIELD',
-           'package':'PACKAGE', 
+           'package':'PACKAGE',
            'import':'IMPORT',
            'where':'WHERE',
-           'typeof':'field',
-            'listOf':'LISTOF', #fin aporte Kevin Quintuña
+           'typeof':'field',#fin aporte Kevin Quintuña
            'inline':'INLINE',
            'noinline':'NOINLINE',
            'crossinline':'CROSSINLINE',
@@ -97,6 +95,7 @@ reserved= {'if':'IF',
            #Fin aporte de palabras reservadas de Emilio Romero
             'print':'PRINT',
            'println':'PRINTLN',
+            'TO': 'TO_FROM_KV'
            }
 
 # List of token names.   This is always required
@@ -114,7 +113,7 @@ tokens = ((
     'FLOAT',
     'LCOR',
     'RCOR',
-    #Kevin Quintuna   
+    #Kevin Quintuna
     'COMMA',
     'DOUBLE_QUOTA',
     'DOT',
@@ -158,7 +157,7 @@ tokens = ((
     'NULLABLE_TYPE'
     #Fin aporte de Tokens - Emilio Romero
     )+ tuple(reserved.values()))
-    
+
 
 # Regular expression rules for simple tokens
 #operadores aritmeticos
@@ -175,7 +174,7 @@ t_RCOR  = r'\]'
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
 #Aporte Kevin Quintuña
-t_DOUBLE_QUOTA= r'"' 
+t_DOUBLE_QUOTA= r'"'
 t_COMMA= r','
 t_COLON= r':'
 t_DOT= r'\.'
@@ -206,7 +205,7 @@ t_DIVASIGN = r'/='
 t_MODASIGN = r'%='
 
 #operadores logicos-- operadores logicos
-t_AND = r'&&' 
+t_AND = r'&&'
 t_OR  = r"\|\|"
 t_NOT = r"!"
 
@@ -218,7 +217,7 @@ t_LESS = r'<'
 t_GREATER_EQUALS = r'>='
 t_LESS_EQUALS = r'<='
 
-#operadores extra 
+#operadores extra
 t_RANGE_TO = r'\.\.'
 
 
@@ -281,7 +280,7 @@ def t_COMMENTMULTI(t): #funcion comment multilinea
 def t_INTERPOLACION(t): #funcion interpolacion
     r'\$[a-zA-Z_][a-zA-Z_0-9]*'
     return t
-    
+
 def t_DOLAR(t): #funcion dolar
     r'\$'
     return t
@@ -306,13 +305,15 @@ lexer = lex.lex()
 
 # Test it out
 data = '''
+
+
 // Clase con propiedades y funciones
 class Calculator {
     var history: MutableList<String> = mutableListOf()
 
     // Función para sumar
     fun add(a: Int, b: Int): Int {
-        val result = a + b
+        val result = listOf(1, 2,3 )
         history.add("Sum: $a + $b = $result")
         return result
     }
@@ -366,14 +367,9 @@ fun main() {
 }
 
 '''
-
-lexer.input(data)
-while True:
-    tok = lexer.token()
-    if not tok:
-        break      # No more input
-    print(tok)
 """
+
+
 #Extraer datos de algoritmo_Emilio.kt
 with open("algoritmo_Emilio.kt", "r") as file:
     data_Emilio = file.read()
@@ -437,6 +433,9 @@ with open(log_LunaPedro17,"w") as log_file: #creacion archivo log
             break      # No more input
         print(tok)
         log_file.write(f"{tok}\n") #escribir el archivo
-
-
 """
+
+
+
+
+

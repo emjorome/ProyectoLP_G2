@@ -1,0 +1,37 @@
+Entrada: 39 >= variable 34 == 2
+Resultado: None
+
+Entrada: (true == false && !false && 32.4 > 4)
+Resultado: None
+
+Entrada: 4 % 5
+Resultado: None
+
+Error de sintaxis en la linea 1!
+Entrada: true != (peso == 56.5)
+Resultado: None
+
+Entrada: true != peso
+Resultado: None
+
+Entrada: true != 56.5
+Resultado: None
+
+Entrada: peso == 56.5
+Resultado: None
+
+Entrada: (peso == 56.5)
+Resultado: None
+
+Error de sintaxis en la linea 1!
+Entrada: true != (peso == 56.5)
+Resultado: None
+
+Error de sintaxis en la linea 1!
+Entrada: true != peso == 56.6
+Resultado: None
+
+Error de sintaxis en la linea 1!
+Entrada: (peso == 56.5) != true
+Resultado: None
+

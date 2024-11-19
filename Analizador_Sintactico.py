@@ -5,53 +5,139 @@ import datetime
 from Analizador_Lexico import tokens
 
 def p_programa(p):
-    '''programa : sentencias 
-                | programa'''
-    
+    '''programa : sentencias '''
+
 def p_sentencias(p):
+    '''sentencias : sentencia
+                | sentencias sentencia'''
+    
+def p_sentencia(p):
     '''sentencia : asignacion 
-                | impresion 
-                | funcion 
-                | comparacionNumero 
-                | comparacionBool'''
+                | impresion
+                | impresion_vacia
+                | expresion
+                | condicion
+                | estructura_lista
+                | declaracion_variable''' #-----------------'''
+    
+#declaracion de variables -----------Aporte kQ
+def p_declaracion_variable(p):
+    """declaracion_variable : VAL VARIABLE ASIGN valor
+                | VAR VARIABLE ASIGN valor
+                """   
+#--------------------------------------- 
+
+def p_asignacion(p):
+    '''asignacion : VARIABLE ASIGN VARIABLE
+                    | VARIABLE ASIGN expresion
+                    | VARIABLE ASIGN condicion
+                    | VARIABLE ASIGN estructura_lista''' #---------agrega la estructura de lista
+
+def p_impresionVacia(p):
+    'impresion_vacia : PRINT RPAREN LPAREN'
+
+def p_impresion(p):
+    'impresion : PRINT RPAREN repiteValores LPAREN'
+
+def p_valor(p):
+  '''valor : NUMBER
+          | FLOAT
+          | VARIABLE
+         | estructura_lista'''
+
+def p_valor_bol(p):
+  '''valor : TRUE
+          | FALSE'''
+
+def p_repiteValores(p):
+  '''repiteValores : valor COMMA repiteValores
+                  | valor'''
+
+def p_expresionAritmetica(p):
+    """expresion : expresion PLUS expresion 
+                | expresion MINUS expresion
+                | expresion TIMES expresion 
+                | expresion DIVIDE expresion
+                | expresion MOD expresion"""
+
+def p_expresionParentesis(p):
+    """expresion : LPAREN expresion RPAREN"""
+
+def p_expresionConstante(p):
+    """expresion : NUMBER
+                | FLOAT
+                | TRUE
+                | FALSE
+                | condicion"""
+
+def p_expresionVariable(p):
+    """expresion : VARIABLE"""
+
+def p_condicionComparacion(p):
+    """condicion : expresion GREATER expresion 
+    | expresion LESS expresion 
+    | expresion GREATER_EQUALS expresion 
+    | expresion LESS_EQUALS expresion 
+    | expresion EQUALS expresion 
+    | expresion NOT_EQUALS expresion"""
+
+def p_condicionLogica(p):
+    """condicion : condicion AND condicion 
+                | condicion OR condicion"""
+
+def p_condicinNegacion(p):
+    """condicion : NOT condicion
+                | NOT expresion"""
+
+def p_condicionParentecis(p):
+    """condicion : LPAREN condicion RPAREN"""
+
+#Aporte kevin Quintuña-----------
+#reglas para la listas
+def p_elementos_lista(p):
+    """elementos_lista : valor COMMA elementos_lista
+                       | valor"""
+
+def p_estructura_lista(p):
+    """estructura_lista : LISTOF LPAREN elementos_lista RPAREN
+                  | MUTABLELISTOF LPAREN elementos_lista RPAREN"""
+
+#reglas para mapas
+def p_estructura_mapa(p):
+    """estructura_mapa : MAPOF LPAREN pareskv_mapa RPAREN
+                  | MUTABLEMAPOF LPAREN pareskv_mapa RPAREN"""
 
 
+def p_pareskv_mapa(p):
+    """pareskv_mapa : clave TO_FROM_KV valor COMMA pareskv_mapa
+                    | clave TO_FROM_KV valor"""
 
+# reglas para conjuntos
+def p_clave(p):
+    """clave : valor"""
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def p_estructura_conjunto(p):
+    """estructura_conjunto : MUTABLESETOF LPAREN elementos_lista RPAREN"""
 #Guardar datos
-now = datetime.datetime.now()
-usuario = "emjorome"
-log_filename = f"sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
+# Guardar datos
+# now = datetime.datetime.now()
+# usuario = "emjorome"
+# log_filename = f"logsSintacticos/sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
 
-def guardar_log(mensaje):
-    """Escribe un mensaje en el archivo de log."""
-    with open(log_filename, 'a') as log_file:
-        log_file.write(mensaje + '\n')
+# def guardar_log(mensaje):
+#     with open(log_filename, 'a') as log_file:
+#         log_file.write(mensaje + '\n')
 
 # Error rule for syntax errors
 def p_error(p):
     msg_error = "Error de sintaxis en la linea %d!" % p.lineno
     print(msg_error)
-    guardar_log(msg_error)
+    #guardar_log(msg_error)
+
+    
 
 # Build the parser
-parser = yacc.yacc()
+parser = yacc.yacc(debug=True)
 
 while True:
    try:
@@ -59,10 +145,10 @@ while True:
    except EOFError:
        break
    if not s: continue
-   result = parser.parse(s)
 
-   if result:
-        mensaje = f"Entrada: {s}\nResultado: Correcto\n"
+   result = parser.parse(s)
+   mensaje = f"Entrada: {s}\nResultado: {result}\n"
 
    print(result)
-   guardar_log(mensaje)
+   print(mensaje)
+   #guardar_log(mensaje)

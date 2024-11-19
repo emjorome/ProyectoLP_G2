@@ -1,0 +1,3 @@
+Entrada: y = 10 + 1
+Resultado: None
+

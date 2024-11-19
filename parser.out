@@ -1,0 +1,3674 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ABSTRACT
+    AS
+    BOOLEAN
+    BREAK
+    BY
+    BYTE
+    CATCH
+    CHAR
+    CLASS
+    COLON
+    COMMENTLINEA
+    COMMENTMULTI
+    COMPANION
+    CONST
+    CONTINUE
+    CROSSINLINE
+    DATA
+    DELEGATE
+    DIVASIGN
+    DO
+    DOLAR
+    DOT
+    DOUBLE
+    DOUBLE_QUOTA
+    ELSE
+    ENUM
+    FIELD
+    FINAL
+    FINALLY
+    FOR
+    FUN
+    GENERIC_TYPE
+    IF
+    IMPORT
+    IN
+    INFIX
+    INIT
+    INLINE
+    INT
+    INTERFACE
+    INTERNAL
+    INTERPOLACION
+    IS
+    LATEINIT
+    LCOR
+    LLLAVE
+    LONG
+    METHOD
+    MODASIGN
+    MULTASIGN
+    NOINLINE
+    NULL
+    NULLABLE_TYPE
+    OBJECT
+    OPEN
+    OPERATOR
+    OUT
+    OVERRIDE
+    PACKAGE
+    PRINTLN
+    PRIVATE
+    PROPERTY
+    PROTECTED
+    PUBLIC
+    PUYCO
+    RANGE_TO
+    RCOR
+    REIFIED
+    RESTASIGN
+    RLLAVE
+    SEALED
+    SETOF
+    SHORT
+    STRING
+    SUMASIGN
+    SUPER
+    SUSPEND
+    TAILREC
+    THIS
+    THROW
+    TRAILREC
+    TRY
+    TYPEALIAS
+    TYPEOF
+    WHEN
+    WHERE
+    WHILE
+    YIELD
+    return
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> sentencias
+Rule 2     sentencias -> sentencia
+Rule 3     sentencias -> sentencias sentencia
+Rule 4     sentencia -> asignacion
+Rule 5     sentencia -> impresion
+Rule 6     sentencia -> impresion_vacia
+Rule 7     sentencia -> expresion
+Rule 8     sentencia -> condicion
+Rule 9     sentencia -> estructura_lista
+Rule 10    sentencia -> declaracion_variable
+Rule 11    declaracion_variable -> VAL VARIABLE ASIGN valor
+Rule 12    declaracion_variable -> VAR VARIABLE ASIGN valor
+Rule 13    asignacion -> VARIABLE ASIGN VARIABLE
+Rule 14    asignacion -> VARIABLE ASIGN expresion
+Rule 15    asignacion -> VARIABLE ASIGN condicion
+Rule 16    asignacion -> VARIABLE ASIGN estructura_lista
+Rule 17    impresion_vacia -> PRINT RPAREN LPAREN
+Rule 18    impresion -> PRINT RPAREN repiteValores LPAREN
+Rule 19    valor -> NUMBER
+Rule 20    valor -> FLOAT
+Rule 21    valor -> VARIABLE
+Rule 22    valor -> estructura_lista
+Rule 23    valor -> TRUE
+Rule 24    valor -> FALSE
+Rule 25    repiteValores -> valor COMMA repiteValores
+Rule 26    repiteValores -> valor
+Rule 27    expresion -> expresion PLUS expresion
+Rule 28    expresion -> expresion MINUS expresion
+Rule 29    expresion -> expresion TIMES expresion
+Rule 30    expresion -> expresion DIVIDE expresion
+Rule 31    expresion -> expresion MOD expresion
+Rule 32    expresion -> LPAREN expresion RPAREN
+Rule 33    expresion -> NUMBER
+Rule 34    expresion -> FLOAT
+Rule 35    expresion -> TRUE
+Rule 36    expresion -> FALSE
+Rule 37    expresion -> condicion
+Rule 38    expresion -> VARIABLE
+Rule 39    condicion -> expresion GREATER expresion
+Rule 40    condicion -> expresion LESS expresion
+Rule 41    condicion -> expresion GREATER_EQUALS expresion
+Rule 42    condicion -> expresion LESS_EQUALS expresion
+Rule 43    condicion -> expresion EQUALS expresion
+Rule 44    condicion -> expresion NOT_EQUALS expresion
+Rule 45    condicion -> condicion AND condicion
+Rule 46    condicion -> condicion OR condicion
+Rule 47    condicion -> NOT condicion
+Rule 48    condicion -> NOT expresion
+Rule 49    condicion -> LPAREN condicion RPAREN
+Rule 50    elementos_lista -> valor COMMA elementos_lista
+Rule 51    elementos_lista -> valor
+Rule 52    estructura_lista -> LISTOF LPAREN elementos_lista RPAREN
+Rule 53    estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN
+Rule 54    estructura_mapa -> MAPOF LPAREN pareskv_mapa RPAREN
+Rule 55    estructura_mapa -> MUTABLEMAPOF LPAREN pareskv_mapa RPAREN
+Rule 56    pareskv_mapa -> clave TO_FROM_KV valor COMMA pareskv_mapa
+Rule 57    pareskv_mapa -> clave TO_FROM_KV valor
+Rule 58    clave -> valor
+Rule 59    estructura_conjunto -> MUTABLESETOF LPAREN elementos_lista RPAREN
+
+Terminals, with rules where they appear
+
+ABSTRACT             : 
+AND                  : 45
+AS                   : 
+ASIGN                : 11 12 13 14 15 16
+BOOLEAN              : 
+BREAK                : 
+BY                   : 
+BYTE                 : 
+CATCH                : 
+CHAR                 : 
+CLASS                : 
+COLON                : 
+COMMA                : 25 50 56
+COMMENTLINEA         : 
+COMMENTMULTI         : 
+COMPANION            : 
+CONST                : 
+CONTINUE             : 
+CROSSINLINE          : 
+DATA                 : 
+DELEGATE             : 
+DIVASIGN             : 
+DIVIDE               : 30
+DO                   : 
+DOLAR                : 
+DOT                  : 
+DOUBLE               : 
+DOUBLE_QUOTA         : 
+ELSE                 : 
+ENUM                 : 
+EQUALS               : 43
+FALSE                : 24 36
+FIELD                : 
+FINAL                : 
+FINALLY              : 
+FLOAT                : 20 34
+FOR                  : 
+FUN                  : 
+GENERIC_TYPE         : 
+GREATER              : 39
+GREATER_EQUALS       : 41
+IF                   : 
+IMPORT               : 
+IN                   : 
+INFIX                : 
+INIT                 : 
+INLINE               : 
+INT                  : 
+INTERFACE            : 
+INTERNAL             : 
+INTERPOLACION        : 
+IS                   : 
+LATEINIT             : 
+LCOR                 : 
+LESS                 : 40
+LESS_EQUALS          : 42
+LISTOF               : 52
+LLLAVE               : 
+LONG                 : 
+LPAREN               : 17 18 32 49 52 53 54 55 59
+MAPOF                : 54
+METHOD               : 
+MINUS                : 28
+MOD                  : 31
+MODASIGN             : 
+MULTASIGN            : 
+MUTABLELISTOF        : 53
+MUTABLEMAPOF         : 55
+MUTABLESETOF         : 59
+NOINLINE             : 
+NOT                  : 47 48
+NOT_EQUALS           : 44
+NULL                 : 
+NULLABLE_TYPE        : 
+NUMBER               : 19 33
+OBJECT               : 
+OPEN                 : 
+OPERATOR             : 
+OR                   : 46
+OUT                  : 
+OVERRIDE             : 
+PACKAGE              : 
+PLUS                 : 27
+PRINT                : 17 18
+PRINTLN              : 
+PRIVATE              : 
+PROPERTY             : 
+PROTECTED            : 
+PUBLIC               : 
+PUYCO                : 
+RANGE_TO             : 
+RCOR                 : 
+REIFIED              : 
+RESTASIGN            : 
+RLLAVE               : 
+RPAREN               : 17 18 32 49 52 53 54 55 59
+SEALED               : 
+SETOF                : 
+SHORT                : 
+STRING               : 
+SUMASIGN             : 
+SUPER                : 
+SUSPEND              : 
+TAILREC              : 
+THIS                 : 
+THROW                : 
+TIMES                : 29
+TO_FROM_KV           : 56 57
+TRAILREC             : 
+TRUE                 : 23 35
+TRY                  : 
+TYPEALIAS            : 
+TYPEOF               : 
+VAL                  : 11
+VAR                  : 12
+VARIABLE             : 11 12 13 13 14 15 16 21 38
+WHEN                 : 
+WHERE                : 
+WHILE                : 
+YIELD                : 
+error                : 
+return               : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 4
+clave                : 56 57
+condicion            : 8 15 37 45 45 46 46 47 49
+declaracion_variable : 10
+elementos_lista      : 50 52 53 59
+estructura_conjunto  : 
+estructura_lista     : 9 16 22
+estructura_mapa      : 
+expresion            : 7 14 27 27 28 28 29 29 30 30 31 31 32 39 39 40 40 41 41 42 42 43 43 44 44 48
+impresion            : 5
+impresion_vacia      : 6
+pareskv_mapa         : 54 55 56
+programa             : 0
+repiteValores        : 18 25
+sentencia            : 2 3
+sentencias           : 1 3
+valor                : 11 12 25 26 50 51 56 57 58
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . sentencias
+    (2) sentencias -> . sentencia
+    (3) sentencias -> . sentencias sentencia
+    (4) sentencia -> . asignacion
+    (5) sentencia -> . impresion
+    (6) sentencia -> . impresion_vacia
+    (7) sentencia -> . expresion
+    (8) sentencia -> . condicion
+    (9) sentencia -> . estructura_lista
+    (10) sentencia -> . declaracion_variable
+    (13) asignacion -> . VARIABLE ASIGN VARIABLE
+    (14) asignacion -> . VARIABLE ASIGN expresion
+    (15) asignacion -> . VARIABLE ASIGN condicion
+    (16) asignacion -> . VARIABLE ASIGN estructura_lista
+    (18) impresion -> . PRINT RPAREN repiteValores LPAREN
+    (17) impresion_vacia -> . PRINT RPAREN LPAREN
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+    (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
+    (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
+    (11) declaracion_variable -> . VAL VARIABLE ASIGN valor
+    (12) declaracion_variable -> . VAR VARIABLE ASIGN valor
+
+    VARIABLE        shift and go to state 11
+    PRINT           shift and go to state 12
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    NOT             shift and go to state 18
+    LISTOF          shift and go to state 19
+    MUTABLELISTOF   shift and go to state 20
+    VAL             shift and go to state 21
+    VAR             shift and go to state 22
+
+    programa                       shift and go to state 1
+    sentencias                     shift and go to state 2
+    sentencia                      shift and go to state 3
+    asignacion                     shift and go to state 4
+    impresion                      shift and go to state 5
+    impresion_vacia                shift and go to state 6
+    expresion                      shift and go to state 7
+    condicion                      shift and go to state 8
+    estructura_lista               shift and go to state 9
+    declaracion_variable           shift and go to state 10
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> sentencias .
+    (3) sentencias -> sentencias . sentencia
+    (4) sentencia -> . asignacion
+    (5) sentencia -> . impresion
+    (6) sentencia -> . impresion_vacia
+    (7) sentencia -> . expresion
+    (8) sentencia -> . condicion
+    (9) sentencia -> . estructura_lista
+    (10) sentencia -> . declaracion_variable
+    (13) asignacion -> . VARIABLE ASIGN VARIABLE
+    (14) asignacion -> . VARIABLE ASIGN expresion
+    (15) asignacion -> . VARIABLE ASIGN condicion
+    (16) asignacion -> . VARIABLE ASIGN estructura_lista
+    (18) impresion -> . PRINT RPAREN repiteValores LPAREN
+    (17) impresion_vacia -> . PRINT RPAREN LPAREN
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+    (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
+    (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
+    (11) declaracion_variable -> . VAL VARIABLE ASIGN valor
+    (12) declaracion_variable -> . VAR VARIABLE ASIGN valor
+
+    $end            reduce using rule 1 (programa -> sentencias .)
+    VARIABLE        shift and go to state 11
+    PRINT           shift and go to state 12
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    NOT             shift and go to state 18
+    LISTOF          shift and go to state 19
+    MUTABLELISTOF   shift and go to state 20
+    VAL             shift and go to state 21
+    VAR             shift and go to state 22
+
+    sentencia                      shift and go to state 23
+    asignacion                     shift and go to state 4
+    impresion                      shift and go to state 5
+    impresion_vacia                shift and go to state 6
+    expresion                      shift and go to state 7
+    condicion                      shift and go to state 8
+    estructura_lista               shift and go to state 9
+    declaracion_variable           shift and go to state 10
+
+state 3
+
+    (2) sentencias -> sentencia .
+
+    VARIABLE        reduce using rule 2 (sentencias -> sentencia .)
+    PRINT           reduce using rule 2 (sentencias -> sentencia .)
+    LPAREN          reduce using rule 2 (sentencias -> sentencia .)
+    NUMBER          reduce using rule 2 (sentencias -> sentencia .)
+    FLOAT           reduce using rule 2 (sentencias -> sentencia .)
+    TRUE            reduce using rule 2 (sentencias -> sentencia .)
+    FALSE           reduce using rule 2 (sentencias -> sentencia .)
+    NOT             reduce using rule 2 (sentencias -> sentencia .)
+    LISTOF          reduce using rule 2 (sentencias -> sentencia .)
+    MUTABLELISTOF   reduce using rule 2 (sentencias -> sentencia .)
+    VAL             reduce using rule 2 (sentencias -> sentencia .)
+    VAR             reduce using rule 2 (sentencias -> sentencia .)
+    $end            reduce using rule 2 (sentencias -> sentencia .)
+
+
+state 4
+
+    (4) sentencia -> asignacion .
+
+    VARIABLE        reduce using rule 4 (sentencia -> asignacion .)
+    PRINT           reduce using rule 4 (sentencia -> asignacion .)
+    LPAREN          reduce using rule 4 (sentencia -> asignacion .)
+    NUMBER          reduce using rule 4 (sentencia -> asignacion .)
+    FLOAT           reduce using rule 4 (sentencia -> asignacion .)
+    TRUE            reduce using rule 4 (sentencia -> asignacion .)
+    FALSE           reduce using rule 4 (sentencia -> asignacion .)
+    NOT             reduce using rule 4 (sentencia -> asignacion .)
+    LISTOF          reduce using rule 4 (sentencia -> asignacion .)
+    MUTABLELISTOF   reduce using rule 4 (sentencia -> asignacion .)
+    VAL             reduce using rule 4 (sentencia -> asignacion .)
+    VAR             reduce using rule 4 (sentencia -> asignacion .)
+    $end            reduce using rule 4 (sentencia -> asignacion .)
+
+
+state 5
+
+    (5) sentencia -> impresion .
+
+    VARIABLE        reduce using rule 5 (sentencia -> impresion .)
+    PRINT           reduce using rule 5 (sentencia -> impresion .)
+    LPAREN          reduce using rule 5 (sentencia -> impresion .)
+    NUMBER          reduce using rule 5 (sentencia -> impresion .)
+    FLOAT           reduce using rule 5 (sentencia -> impresion .)
+    TRUE            reduce using rule 5 (sentencia -> impresion .)
+    FALSE           reduce using rule 5 (sentencia -> impresion .)
+    NOT             reduce using rule 5 (sentencia -> impresion .)
+    LISTOF          reduce using rule 5 (sentencia -> impresion .)
+    MUTABLELISTOF   reduce using rule 5 (sentencia -> impresion .)
+    VAL             reduce using rule 5 (sentencia -> impresion .)
+    VAR             reduce using rule 5 (sentencia -> impresion .)
+    $end            reduce using rule 5 (sentencia -> impresion .)
+
+
+state 6
+
+    (6) sentencia -> impresion_vacia .
+
+    VARIABLE        reduce using rule 6 (sentencia -> impresion_vacia .)
+    PRINT           reduce using rule 6 (sentencia -> impresion_vacia .)
+    LPAREN          reduce using rule 6 (sentencia -> impresion_vacia .)
+    NUMBER          reduce using rule 6 (sentencia -> impresion_vacia .)
+    FLOAT           reduce using rule 6 (sentencia -> impresion_vacia .)
+    TRUE            reduce using rule 6 (sentencia -> impresion_vacia .)
+    FALSE           reduce using rule 6 (sentencia -> impresion_vacia .)
+    NOT             reduce using rule 6 (sentencia -> impresion_vacia .)
+    LISTOF          reduce using rule 6 (sentencia -> impresion_vacia .)
+    MUTABLELISTOF   reduce using rule 6 (sentencia -> impresion_vacia .)
+    VAL             reduce using rule 6 (sentencia -> impresion_vacia .)
+    VAR             reduce using rule 6 (sentencia -> impresion_vacia .)
+    $end            reduce using rule 6 (sentencia -> impresion_vacia .)
+
+
+state 7
+
+    (7) sentencia -> expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+    VARIABLE        reduce using rule 7 (sentencia -> expresion .)
+    PRINT           reduce using rule 7 (sentencia -> expresion .)
+    LPAREN          reduce using rule 7 (sentencia -> expresion .)
+    NUMBER          reduce using rule 7 (sentencia -> expresion .)
+    FLOAT           reduce using rule 7 (sentencia -> expresion .)
+    TRUE            reduce using rule 7 (sentencia -> expresion .)
+    FALSE           reduce using rule 7 (sentencia -> expresion .)
+    NOT             reduce using rule 7 (sentencia -> expresion .)
+    LISTOF          reduce using rule 7 (sentencia -> expresion .)
+    MUTABLELISTOF   reduce using rule 7 (sentencia -> expresion .)
+    VAL             reduce using rule 7 (sentencia -> expresion .)
+    VAR             reduce using rule 7 (sentencia -> expresion .)
+    $end            reduce using rule 7 (sentencia -> expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+
+state 8
+
+    (8) sentencia -> condicion .
+    (37) expresion -> condicion .
+    (45) condicion -> condicion . AND condicion
+    (46) condicion -> condicion . OR condicion
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for PRINT resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for NUMBER resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for FLOAT resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for NOT resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for LISTOF resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for MUTABLELISTOF resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for VAL resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for VAR resolved using rule 8 (sentencia -> condicion .)
+  ! reduce/reduce conflict for $end resolved using rule 8 (sentencia -> condicion .)
+    VARIABLE        reduce using rule 8 (sentencia -> condicion .)
+    PRINT           reduce using rule 8 (sentencia -> condicion .)
+    LPAREN          reduce using rule 8 (sentencia -> condicion .)
+    NUMBER          reduce using rule 8 (sentencia -> condicion .)
+    FLOAT           reduce using rule 8 (sentencia -> condicion .)
+    TRUE            reduce using rule 8 (sentencia -> condicion .)
+    FALSE           reduce using rule 8 (sentencia -> condicion .)
+    NOT             reduce using rule 8 (sentencia -> condicion .)
+    LISTOF          reduce using rule 8 (sentencia -> condicion .)
+    MUTABLELISTOF   reduce using rule 8 (sentencia -> condicion .)
+    VAL             reduce using rule 8 (sentencia -> condicion .)
+    VAR             reduce using rule 8 (sentencia -> condicion .)
+    $end            reduce using rule 8 (sentencia -> condicion .)
+    PLUS            reduce using rule 37 (expresion -> condicion .)
+    MINUS           reduce using rule 37 (expresion -> condicion .)
+    TIMES           reduce using rule 37 (expresion -> condicion .)
+    DIVIDE          reduce using rule 37 (expresion -> condicion .)
+    MOD             reduce using rule 37 (expresion -> condicion .)
+    GREATER         reduce using rule 37 (expresion -> condicion .)
+    LESS            reduce using rule 37 (expresion -> condicion .)
+    GREATER_EQUALS  reduce using rule 37 (expresion -> condicion .)
+    LESS_EQUALS     reduce using rule 37 (expresion -> condicion .)
+    EQUALS          reduce using rule 37 (expresion -> condicion .)
+    NOT_EQUALS      reduce using rule 37 (expresion -> condicion .)
+    AND             shift and go to state 35
+    OR              shift and go to state 36
+
+  ! VARIABLE        [ reduce using rule 37 (expresion -> condicion .) ]
+  ! PRINT           [ reduce using rule 37 (expresion -> condicion .) ]
+  ! LPAREN          [ reduce using rule 37 (expresion -> condicion .) ]
+  ! NUMBER          [ reduce using rule 37 (expresion -> condicion .) ]
+  ! FLOAT           [ reduce using rule 37 (expresion -> condicion .) ]
+  ! TRUE            [ reduce using rule 37 (expresion -> condicion .) ]
+  ! FALSE           [ reduce using rule 37 (expresion -> condicion .) ]
+  ! NOT             [ reduce using rule 37 (expresion -> condicion .) ]
+  ! LISTOF          [ reduce using rule 37 (expresion -> condicion .) ]
+  ! MUTABLELISTOF   [ reduce using rule 37 (expresion -> condicion .) ]
+  ! VAL             [ reduce using rule 37 (expresion -> condicion .) ]
+  ! VAR             [ reduce using rule 37 (expresion -> condicion .) ]
+  ! $end            [ reduce using rule 37 (expresion -> condicion .) ]
+
+
+state 9
+
+    (9) sentencia -> estructura_lista .
+
+    VARIABLE        reduce using rule 9 (sentencia -> estructura_lista .)
+    PRINT           reduce using rule 9 (sentencia -> estructura_lista .)
+    LPAREN          reduce using rule 9 (sentencia -> estructura_lista .)
+    NUMBER          reduce using rule 9 (sentencia -> estructura_lista .)
+    FLOAT           reduce using rule 9 (sentencia -> estructura_lista .)
+    TRUE            reduce using rule 9 (sentencia -> estructura_lista .)
+    FALSE           reduce using rule 9 (sentencia -> estructura_lista .)
+    NOT             reduce using rule 9 (sentencia -> estructura_lista .)
+    LISTOF          reduce using rule 9 (sentencia -> estructura_lista .)
+    MUTABLELISTOF   reduce using rule 9 (sentencia -> estructura_lista .)
+    VAL             reduce using rule 9 (sentencia -> estructura_lista .)
+    VAR             reduce using rule 9 (sentencia -> estructura_lista .)
+    $end            reduce using rule 9 (sentencia -> estructura_lista .)
+
+
+state 10
+
+    (10) sentencia -> declaracion_variable .
+
+    VARIABLE        reduce using rule 10 (sentencia -> declaracion_variable .)
+    PRINT           reduce using rule 10 (sentencia -> declaracion_variable .)
+    LPAREN          reduce using rule 10 (sentencia -> declaracion_variable .)
+    NUMBER          reduce using rule 10 (sentencia -> declaracion_variable .)
+    FLOAT           reduce using rule 10 (sentencia -> declaracion_variable .)
+    TRUE            reduce using rule 10 (sentencia -> declaracion_variable .)
+    FALSE           reduce using rule 10 (sentencia -> declaracion_variable .)
+    NOT             reduce using rule 10 (sentencia -> declaracion_variable .)
+    LISTOF          reduce using rule 10 (sentencia -> declaracion_variable .)
+    MUTABLELISTOF   reduce using rule 10 (sentencia -> declaracion_variable .)
+    VAL             reduce using rule 10 (sentencia -> declaracion_variable .)
+    VAR             reduce using rule 10 (sentencia -> declaracion_variable .)
+    $end            reduce using rule 10 (sentencia -> declaracion_variable .)
+
+
+state 11
+
+    (13) asignacion -> VARIABLE . ASIGN VARIABLE
+    (14) asignacion -> VARIABLE . ASIGN expresion
+    (15) asignacion -> VARIABLE . ASIGN condicion
+    (16) asignacion -> VARIABLE . ASIGN estructura_lista
+    (38) expresion -> VARIABLE .
+
+    ASIGN           shift and go to state 37
+    PLUS            reduce using rule 38 (expresion -> VARIABLE .)
+    MINUS           reduce using rule 38 (expresion -> VARIABLE .)
+    TIMES           reduce using rule 38 (expresion -> VARIABLE .)
+    DIVIDE          reduce using rule 38 (expresion -> VARIABLE .)
+    MOD             reduce using rule 38 (expresion -> VARIABLE .)
+    GREATER         reduce using rule 38 (expresion -> VARIABLE .)
+    LESS            reduce using rule 38 (expresion -> VARIABLE .)
+    GREATER_EQUALS  reduce using rule 38 (expresion -> VARIABLE .)
+    LESS_EQUALS     reduce using rule 38 (expresion -> VARIABLE .)
+    EQUALS          reduce using rule 38 (expresion -> VARIABLE .)
+    NOT_EQUALS      reduce using rule 38 (expresion -> VARIABLE .)
+    VARIABLE        reduce using rule 38 (expresion -> VARIABLE .)
+    PRINT           reduce using rule 38 (expresion -> VARIABLE .)
+    LPAREN          reduce using rule 38 (expresion -> VARIABLE .)
+    NUMBER          reduce using rule 38 (expresion -> VARIABLE .)
+    FLOAT           reduce using rule 38 (expresion -> VARIABLE .)
+    TRUE            reduce using rule 38 (expresion -> VARIABLE .)
+    FALSE           reduce using rule 38 (expresion -> VARIABLE .)
+    NOT             reduce using rule 38 (expresion -> VARIABLE .)
+    LISTOF          reduce using rule 38 (expresion -> VARIABLE .)
+    MUTABLELISTOF   reduce using rule 38 (expresion -> VARIABLE .)
+    VAL             reduce using rule 38 (expresion -> VARIABLE .)
+    VAR             reduce using rule 38 (expresion -> VARIABLE .)
+    $end            reduce using rule 38 (expresion -> VARIABLE .)
+
+
+state 12
+
+    (18) impresion -> PRINT . RPAREN repiteValores LPAREN
+    (17) impresion_vacia -> PRINT . RPAREN LPAREN
+
+    RPAREN          shift and go to state 38
+
+
+state 13
+
+    (32) expresion -> LPAREN . expresion RPAREN
+    (49) condicion -> LPAREN . condicion RPAREN
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 39
+    condicion                      shift and go to state 40
+
+state 14
+
+    (33) expresion -> NUMBER .
+
+    PLUS            reduce using rule 33 (expresion -> NUMBER .)
+    MINUS           reduce using rule 33 (expresion -> NUMBER .)
+    TIMES           reduce using rule 33 (expresion -> NUMBER .)
+    DIVIDE          reduce using rule 33 (expresion -> NUMBER .)
+    MOD             reduce using rule 33 (expresion -> NUMBER .)
+    GREATER         reduce using rule 33 (expresion -> NUMBER .)
+    LESS            reduce using rule 33 (expresion -> NUMBER .)
+    GREATER_EQUALS  reduce using rule 33 (expresion -> NUMBER .)
+    LESS_EQUALS     reduce using rule 33 (expresion -> NUMBER .)
+    EQUALS          reduce using rule 33 (expresion -> NUMBER .)
+    NOT_EQUALS      reduce using rule 33 (expresion -> NUMBER .)
+    VARIABLE        reduce using rule 33 (expresion -> NUMBER .)
+    PRINT           reduce using rule 33 (expresion -> NUMBER .)
+    LPAREN          reduce using rule 33 (expresion -> NUMBER .)
+    NUMBER          reduce using rule 33 (expresion -> NUMBER .)
+    FLOAT           reduce using rule 33 (expresion -> NUMBER .)
+    TRUE            reduce using rule 33 (expresion -> NUMBER .)
+    FALSE           reduce using rule 33 (expresion -> NUMBER .)
+    NOT             reduce using rule 33 (expresion -> NUMBER .)
+    LISTOF          reduce using rule 33 (expresion -> NUMBER .)
+    MUTABLELISTOF   reduce using rule 33 (expresion -> NUMBER .)
+    VAL             reduce using rule 33 (expresion -> NUMBER .)
+    VAR             reduce using rule 33 (expresion -> NUMBER .)
+    $end            reduce using rule 33 (expresion -> NUMBER .)
+    RPAREN          reduce using rule 33 (expresion -> NUMBER .)
+    AND             reduce using rule 33 (expresion -> NUMBER .)
+    OR              reduce using rule 33 (expresion -> NUMBER .)
+
+
+state 15
+
+    (34) expresion -> FLOAT .
+
+    PLUS            reduce using rule 34 (expresion -> FLOAT .)
+    MINUS           reduce using rule 34 (expresion -> FLOAT .)
+    TIMES           reduce using rule 34 (expresion -> FLOAT .)
+    DIVIDE          reduce using rule 34 (expresion -> FLOAT .)
+    MOD             reduce using rule 34 (expresion -> FLOAT .)
+    GREATER         reduce using rule 34 (expresion -> FLOAT .)
+    LESS            reduce using rule 34 (expresion -> FLOAT .)
+    GREATER_EQUALS  reduce using rule 34 (expresion -> FLOAT .)
+    LESS_EQUALS     reduce using rule 34 (expresion -> FLOAT .)
+    EQUALS          reduce using rule 34 (expresion -> FLOAT .)
+    NOT_EQUALS      reduce using rule 34 (expresion -> FLOAT .)
+    VARIABLE        reduce using rule 34 (expresion -> FLOAT .)
+    PRINT           reduce using rule 34 (expresion -> FLOAT .)
+    LPAREN          reduce using rule 34 (expresion -> FLOAT .)
+    NUMBER          reduce using rule 34 (expresion -> FLOAT .)
+    FLOAT           reduce using rule 34 (expresion -> FLOAT .)
+    TRUE            reduce using rule 34 (expresion -> FLOAT .)
+    FALSE           reduce using rule 34 (expresion -> FLOAT .)
+    NOT             reduce using rule 34 (expresion -> FLOAT .)
+    LISTOF          reduce using rule 34 (expresion -> FLOAT .)
+    MUTABLELISTOF   reduce using rule 34 (expresion -> FLOAT .)
+    VAL             reduce using rule 34 (expresion -> FLOAT .)
+    VAR             reduce using rule 34 (expresion -> FLOAT .)
+    $end            reduce using rule 34 (expresion -> FLOAT .)
+    RPAREN          reduce using rule 34 (expresion -> FLOAT .)
+    AND             reduce using rule 34 (expresion -> FLOAT .)
+    OR              reduce using rule 34 (expresion -> FLOAT .)
+
+
+state 16
+
+    (35) expresion -> TRUE .
+
+    PLUS            reduce using rule 35 (expresion -> TRUE .)
+    MINUS           reduce using rule 35 (expresion -> TRUE .)
+    TIMES           reduce using rule 35 (expresion -> TRUE .)
+    DIVIDE          reduce using rule 35 (expresion -> TRUE .)
+    MOD             reduce using rule 35 (expresion -> TRUE .)
+    GREATER         reduce using rule 35 (expresion -> TRUE .)
+    LESS            reduce using rule 35 (expresion -> TRUE .)
+    GREATER_EQUALS  reduce using rule 35 (expresion -> TRUE .)
+    LESS_EQUALS     reduce using rule 35 (expresion -> TRUE .)
+    EQUALS          reduce using rule 35 (expresion -> TRUE .)
+    NOT_EQUALS      reduce using rule 35 (expresion -> TRUE .)
+    VARIABLE        reduce using rule 35 (expresion -> TRUE .)
+    PRINT           reduce using rule 35 (expresion -> TRUE .)
+    LPAREN          reduce using rule 35 (expresion -> TRUE .)
+    NUMBER          reduce using rule 35 (expresion -> TRUE .)
+    FLOAT           reduce using rule 35 (expresion -> TRUE .)
+    TRUE            reduce using rule 35 (expresion -> TRUE .)
+    FALSE           reduce using rule 35 (expresion -> TRUE .)
+    NOT             reduce using rule 35 (expresion -> TRUE .)
+    LISTOF          reduce using rule 35 (expresion -> TRUE .)
+    MUTABLELISTOF   reduce using rule 35 (expresion -> TRUE .)
+    VAL             reduce using rule 35 (expresion -> TRUE .)
+    VAR             reduce using rule 35 (expresion -> TRUE .)
+    $end            reduce using rule 35 (expresion -> TRUE .)
+    RPAREN          reduce using rule 35 (expresion -> TRUE .)
+    AND             reduce using rule 35 (expresion -> TRUE .)
+    OR              reduce using rule 35 (expresion -> TRUE .)
+
+
+state 17
+
+    (36) expresion -> FALSE .
+
+    PLUS            reduce using rule 36 (expresion -> FALSE .)
+    MINUS           reduce using rule 36 (expresion -> FALSE .)
+    TIMES           reduce using rule 36 (expresion -> FALSE .)
+    DIVIDE          reduce using rule 36 (expresion -> FALSE .)
+    MOD             reduce using rule 36 (expresion -> FALSE .)
+    GREATER         reduce using rule 36 (expresion -> FALSE .)
+    LESS            reduce using rule 36 (expresion -> FALSE .)
+    GREATER_EQUALS  reduce using rule 36 (expresion -> FALSE .)
+    LESS_EQUALS     reduce using rule 36 (expresion -> FALSE .)
+    EQUALS          reduce using rule 36 (expresion -> FALSE .)
+    NOT_EQUALS      reduce using rule 36 (expresion -> FALSE .)
+    VARIABLE        reduce using rule 36 (expresion -> FALSE .)
+    PRINT           reduce using rule 36 (expresion -> FALSE .)
+    LPAREN          reduce using rule 36 (expresion -> FALSE .)
+    NUMBER          reduce using rule 36 (expresion -> FALSE .)
+    FLOAT           reduce using rule 36 (expresion -> FALSE .)
+    TRUE            reduce using rule 36 (expresion -> FALSE .)
+    FALSE           reduce using rule 36 (expresion -> FALSE .)
+    NOT             reduce using rule 36 (expresion -> FALSE .)
+    LISTOF          reduce using rule 36 (expresion -> FALSE .)
+    MUTABLELISTOF   reduce using rule 36 (expresion -> FALSE .)
+    VAL             reduce using rule 36 (expresion -> FALSE .)
+    VAR             reduce using rule 36 (expresion -> FALSE .)
+    $end            reduce using rule 36 (expresion -> FALSE .)
+    RPAREN          reduce using rule 36 (expresion -> FALSE .)
+    AND             reduce using rule 36 (expresion -> FALSE .)
+    OR              reduce using rule 36 (expresion -> FALSE .)
+
+
+state 18
+
+    (47) condicion -> NOT . condicion
+    (48) condicion -> NOT . expresion
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+
+    NOT             shift and go to state 18
+    LPAREN          shift and go to state 44
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+
+    condicion                      shift and go to state 42
+    expresion                      shift and go to state 43
+
+state 19
+
+    (52) estructura_lista -> LISTOF . LPAREN elementos_lista RPAREN
+
+    LPAREN          shift and go to state 45
+
+
+state 20
+
+    (53) estructura_lista -> MUTABLELISTOF . LPAREN elementos_lista RPAREN
+
+    LPAREN          shift and go to state 46
+
+
+state 21
+
+    (11) declaracion_variable -> VAL . VARIABLE ASIGN valor
+
+    VARIABLE        shift and go to state 47
+
+
+state 22
+
+    (12) declaracion_variable -> VAR . VARIABLE ASIGN valor
+
+    VARIABLE        shift and go to state 48
+
+
+state 23
+
+    (3) sentencias -> sentencias sentencia .
+
+    VARIABLE        reduce using rule 3 (sentencias -> sentencias sentencia .)
+    PRINT           reduce using rule 3 (sentencias -> sentencias sentencia .)
+    LPAREN          reduce using rule 3 (sentencias -> sentencias sentencia .)
+    NUMBER          reduce using rule 3 (sentencias -> sentencias sentencia .)
+    FLOAT           reduce using rule 3 (sentencias -> sentencias sentencia .)
+    TRUE            reduce using rule 3 (sentencias -> sentencias sentencia .)
+    FALSE           reduce using rule 3 (sentencias -> sentencias sentencia .)
+    NOT             reduce using rule 3 (sentencias -> sentencias sentencia .)
+    LISTOF          reduce using rule 3 (sentencias -> sentencias sentencia .)
+    MUTABLELISTOF   reduce using rule 3 (sentencias -> sentencias sentencia .)
+    VAL             reduce using rule 3 (sentencias -> sentencias sentencia .)
+    VAR             reduce using rule 3 (sentencias -> sentencias sentencia .)
+    $end            reduce using rule 3 (sentencias -> sentencias sentencia .)
+
+
+state 24
+
+    (27) expresion -> expresion PLUS . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 49
+    condicion                      shift and go to state 50
+
+state 25
+
+    (28) expresion -> expresion MINUS . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 51
+    condicion                      shift and go to state 50
+
+state 26
+
+    (29) expresion -> expresion TIMES . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 52
+    condicion                      shift and go to state 50
+
+state 27
+
+    (30) expresion -> expresion DIVIDE . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 53
+    condicion                      shift and go to state 50
+
+state 28
+
+    (31) expresion -> expresion MOD . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 54
+    condicion                      shift and go to state 50
+
+state 29
+
+    (39) condicion -> expresion GREATER . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 55
+    condicion                      shift and go to state 50
+
+state 30
+
+    (40) condicion -> expresion LESS . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 56
+    condicion                      shift and go to state 50
+
+state 31
+
+    (41) condicion -> expresion GREATER_EQUALS . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 57
+    condicion                      shift and go to state 50
+
+state 32
+
+    (42) condicion -> expresion LESS_EQUALS . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 58
+    condicion                      shift and go to state 50
+
+state 33
+
+    (43) condicion -> expresion EQUALS . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 59
+    condicion                      shift and go to state 50
+
+state 34
+
+    (44) condicion -> expresion NOT_EQUALS . expresion
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+    NOT             shift and go to state 18
+
+    expresion                      shift and go to state 60
+    condicion                      shift and go to state 50
+
+state 35
+
+    (45) condicion -> condicion AND . condicion
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+
+    NOT             shift and go to state 18
+    LPAREN          shift and go to state 44
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+
+    condicion                      shift and go to state 61
+    expresion                      shift and go to state 62
+
+state 36
+
+    (46) condicion -> condicion OR . condicion
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+
+    NOT             shift and go to state 18
+    LPAREN          shift and go to state 44
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+
+    condicion                      shift and go to state 63
+    expresion                      shift and go to state 62
+
+state 37
+
+    (13) asignacion -> VARIABLE ASIGN . VARIABLE
+    (14) asignacion -> VARIABLE ASIGN . expresion
+    (15) asignacion -> VARIABLE ASIGN . condicion
+    (16) asignacion -> VARIABLE ASIGN . estructura_lista
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+    (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
+    (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
+
+    VARIABLE        shift and go to state 64
+    LPAREN          shift and go to state 13
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    NOT             shift and go to state 18
+    LISTOF          shift and go to state 19
+    MUTABLELISTOF   shift and go to state 20
+
+    expresion                      shift and go to state 65
+    condicion                      shift and go to state 66
+    estructura_lista               shift and go to state 67
+
+state 38
+
+    (18) impresion -> PRINT RPAREN . repiteValores LPAREN
+    (17) impresion_vacia -> PRINT RPAREN . LPAREN
+    (25) repiteValores -> . valor COMMA repiteValores
+    (26) repiteValores -> . valor
+    (19) valor -> . NUMBER
+    (20) valor -> . FLOAT
+    (21) valor -> . VARIABLE
+    (22) valor -> . estructura_lista
+    (23) valor -> . TRUE
+    (24) valor -> . FALSE
+    (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
+    (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
+
+    LPAREN          shift and go to state 69
+    NUMBER          shift and go to state 71
+    FLOAT           shift and go to state 72
+    VARIABLE        shift and go to state 73
+    TRUE            shift and go to state 75
+    FALSE           shift and go to state 76
+    LISTOF          shift and go to state 19
+    MUTABLELISTOF   shift and go to state 20
+
+    repiteValores                  shift and go to state 68
+    valor                          shift and go to state 70
+    estructura_lista               shift and go to state 74
+
+state 39
+
+    (32) expresion -> LPAREN expresion . RPAREN
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+    RPAREN          shift and go to state 77
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+
+state 40
+
+    (49) condicion -> LPAREN condicion . RPAREN
+    (37) expresion -> condicion .
+    (45) condicion -> condicion . AND condicion
+    (46) condicion -> condicion . OR condicion
+
+  ! shift/reduce conflict for RPAREN resolved as shift
+    RPAREN          shift and go to state 78
+    PLUS            reduce using rule 37 (expresion -> condicion .)
+    MINUS           reduce using rule 37 (expresion -> condicion .)
+    TIMES           reduce using rule 37 (expresion -> condicion .)
+    DIVIDE          reduce using rule 37 (expresion -> condicion .)
+    MOD             reduce using rule 37 (expresion -> condicion .)
+    GREATER         reduce using rule 37 (expresion -> condicion .)
+    LESS            reduce using rule 37 (expresion -> condicion .)
+    GREATER_EQUALS  reduce using rule 37 (expresion -> condicion .)
+    LESS_EQUALS     reduce using rule 37 (expresion -> condicion .)
+    EQUALS          reduce using rule 37 (expresion -> condicion .)
+    NOT_EQUALS      reduce using rule 37 (expresion -> condicion .)
+    AND             shift and go to state 35
+    OR              shift and go to state 36
+
+  ! RPAREN          [ reduce using rule 37 (expresion -> condicion .) ]
+
+
+state 41
+
+    (38) expresion -> VARIABLE .
+
+    RPAREN          reduce using rule 38 (expresion -> VARIABLE .)
+    PLUS            reduce using rule 38 (expresion -> VARIABLE .)
+    MINUS           reduce using rule 38 (expresion -> VARIABLE .)
+    TIMES           reduce using rule 38 (expresion -> VARIABLE .)
+    DIVIDE          reduce using rule 38 (expresion -> VARIABLE .)
+    MOD             reduce using rule 38 (expresion -> VARIABLE .)
+    GREATER         reduce using rule 38 (expresion -> VARIABLE .)
+    LESS            reduce using rule 38 (expresion -> VARIABLE .)
+    GREATER_EQUALS  reduce using rule 38 (expresion -> VARIABLE .)
+    LESS_EQUALS     reduce using rule 38 (expresion -> VARIABLE .)
+    EQUALS          reduce using rule 38 (expresion -> VARIABLE .)
+    NOT_EQUALS      reduce using rule 38 (expresion -> VARIABLE .)
+    AND             reduce using rule 38 (expresion -> VARIABLE .)
+    OR              reduce using rule 38 (expresion -> VARIABLE .)
+    VARIABLE        reduce using rule 38 (expresion -> VARIABLE .)
+    PRINT           reduce using rule 38 (expresion -> VARIABLE .)
+    LPAREN          reduce using rule 38 (expresion -> VARIABLE .)
+    NUMBER          reduce using rule 38 (expresion -> VARIABLE .)
+    FLOAT           reduce using rule 38 (expresion -> VARIABLE .)
+    TRUE            reduce using rule 38 (expresion -> VARIABLE .)
+    FALSE           reduce using rule 38 (expresion -> VARIABLE .)
+    NOT             reduce using rule 38 (expresion -> VARIABLE .)
+    LISTOF          reduce using rule 38 (expresion -> VARIABLE .)
+    MUTABLELISTOF   reduce using rule 38 (expresion -> VARIABLE .)
+    VAL             reduce using rule 38 (expresion -> VARIABLE .)
+    VAR             reduce using rule 38 (expresion -> VARIABLE .)
+    $end            reduce using rule 38 (expresion -> VARIABLE .)
+
+
+state 42
+
+    (47) condicion -> NOT condicion .
+    (45) condicion -> condicion . AND condicion
+    (46) condicion -> condicion . OR condicion
+    (37) expresion -> condicion .
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! reduce/reduce conflict for VARIABLE resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for PRINT resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for NUMBER resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for FLOAT resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for TRUE resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for FALSE resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for NOT resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for LISTOF resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for MUTABLELISTOF resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for VAL resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for VAR resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for $end resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for PLUS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for MINUS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for TIMES resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for DIVIDE resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for MOD resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for GREATER resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for LESS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for GREATER_EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for LESS_EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for NOT_EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 37 (expresion -> condicion .)
+    AND             shift and go to state 35
+    OR              shift and go to state 36
+    VARIABLE        reduce using rule 37 (expresion -> condicion .)
+    PRINT           reduce using rule 37 (expresion -> condicion .)
+    LPAREN          reduce using rule 37 (expresion -> condicion .)
+    NUMBER          reduce using rule 37 (expresion -> condicion .)
+    FLOAT           reduce using rule 37 (expresion -> condicion .)
+    TRUE            reduce using rule 37 (expresion -> condicion .)
+    FALSE           reduce using rule 37 (expresion -> condicion .)
+    NOT             reduce using rule 37 (expresion -> condicion .)
+    LISTOF          reduce using rule 37 (expresion -> condicion .)
+    MUTABLELISTOF   reduce using rule 37 (expresion -> condicion .)
+    VAL             reduce using rule 37 (expresion -> condicion .)
+    VAR             reduce using rule 37 (expresion -> condicion .)
+    $end            reduce using rule 37 (expresion -> condicion .)
+    PLUS            reduce using rule 37 (expresion -> condicion .)
+    MINUS           reduce using rule 37 (expresion -> condicion .)
+    TIMES           reduce using rule 37 (expresion -> condicion .)
+    DIVIDE          reduce using rule 37 (expresion -> condicion .)
+    MOD             reduce using rule 37 (expresion -> condicion .)
+    GREATER         reduce using rule 37 (expresion -> condicion .)
+    LESS            reduce using rule 37 (expresion -> condicion .)
+    GREATER_EQUALS  reduce using rule 37 (expresion -> condicion .)
+    LESS_EQUALS     reduce using rule 37 (expresion -> condicion .)
+    EQUALS          reduce using rule 37 (expresion -> condicion .)
+    NOT_EQUALS      reduce using rule 37 (expresion -> condicion .)
+    RPAREN          reduce using rule 37 (expresion -> condicion .)
+
+  ! AND             [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! OR              [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! VARIABLE        [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! PRINT           [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! LPAREN          [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! NUMBER          [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! FLOAT           [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! TRUE            [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! FALSE           [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! NOT             [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! LISTOF          [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! MUTABLELISTOF   [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! VAL             [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! VAR             [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! $end            [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! PLUS            [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! MINUS           [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! TIMES           [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! DIVIDE          [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! MOD             [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! GREATER         [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! LESS            [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! LESS_EQUALS     [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! EQUALS          [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! NOT_EQUALS      [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! RPAREN          [ reduce using rule 47 (condicion -> NOT condicion .) ]
+  ! AND             [ reduce using rule 37 (expresion -> condicion .) ]
+  ! OR              [ reduce using rule 37 (expresion -> condicion .) ]
+
+
+state 43
+
+    (48) condicion -> NOT expresion .
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+    AND             reduce using rule 48 (condicion -> NOT expresion .)
+    OR              reduce using rule 48 (condicion -> NOT expresion .)
+    VARIABLE        reduce using rule 48 (condicion -> NOT expresion .)
+    PRINT           reduce using rule 48 (condicion -> NOT expresion .)
+    LPAREN          reduce using rule 48 (condicion -> NOT expresion .)
+    NUMBER          reduce using rule 48 (condicion -> NOT expresion .)
+    FLOAT           reduce using rule 48 (condicion -> NOT expresion .)
+    TRUE            reduce using rule 48 (condicion -> NOT expresion .)
+    FALSE           reduce using rule 48 (condicion -> NOT expresion .)
+    NOT             reduce using rule 48 (condicion -> NOT expresion .)
+    LISTOF          reduce using rule 48 (condicion -> NOT expresion .)
+    MUTABLELISTOF   reduce using rule 48 (condicion -> NOT expresion .)
+    VAL             reduce using rule 48 (condicion -> NOT expresion .)
+    VAR             reduce using rule 48 (condicion -> NOT expresion .)
+    $end            reduce using rule 48 (condicion -> NOT expresion .)
+    RPAREN          reduce using rule 48 (condicion -> NOT expresion .)
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+
+  ! PLUS            [ reduce using rule 48 (condicion -> NOT expresion .) ]
+  ! MINUS           [ reduce using rule 48 (condicion -> NOT expresion .) ]
+  ! TIMES           [ reduce using rule 48 (condicion -> NOT expresion .) ]
+  ! DIVIDE          [ reduce using rule 48 (condicion -> NOT expresion .) ]
+  ! MOD             [ reduce using rule 48 (condicion -> NOT expresion .) ]
+  ! GREATER         [ reduce using rule 48 (condicion -> NOT expresion .) ]
+  ! LESS            [ reduce using rule 48 (condicion -> NOT expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 48 (condicion -> NOT expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 48 (condicion -> NOT expresion .) ]
+  ! EQUALS          [ reduce using rule 48 (condicion -> NOT expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 48 (condicion -> NOT expresion .) ]
+
+
+state 44
+
+    (49) condicion -> LPAREN . condicion RPAREN
+    (32) expresion -> LPAREN . expresion RPAREN
+    (39) condicion -> . expresion GREATER expresion
+    (40) condicion -> . expresion LESS expresion
+    (41) condicion -> . expresion GREATER_EQUALS expresion
+    (42) condicion -> . expresion LESS_EQUALS expresion
+    (43) condicion -> . expresion EQUALS expresion
+    (44) condicion -> . expresion NOT_EQUALS expresion
+    (45) condicion -> . condicion AND condicion
+    (46) condicion -> . condicion OR condicion
+    (47) condicion -> . NOT condicion
+    (48) condicion -> . NOT expresion
+    (49) condicion -> . LPAREN condicion RPAREN
+    (27) expresion -> . expresion PLUS expresion
+    (28) expresion -> . expresion MINUS expresion
+    (29) expresion -> . expresion TIMES expresion
+    (30) expresion -> . expresion DIVIDE expresion
+    (31) expresion -> . expresion MOD expresion
+    (32) expresion -> . LPAREN expresion RPAREN
+    (33) expresion -> . NUMBER
+    (34) expresion -> . FLOAT
+    (35) expresion -> . TRUE
+    (36) expresion -> . FALSE
+    (37) expresion -> . condicion
+    (38) expresion -> . VARIABLE
+
+    NOT             shift and go to state 18
+    LPAREN          shift and go to state 44
+    NUMBER          shift and go to state 14
+    FLOAT           shift and go to state 15
+    TRUE            shift and go to state 16
+    FALSE           shift and go to state 17
+    VARIABLE        shift and go to state 41
+
+    condicion                      shift and go to state 79
+    expresion                      shift and go to state 80
+
+state 45
+
+    (52) estructura_lista -> LISTOF LPAREN . elementos_lista RPAREN
+    (50) elementos_lista -> . valor COMMA elementos_lista
+    (51) elementos_lista -> . valor
+    (19) valor -> . NUMBER
+    (20) valor -> . FLOAT
+    (21) valor -> . VARIABLE
+    (22) valor -> . estructura_lista
+    (23) valor -> . TRUE
+    (24) valor -> . FALSE
+    (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
+    (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
+
+    NUMBER          shift and go to state 71
+    FLOAT           shift and go to state 72
+    VARIABLE        shift and go to state 73
+    TRUE            shift and go to state 75
+    FALSE           shift and go to state 76
+    LISTOF          shift and go to state 19
+    MUTABLELISTOF   shift and go to state 20
+
+    elementos_lista                shift and go to state 81
+    valor                          shift and go to state 82
+    estructura_lista               shift and go to state 74
+
+state 46
+
+    (53) estructura_lista -> MUTABLELISTOF LPAREN . elementos_lista RPAREN
+    (50) elementos_lista -> . valor COMMA elementos_lista
+    (51) elementos_lista -> . valor
+    (19) valor -> . NUMBER
+    (20) valor -> . FLOAT
+    (21) valor -> . VARIABLE
+    (22) valor -> . estructura_lista
+    (23) valor -> . TRUE
+    (24) valor -> . FALSE
+    (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
+    (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
+
+    NUMBER          shift and go to state 71
+    FLOAT           shift and go to state 72
+    VARIABLE        shift and go to state 73
+    TRUE            shift and go to state 75
+    FALSE           shift and go to state 76
+    LISTOF          shift and go to state 19
+    MUTABLELISTOF   shift and go to state 20
+
+    elementos_lista                shift and go to state 83
+    valor                          shift and go to state 82
+    estructura_lista               shift and go to state 74
+
+state 47
+
+    (11) declaracion_variable -> VAL VARIABLE . ASIGN valor
+
+    ASIGN           shift and go to state 84
+
+
+state 48
+
+    (12) declaracion_variable -> VAR VARIABLE . ASIGN valor
+
+    ASIGN           shift and go to state 85
+
+
+state 49
+
+    (27) expresion -> expresion PLUS expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    VARIABLE        reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    PRINT           reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    LPAREN          reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    NUMBER          reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    FLOAT           reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    TRUE            reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    FALSE           reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    NOT             reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    LISTOF          reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    MUTABLELISTOF   reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    VAL             reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    VAR             reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    $end            reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    RPAREN          reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    AND             reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    OR              reduce using rule 27 (expresion -> expresion PLUS expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+  ! MINUS           [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+  ! TIMES           [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+  ! DIVIDE          [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+  ! MOD             [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+  ! GREATER         [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+  ! LESS            [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+  ! EQUALS          [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 27 (expresion -> expresion PLUS expresion .) ]
+
+
+state 50
+
+    (37) expresion -> condicion .
+    (45) condicion -> condicion . AND condicion
+    (46) condicion -> condicion . OR condicion
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    VARIABLE        reduce using rule 37 (expresion -> condicion .)
+    PRINT           reduce using rule 37 (expresion -> condicion .)
+    LPAREN          reduce using rule 37 (expresion -> condicion .)
+    NUMBER          reduce using rule 37 (expresion -> condicion .)
+    FLOAT           reduce using rule 37 (expresion -> condicion .)
+    TRUE            reduce using rule 37 (expresion -> condicion .)
+    FALSE           reduce using rule 37 (expresion -> condicion .)
+    NOT             reduce using rule 37 (expresion -> condicion .)
+    LISTOF          reduce using rule 37 (expresion -> condicion .)
+    MUTABLELISTOF   reduce using rule 37 (expresion -> condicion .)
+    VAL             reduce using rule 37 (expresion -> condicion .)
+    VAR             reduce using rule 37 (expresion -> condicion .)
+    $end            reduce using rule 37 (expresion -> condicion .)
+    PLUS            reduce using rule 37 (expresion -> condicion .)
+    MINUS           reduce using rule 37 (expresion -> condicion .)
+    TIMES           reduce using rule 37 (expresion -> condicion .)
+    DIVIDE          reduce using rule 37 (expresion -> condicion .)
+    MOD             reduce using rule 37 (expresion -> condicion .)
+    GREATER         reduce using rule 37 (expresion -> condicion .)
+    LESS            reduce using rule 37 (expresion -> condicion .)
+    GREATER_EQUALS  reduce using rule 37 (expresion -> condicion .)
+    LESS_EQUALS     reduce using rule 37 (expresion -> condicion .)
+    EQUALS          reduce using rule 37 (expresion -> condicion .)
+    NOT_EQUALS      reduce using rule 37 (expresion -> condicion .)
+    RPAREN          reduce using rule 37 (expresion -> condicion .)
+    AND             shift and go to state 35
+    OR              shift and go to state 36
+
+  ! AND             [ reduce using rule 37 (expresion -> condicion .) ]
+  ! OR              [ reduce using rule 37 (expresion -> condicion .) ]
+
+
+state 51
+
+    (28) expresion -> expresion MINUS expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    VARIABLE        reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    PRINT           reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    LPAREN          reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    NUMBER          reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    FLOAT           reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    TRUE            reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    FALSE           reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    NOT             reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    LISTOF          reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    MUTABLELISTOF   reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    VAL             reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    VAR             reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    $end            reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    RPAREN          reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    AND             reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    OR              reduce using rule 28 (expresion -> expresion MINUS expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+  ! MINUS           [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+  ! TIMES           [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+  ! DIVIDE          [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+  ! MOD             [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+  ! GREATER         [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+  ! LESS            [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+  ! EQUALS          [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 28 (expresion -> expresion MINUS expresion .) ]
+
+
+state 52
+
+    (29) expresion -> expresion TIMES expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    VARIABLE        reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    PRINT           reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    LPAREN          reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    NUMBER          reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    FLOAT           reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    TRUE            reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    FALSE           reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    NOT             reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    LISTOF          reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    MUTABLELISTOF   reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    VAL             reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    VAR             reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    $end            reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    RPAREN          reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    AND             reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    OR              reduce using rule 29 (expresion -> expresion TIMES expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+  ! MINUS           [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+  ! TIMES           [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+  ! DIVIDE          [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+  ! MOD             [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+  ! GREATER         [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+  ! LESS            [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+  ! EQUALS          [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 29 (expresion -> expresion TIMES expresion .) ]
+
+
+state 53
+
+    (30) expresion -> expresion DIVIDE expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    VARIABLE        reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    PRINT           reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    LPAREN          reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    NUMBER          reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    FLOAT           reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    TRUE            reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    FALSE           reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    NOT             reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    LISTOF          reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    MUTABLELISTOF   reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    VAL             reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    VAR             reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    $end            reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    RPAREN          reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    AND             reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    OR              reduce using rule 30 (expresion -> expresion DIVIDE expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+  ! MINUS           [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+  ! TIMES           [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+  ! DIVIDE          [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+  ! MOD             [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+  ! GREATER         [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+  ! LESS            [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+  ! EQUALS          [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 30 (expresion -> expresion DIVIDE expresion .) ]
+
+
+state 54
+
+    (31) expresion -> expresion MOD expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    VARIABLE        reduce using rule 31 (expresion -> expresion MOD expresion .)
+    PRINT           reduce using rule 31 (expresion -> expresion MOD expresion .)
+    LPAREN          reduce using rule 31 (expresion -> expresion MOD expresion .)
+    NUMBER          reduce using rule 31 (expresion -> expresion MOD expresion .)
+    FLOAT           reduce using rule 31 (expresion -> expresion MOD expresion .)
+    TRUE            reduce using rule 31 (expresion -> expresion MOD expresion .)
+    FALSE           reduce using rule 31 (expresion -> expresion MOD expresion .)
+    NOT             reduce using rule 31 (expresion -> expresion MOD expresion .)
+    LISTOF          reduce using rule 31 (expresion -> expresion MOD expresion .)
+    MUTABLELISTOF   reduce using rule 31 (expresion -> expresion MOD expresion .)
+    VAL             reduce using rule 31 (expresion -> expresion MOD expresion .)
+    VAR             reduce using rule 31 (expresion -> expresion MOD expresion .)
+    $end            reduce using rule 31 (expresion -> expresion MOD expresion .)
+    RPAREN          reduce using rule 31 (expresion -> expresion MOD expresion .)
+    AND             reduce using rule 31 (expresion -> expresion MOD expresion .)
+    OR              reduce using rule 31 (expresion -> expresion MOD expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+  ! MINUS           [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+  ! TIMES           [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+  ! DIVIDE          [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+  ! MOD             [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+  ! GREATER         [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+  ! LESS            [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+  ! EQUALS          [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 31 (expresion -> expresion MOD expresion .) ]
+
+
+state 55
+
+    (39) condicion -> expresion GREATER expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    AND             reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    OR              reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    VARIABLE        reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    PRINT           reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    LPAREN          reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    NUMBER          reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    FLOAT           reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    TRUE            reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    FALSE           reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    NOT             reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    LISTOF          reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    MUTABLELISTOF   reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    VAL             reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    VAR             reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    $end            reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    RPAREN          reduce using rule 39 (condicion -> expresion GREATER expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+  ! MINUS           [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+  ! TIMES           [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+  ! DIVIDE          [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+  ! MOD             [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+  ! GREATER         [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+  ! LESS            [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+  ! EQUALS          [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 39 (condicion -> expresion GREATER expresion .) ]
+
+
+state 56
+
+    (40) condicion -> expresion LESS expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    AND             reduce using rule 40 (condicion -> expresion LESS expresion .)
+    OR              reduce using rule 40 (condicion -> expresion LESS expresion .)
+    VARIABLE        reduce using rule 40 (condicion -> expresion LESS expresion .)
+    PRINT           reduce using rule 40 (condicion -> expresion LESS expresion .)
+    LPAREN          reduce using rule 40 (condicion -> expresion LESS expresion .)
+    NUMBER          reduce using rule 40 (condicion -> expresion LESS expresion .)
+    FLOAT           reduce using rule 40 (condicion -> expresion LESS expresion .)
+    TRUE            reduce using rule 40 (condicion -> expresion LESS expresion .)
+    FALSE           reduce using rule 40 (condicion -> expresion LESS expresion .)
+    NOT             reduce using rule 40 (condicion -> expresion LESS expresion .)
+    LISTOF          reduce using rule 40 (condicion -> expresion LESS expresion .)
+    MUTABLELISTOF   reduce using rule 40 (condicion -> expresion LESS expresion .)
+    VAL             reduce using rule 40 (condicion -> expresion LESS expresion .)
+    VAR             reduce using rule 40 (condicion -> expresion LESS expresion .)
+    $end            reduce using rule 40 (condicion -> expresion LESS expresion .)
+    RPAREN          reduce using rule 40 (condicion -> expresion LESS expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+  ! MINUS           [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+  ! TIMES           [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+  ! DIVIDE          [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+  ! MOD             [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+  ! GREATER         [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+  ! LESS            [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+  ! EQUALS          [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 40 (condicion -> expresion LESS expresion .) ]
+
+
+state 57
+
+    (41) condicion -> expresion GREATER_EQUALS expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    AND             reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    OR              reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    VARIABLE        reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    PRINT           reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    LPAREN          reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    NUMBER          reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    FLOAT           reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    TRUE            reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    FALSE           reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    NOT             reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    LISTOF          reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    MUTABLELISTOF   reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    VAL             reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    VAR             reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    $end            reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    RPAREN          reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+  ! MINUS           [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+  ! TIMES           [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+  ! DIVIDE          [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+  ! MOD             [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+  ! GREATER         [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+  ! LESS            [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+  ! EQUALS          [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 41 (condicion -> expresion GREATER_EQUALS expresion .) ]
+
+
+state 58
+
+    (42) condicion -> expresion LESS_EQUALS expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    AND             reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    OR              reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    VARIABLE        reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    PRINT           reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    LPAREN          reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    NUMBER          reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    FLOAT           reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    TRUE            reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    FALSE           reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    NOT             reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    LISTOF          reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    MUTABLELISTOF   reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    VAL             reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    VAR             reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    $end            reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    RPAREN          reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+  ! MINUS           [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+  ! TIMES           [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+  ! DIVIDE          [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+  ! MOD             [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+  ! GREATER         [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+  ! LESS            [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+  ! EQUALS          [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 42 (condicion -> expresion LESS_EQUALS expresion .) ]
+
+
+state 59
+
+    (43) condicion -> expresion EQUALS expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    AND             reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    OR              reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    VARIABLE        reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    PRINT           reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    LPAREN          reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    NUMBER          reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    FLOAT           reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    TRUE            reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    FALSE           reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    NOT             reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    LISTOF          reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    MUTABLELISTOF   reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    VAL             reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    VAR             reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    $end            reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    RPAREN          reduce using rule 43 (condicion -> expresion EQUALS expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+  ! MINUS           [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+  ! TIMES           [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+  ! DIVIDE          [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+  ! MOD             [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+  ! GREATER         [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+  ! LESS            [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+  ! EQUALS          [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 43 (condicion -> expresion EQUALS expresion .) ]
+
+
+state 60
+
+    (44) condicion -> expresion NOT_EQUALS expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for GREATER resolved as shift
+  ! shift/reduce conflict for LESS resolved as shift
+  ! shift/reduce conflict for GREATER_EQUALS resolved as shift
+  ! shift/reduce conflict for LESS_EQUALS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for NOT_EQUALS resolved as shift
+    AND             reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    OR              reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    VARIABLE        reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    PRINT           reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    LPAREN          reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    NUMBER          reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    FLOAT           reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    TRUE            reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    FALSE           reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    NOT             reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    LISTOF          reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    MUTABLELISTOF   reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    VAL             reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    VAR             reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    $end            reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    RPAREN          reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+  ! PLUS            [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+  ! MINUS           [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+  ! TIMES           [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+  ! DIVIDE          [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+  ! MOD             [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+  ! GREATER         [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+  ! LESS            [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+  ! LESS_EQUALS     [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+  ! EQUALS          [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+  ! NOT_EQUALS      [ reduce using rule 44 (condicion -> expresion NOT_EQUALS expresion .) ]
+
+
+state 61
+
+    (45) condicion -> condicion AND condicion .
+    (45) condicion -> condicion . AND condicion
+    (46) condicion -> condicion . OR condicion
+    (37) expresion -> condicion .
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! reduce/reduce conflict for GREATER resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for LESS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for GREATER_EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for LESS_EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for NOT_EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for PLUS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for MINUS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for TIMES resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for DIVIDE resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for MOD resolved using rule 37 (expresion -> condicion .)
+    VARIABLE        reduce using rule 45 (condicion -> condicion AND condicion .)
+    PRINT           reduce using rule 45 (condicion -> condicion AND condicion .)
+    LPAREN          reduce using rule 45 (condicion -> condicion AND condicion .)
+    NUMBER          reduce using rule 45 (condicion -> condicion AND condicion .)
+    FLOAT           reduce using rule 45 (condicion -> condicion AND condicion .)
+    TRUE            reduce using rule 45 (condicion -> condicion AND condicion .)
+    FALSE           reduce using rule 45 (condicion -> condicion AND condicion .)
+    NOT             reduce using rule 45 (condicion -> condicion AND condicion .)
+    LISTOF          reduce using rule 45 (condicion -> condicion AND condicion .)
+    MUTABLELISTOF   reduce using rule 45 (condicion -> condicion AND condicion .)
+    VAL             reduce using rule 45 (condicion -> condicion AND condicion .)
+    VAR             reduce using rule 45 (condicion -> condicion AND condicion .)
+    $end            reduce using rule 45 (condicion -> condicion AND condicion .)
+    RPAREN          reduce using rule 45 (condicion -> condicion AND condicion .)
+    AND             shift and go to state 35
+    OR              shift and go to state 36
+    GREATER         reduce using rule 37 (expresion -> condicion .)
+    LESS            reduce using rule 37 (expresion -> condicion .)
+    GREATER_EQUALS  reduce using rule 37 (expresion -> condicion .)
+    LESS_EQUALS     reduce using rule 37 (expresion -> condicion .)
+    EQUALS          reduce using rule 37 (expresion -> condicion .)
+    NOT_EQUALS      reduce using rule 37 (expresion -> condicion .)
+    PLUS            reduce using rule 37 (expresion -> condicion .)
+    MINUS           reduce using rule 37 (expresion -> condicion .)
+    TIMES           reduce using rule 37 (expresion -> condicion .)
+    DIVIDE          reduce using rule 37 (expresion -> condicion .)
+    MOD             reduce using rule 37 (expresion -> condicion .)
+
+  ! AND             [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! OR              [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! PLUS            [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! MINUS           [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! TIMES           [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! DIVIDE          [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! MOD             [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! GREATER         [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! LESS            [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! LESS_EQUALS     [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! EQUALS          [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+  ! NOT_EQUALS      [ reduce using rule 45 (condicion -> condicion AND condicion .) ]
+
+
+state 62
+
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+
+
+state 63
+
+    (46) condicion -> condicion OR condicion .
+    (45) condicion -> condicion . AND condicion
+    (46) condicion -> condicion . OR condicion
+    (37) expresion -> condicion .
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! reduce/reduce conflict for GREATER resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for LESS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for GREATER_EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for LESS_EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for NOT_EQUALS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for PLUS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for MINUS resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for TIMES resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for DIVIDE resolved using rule 37 (expresion -> condicion .)
+  ! reduce/reduce conflict for MOD resolved using rule 37 (expresion -> condicion .)
+    VARIABLE        reduce using rule 46 (condicion -> condicion OR condicion .)
+    PRINT           reduce using rule 46 (condicion -> condicion OR condicion .)
+    LPAREN          reduce using rule 46 (condicion -> condicion OR condicion .)
+    NUMBER          reduce using rule 46 (condicion -> condicion OR condicion .)
+    FLOAT           reduce using rule 46 (condicion -> condicion OR condicion .)
+    TRUE            reduce using rule 46 (condicion -> condicion OR condicion .)
+    FALSE           reduce using rule 46 (condicion -> condicion OR condicion .)
+    NOT             reduce using rule 46 (condicion -> condicion OR condicion .)
+    LISTOF          reduce using rule 46 (condicion -> condicion OR condicion .)
+    MUTABLELISTOF   reduce using rule 46 (condicion -> condicion OR condicion .)
+    VAL             reduce using rule 46 (condicion -> condicion OR condicion .)
+    VAR             reduce using rule 46 (condicion -> condicion OR condicion .)
+    $end            reduce using rule 46 (condicion -> condicion OR condicion .)
+    RPAREN          reduce using rule 46 (condicion -> condicion OR condicion .)
+    AND             shift and go to state 35
+    OR              shift and go to state 36
+    GREATER         reduce using rule 37 (expresion -> condicion .)
+    LESS            reduce using rule 37 (expresion -> condicion .)
+    GREATER_EQUALS  reduce using rule 37 (expresion -> condicion .)
+    LESS_EQUALS     reduce using rule 37 (expresion -> condicion .)
+    EQUALS          reduce using rule 37 (expresion -> condicion .)
+    NOT_EQUALS      reduce using rule 37 (expresion -> condicion .)
+    PLUS            reduce using rule 37 (expresion -> condicion .)
+    MINUS           reduce using rule 37 (expresion -> condicion .)
+    TIMES           reduce using rule 37 (expresion -> condicion .)
+    DIVIDE          reduce using rule 37 (expresion -> condicion .)
+    MOD             reduce using rule 37 (expresion -> condicion .)
+
+  ! AND             [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! OR              [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! PLUS            [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! MINUS           [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! TIMES           [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! DIVIDE          [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! MOD             [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! GREATER         [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! LESS            [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! GREATER_EQUALS  [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! LESS_EQUALS     [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! EQUALS          [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+  ! NOT_EQUALS      [ reduce using rule 46 (condicion -> condicion OR condicion .) ]
+
+
+state 64
+
+    (13) asignacion -> VARIABLE ASIGN VARIABLE .
+    (38) expresion -> VARIABLE .
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for PRINT resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for NUMBER resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for FLOAT resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for TRUE resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for FALSE resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for NOT resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for LISTOF resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for MUTABLELISTOF resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for VAL resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for VAR resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+  ! reduce/reduce conflict for $end resolved using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    VARIABLE        reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    PRINT           reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    LPAREN          reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    NUMBER          reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    FLOAT           reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    TRUE            reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    FALSE           reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    NOT             reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    LISTOF          reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    MUTABLELISTOF   reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    VAL             reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    VAR             reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    $end            reduce using rule 13 (asignacion -> VARIABLE ASIGN VARIABLE .)
+    PLUS            reduce using rule 38 (expresion -> VARIABLE .)
+    MINUS           reduce using rule 38 (expresion -> VARIABLE .)
+    TIMES           reduce using rule 38 (expresion -> VARIABLE .)
+    DIVIDE          reduce using rule 38 (expresion -> VARIABLE .)
+    MOD             reduce using rule 38 (expresion -> VARIABLE .)
+    GREATER         reduce using rule 38 (expresion -> VARIABLE .)
+    LESS            reduce using rule 38 (expresion -> VARIABLE .)
+    GREATER_EQUALS  reduce using rule 38 (expresion -> VARIABLE .)
+    LESS_EQUALS     reduce using rule 38 (expresion -> VARIABLE .)
+    EQUALS          reduce using rule 38 (expresion -> VARIABLE .)
+    NOT_EQUALS      reduce using rule 38 (expresion -> VARIABLE .)
+
+  ! VARIABLE        [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! PRINT           [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! LPAREN          [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! NUMBER          [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! FLOAT           [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! TRUE            [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! FALSE           [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! NOT             [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! LISTOF          [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! MUTABLELISTOF   [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! VAL             [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! VAR             [ reduce using rule 38 (expresion -> VARIABLE .) ]
+  ! $end            [ reduce using rule 38 (expresion -> VARIABLE .) ]
+
+
+state 65
+
+    (14) asignacion -> VARIABLE ASIGN expresion .
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+
+    VARIABLE        reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    PRINT           reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    LPAREN          reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    NUMBER          reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    FLOAT           reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    TRUE            reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    FALSE           reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    NOT             reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    LISTOF          reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    MUTABLELISTOF   reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    VAL             reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    VAR             reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    $end            reduce using rule 14 (asignacion -> VARIABLE ASIGN expresion .)
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+
+
+state 66
+
+    (15) asignacion -> VARIABLE ASIGN condicion .
+    (37) expresion -> condicion .
+    (45) condicion -> condicion . AND condicion
+    (46) condicion -> condicion . OR condicion
+
+  ! reduce/reduce conflict for VARIABLE resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for PRINT resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for LPAREN resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for NUMBER resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for FLOAT resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for TRUE resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for FALSE resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for NOT resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for LISTOF resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for MUTABLELISTOF resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for VAL resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for VAR resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+  ! reduce/reduce conflict for $end resolved using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    VARIABLE        reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    PRINT           reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    LPAREN          reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    NUMBER          reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    FLOAT           reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    TRUE            reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    FALSE           reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    NOT             reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    LISTOF          reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    MUTABLELISTOF   reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    VAL             reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    VAR             reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    $end            reduce using rule 15 (asignacion -> VARIABLE ASIGN condicion .)
+    PLUS            reduce using rule 37 (expresion -> condicion .)
+    MINUS           reduce using rule 37 (expresion -> condicion .)
+    TIMES           reduce using rule 37 (expresion -> condicion .)
+    DIVIDE          reduce using rule 37 (expresion -> condicion .)
+    MOD             reduce using rule 37 (expresion -> condicion .)
+    GREATER         reduce using rule 37 (expresion -> condicion .)
+    LESS            reduce using rule 37 (expresion -> condicion .)
+    GREATER_EQUALS  reduce using rule 37 (expresion -> condicion .)
+    LESS_EQUALS     reduce using rule 37 (expresion -> condicion .)
+    EQUALS          reduce using rule 37 (expresion -> condicion .)
+    NOT_EQUALS      reduce using rule 37 (expresion -> condicion .)
+    AND             shift and go to state 35
+    OR              shift and go to state 36
+
+  ! VARIABLE        [ reduce using rule 37 (expresion -> condicion .) ]
+  ! PRINT           [ reduce using rule 37 (expresion -> condicion .) ]
+  ! LPAREN          [ reduce using rule 37 (expresion -> condicion .) ]
+  ! NUMBER          [ reduce using rule 37 (expresion -> condicion .) ]
+  ! FLOAT           [ reduce using rule 37 (expresion -> condicion .) ]
+  ! TRUE            [ reduce using rule 37 (expresion -> condicion .) ]
+  ! FALSE           [ reduce using rule 37 (expresion -> condicion .) ]
+  ! NOT             [ reduce using rule 37 (expresion -> condicion .) ]
+  ! LISTOF          [ reduce using rule 37 (expresion -> condicion .) ]
+  ! MUTABLELISTOF   [ reduce using rule 37 (expresion -> condicion .) ]
+  ! VAL             [ reduce using rule 37 (expresion -> condicion .) ]
+  ! VAR             [ reduce using rule 37 (expresion -> condicion .) ]
+  ! $end            [ reduce using rule 37 (expresion -> condicion .) ]
+
+
+state 67
+
+    (16) asignacion -> VARIABLE ASIGN estructura_lista .
+
+    VARIABLE        reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    PRINT           reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    LPAREN          reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    NUMBER          reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    FLOAT           reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    TRUE            reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    FALSE           reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    NOT             reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    LISTOF          reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    MUTABLELISTOF   reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    VAL             reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    VAR             reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+    $end            reduce using rule 16 (asignacion -> VARIABLE ASIGN estructura_lista .)
+
+
+state 68
+
+    (18) impresion -> PRINT RPAREN repiteValores . LPAREN
+
+    LPAREN          shift and go to state 86
+
+
+state 69
+
+    (17) impresion_vacia -> PRINT RPAREN LPAREN .
+
+    VARIABLE        reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    PRINT           reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    LPAREN          reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    NUMBER          reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    FLOAT           reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    TRUE            reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    FALSE           reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    NOT             reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    LISTOF          reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    MUTABLELISTOF   reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    VAL             reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    VAR             reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    $end            reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+
+
+state 70
+
+    (25) repiteValores -> valor . COMMA repiteValores
+    (26) repiteValores -> valor .
+
+    COMMA           shift and go to state 87
+    LPAREN          reduce using rule 26 (repiteValores -> valor .)
+
+
+state 71
+
+    (19) valor -> NUMBER .
+
+    COMMA           reduce using rule 19 (valor -> NUMBER .)
+    LPAREN          reduce using rule 19 (valor -> NUMBER .)
+    RPAREN          reduce using rule 19 (valor -> NUMBER .)
+    VARIABLE        reduce using rule 19 (valor -> NUMBER .)
+    PRINT           reduce using rule 19 (valor -> NUMBER .)
+    NUMBER          reduce using rule 19 (valor -> NUMBER .)
+    FLOAT           reduce using rule 19 (valor -> NUMBER .)
+    TRUE            reduce using rule 19 (valor -> NUMBER .)
+    FALSE           reduce using rule 19 (valor -> NUMBER .)
+    NOT             reduce using rule 19 (valor -> NUMBER .)
+    LISTOF          reduce using rule 19 (valor -> NUMBER .)
+    MUTABLELISTOF   reduce using rule 19 (valor -> NUMBER .)
+    VAL             reduce using rule 19 (valor -> NUMBER .)
+    VAR             reduce using rule 19 (valor -> NUMBER .)
+    $end            reduce using rule 19 (valor -> NUMBER .)
+
+
+state 72
+
+    (20) valor -> FLOAT .
+
+    COMMA           reduce using rule 20 (valor -> FLOAT .)
+    LPAREN          reduce using rule 20 (valor -> FLOAT .)
+    RPAREN          reduce using rule 20 (valor -> FLOAT .)
+    VARIABLE        reduce using rule 20 (valor -> FLOAT .)
+    PRINT           reduce using rule 20 (valor -> FLOAT .)
+    NUMBER          reduce using rule 20 (valor -> FLOAT .)
+    FLOAT           reduce using rule 20 (valor -> FLOAT .)
+    TRUE            reduce using rule 20 (valor -> FLOAT .)
+    FALSE           reduce using rule 20 (valor -> FLOAT .)
+    NOT             reduce using rule 20 (valor -> FLOAT .)
+    LISTOF          reduce using rule 20 (valor -> FLOAT .)
+    MUTABLELISTOF   reduce using rule 20 (valor -> FLOAT .)
+    VAL             reduce using rule 20 (valor -> FLOAT .)
+    VAR             reduce using rule 20 (valor -> FLOAT .)
+    $end            reduce using rule 20 (valor -> FLOAT .)
+
+
+state 73
+
+    (21) valor -> VARIABLE .
+
+    COMMA           reduce using rule 21 (valor -> VARIABLE .)
+    LPAREN          reduce using rule 21 (valor -> VARIABLE .)
+    RPAREN          reduce using rule 21 (valor -> VARIABLE .)
+    VARIABLE        reduce using rule 21 (valor -> VARIABLE .)
+    PRINT           reduce using rule 21 (valor -> VARIABLE .)
+    NUMBER          reduce using rule 21 (valor -> VARIABLE .)
+    FLOAT           reduce using rule 21 (valor -> VARIABLE .)
+    TRUE            reduce using rule 21 (valor -> VARIABLE .)
+    FALSE           reduce using rule 21 (valor -> VARIABLE .)
+    NOT             reduce using rule 21 (valor -> VARIABLE .)
+    LISTOF          reduce using rule 21 (valor -> VARIABLE .)
+    MUTABLELISTOF   reduce using rule 21 (valor -> VARIABLE .)
+    VAL             reduce using rule 21 (valor -> VARIABLE .)
+    VAR             reduce using rule 21 (valor -> VARIABLE .)
+    $end            reduce using rule 21 (valor -> VARIABLE .)
+
+
+state 74
+
+    (22) valor -> estructura_lista .
+
+    COMMA           reduce using rule 22 (valor -> estructura_lista .)
+    LPAREN          reduce using rule 22 (valor -> estructura_lista .)
+    RPAREN          reduce using rule 22 (valor -> estructura_lista .)
+    VARIABLE        reduce using rule 22 (valor -> estructura_lista .)
+    PRINT           reduce using rule 22 (valor -> estructura_lista .)
+    NUMBER          reduce using rule 22 (valor -> estructura_lista .)
+    FLOAT           reduce using rule 22 (valor -> estructura_lista .)
+    TRUE            reduce using rule 22 (valor -> estructura_lista .)
+    FALSE           reduce using rule 22 (valor -> estructura_lista .)
+    NOT             reduce using rule 22 (valor -> estructura_lista .)
+    LISTOF          reduce using rule 22 (valor -> estructura_lista .)
+    MUTABLELISTOF   reduce using rule 22 (valor -> estructura_lista .)
+    VAL             reduce using rule 22 (valor -> estructura_lista .)
+    VAR             reduce using rule 22 (valor -> estructura_lista .)
+    $end            reduce using rule 22 (valor -> estructura_lista .)
+
+
+state 75
+
+    (23) valor -> TRUE .
+
+    COMMA           reduce using rule 23 (valor -> TRUE .)
+    LPAREN          reduce using rule 23 (valor -> TRUE .)
+    RPAREN          reduce using rule 23 (valor -> TRUE .)
+    VARIABLE        reduce using rule 23 (valor -> TRUE .)
+    PRINT           reduce using rule 23 (valor -> TRUE .)
+    NUMBER          reduce using rule 23 (valor -> TRUE .)
+    FLOAT           reduce using rule 23 (valor -> TRUE .)
+    TRUE            reduce using rule 23 (valor -> TRUE .)
+    FALSE           reduce using rule 23 (valor -> TRUE .)
+    NOT             reduce using rule 23 (valor -> TRUE .)
+    LISTOF          reduce using rule 23 (valor -> TRUE .)
+    MUTABLELISTOF   reduce using rule 23 (valor -> TRUE .)
+    VAL             reduce using rule 23 (valor -> TRUE .)
+    VAR             reduce using rule 23 (valor -> TRUE .)
+    $end            reduce using rule 23 (valor -> TRUE .)
+
+
+state 76
+
+    (24) valor -> FALSE .
+
+    COMMA           reduce using rule 24 (valor -> FALSE .)
+    LPAREN          reduce using rule 24 (valor -> FALSE .)
+    RPAREN          reduce using rule 24 (valor -> FALSE .)
+    VARIABLE        reduce using rule 24 (valor -> FALSE .)
+    PRINT           reduce using rule 24 (valor -> FALSE .)
+    NUMBER          reduce using rule 24 (valor -> FALSE .)
+    FLOAT           reduce using rule 24 (valor -> FALSE .)
+    TRUE            reduce using rule 24 (valor -> FALSE .)
+    FALSE           reduce using rule 24 (valor -> FALSE .)
+    NOT             reduce using rule 24 (valor -> FALSE .)
+    LISTOF          reduce using rule 24 (valor -> FALSE .)
+    MUTABLELISTOF   reduce using rule 24 (valor -> FALSE .)
+    VAL             reduce using rule 24 (valor -> FALSE .)
+    VAR             reduce using rule 24 (valor -> FALSE .)
+    $end            reduce using rule 24 (valor -> FALSE .)
+
+
+state 77
+
+    (32) expresion -> LPAREN expresion RPAREN .
+
+    PLUS            reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    MINUS           reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    TIMES           reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    DIVIDE          reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    MOD             reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    GREATER         reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    LESS            reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    GREATER_EQUALS  reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    LESS_EQUALS     reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    EQUALS          reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    NOT_EQUALS      reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    VARIABLE        reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    PRINT           reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    LPAREN          reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    NUMBER          reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    FLOAT           reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    TRUE            reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    FALSE           reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    NOT             reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    LISTOF          reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    MUTABLELISTOF   reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    VAL             reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    VAR             reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    $end            reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    RPAREN          reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    AND             reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+    OR              reduce using rule 32 (expresion -> LPAREN expresion RPAREN .)
+
+
+state 78
+
+    (49) condicion -> LPAREN condicion RPAREN .
+
+    AND             reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    OR              reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    VARIABLE        reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    PRINT           reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    LPAREN          reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    NUMBER          reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    FLOAT           reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    TRUE            reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    FALSE           reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    NOT             reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    LISTOF          reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    MUTABLELISTOF   reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    VAL             reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    VAR             reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    $end            reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    PLUS            reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    MINUS           reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    TIMES           reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    DIVIDE          reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    MOD             reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    GREATER         reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    LESS            reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    GREATER_EQUALS  reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    LESS_EQUALS     reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    EQUALS          reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    NOT_EQUALS      reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+    RPAREN          reduce using rule 49 (condicion -> LPAREN condicion RPAREN .)
+
+
+state 79
+
+    (49) condicion -> LPAREN condicion . RPAREN
+    (45) condicion -> condicion . AND condicion
+    (46) condicion -> condicion . OR condicion
+    (37) expresion -> condicion .
+
+  ! shift/reduce conflict for RPAREN resolved as shift
+    RPAREN          shift and go to state 78
+    AND             shift and go to state 35
+    OR              shift and go to state 36
+    GREATER         reduce using rule 37 (expresion -> condicion .)
+    LESS            reduce using rule 37 (expresion -> condicion .)
+    GREATER_EQUALS  reduce using rule 37 (expresion -> condicion .)
+    LESS_EQUALS     reduce using rule 37 (expresion -> condicion .)
+    EQUALS          reduce using rule 37 (expresion -> condicion .)
+    NOT_EQUALS      reduce using rule 37 (expresion -> condicion .)
+    PLUS            reduce using rule 37 (expresion -> condicion .)
+    MINUS           reduce using rule 37 (expresion -> condicion .)
+    TIMES           reduce using rule 37 (expresion -> condicion .)
+    DIVIDE          reduce using rule 37 (expresion -> condicion .)
+    MOD             reduce using rule 37 (expresion -> condicion .)
+
+  ! RPAREN          [ reduce using rule 37 (expresion -> condicion .) ]
+
+
+state 80
+
+    (32) expresion -> LPAREN expresion . RPAREN
+    (39) condicion -> expresion . GREATER expresion
+    (40) condicion -> expresion . LESS expresion
+    (41) condicion -> expresion . GREATER_EQUALS expresion
+    (42) condicion -> expresion . LESS_EQUALS expresion
+    (43) condicion -> expresion . EQUALS expresion
+    (44) condicion -> expresion . NOT_EQUALS expresion
+    (27) expresion -> expresion . PLUS expresion
+    (28) expresion -> expresion . MINUS expresion
+    (29) expresion -> expresion . TIMES expresion
+    (30) expresion -> expresion . DIVIDE expresion
+    (31) expresion -> expresion . MOD expresion
+
+    RPAREN          shift and go to state 77
+    GREATER         shift and go to state 29
+    LESS            shift and go to state 30
+    GREATER_EQUALS  shift and go to state 31
+    LESS_EQUALS     shift and go to state 32
+    EQUALS          shift and go to state 33
+    NOT_EQUALS      shift and go to state 34
+    PLUS            shift and go to state 24
+    MINUS           shift and go to state 25
+    TIMES           shift and go to state 26
+    DIVIDE          shift and go to state 27
+    MOD             shift and go to state 28
+
+
+state 81
+
+    (52) estructura_lista -> LISTOF LPAREN elementos_lista . RPAREN
+
+    RPAREN          shift and go to state 88
+
+
+state 82
+
+    (50) elementos_lista -> valor . COMMA elementos_lista
+    (51) elementos_lista -> valor .
+
+    COMMA           shift and go to state 89
+    RPAREN          reduce using rule 51 (elementos_lista -> valor .)
+
+
+state 83
+
+    (53) estructura_lista -> MUTABLELISTOF LPAREN elementos_lista . RPAREN
+
+    RPAREN          shift and go to state 90
+
+
+state 84
+
+    (11) declaracion_variable -> VAL VARIABLE ASIGN . valor
+    (19) valor -> . NUMBER
+    (20) valor -> . FLOAT
+    (21) valor -> . VARIABLE
+    (22) valor -> . estructura_lista
+    (23) valor -> . TRUE
+    (24) valor -> . FALSE
+    (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
+    (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
+
+    NUMBER          shift and go to state 71
+    FLOAT           shift and go to state 72
+    VARIABLE        shift and go to state 73
+    TRUE            shift and go to state 75
+    FALSE           shift and go to state 76
+    LISTOF          shift and go to state 19
+    MUTABLELISTOF   shift and go to state 20
+
+    valor                          shift and go to state 91
+    estructura_lista               shift and go to state 74
+
+state 85
+
+    (12) declaracion_variable -> VAR VARIABLE ASIGN . valor
+    (19) valor -> . NUMBER
+    (20) valor -> . FLOAT
+    (21) valor -> . VARIABLE
+    (22) valor -> . estructura_lista
+    (23) valor -> . TRUE
+    (24) valor -> . FALSE
+    (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
+    (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
+
+    NUMBER          shift and go to state 71
+    FLOAT           shift and go to state 72
+    VARIABLE        shift and go to state 73
+    TRUE            shift and go to state 75
+    FALSE           shift and go to state 76
+    LISTOF          shift and go to state 19
+    MUTABLELISTOF   shift and go to state 20
+
+    valor                          shift and go to state 92
+    estructura_lista               shift and go to state 74
+
+state 86
+
+    (18) impresion -> PRINT RPAREN repiteValores LPAREN .
+
+    VARIABLE        reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    PRINT           reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    LPAREN          reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    NUMBER          reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    FLOAT           reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    TRUE            reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    FALSE           reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    NOT             reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    LISTOF          reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    MUTABLELISTOF   reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    VAL             reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    VAR             reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    $end            reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+
+
+state 87
+
+    (25) repiteValores -> valor COMMA . repiteValores
+    (25) repiteValores -> . valor COMMA repiteValores
+    (26) repiteValores -> . valor
+    (19) valor -> . NUMBER
+    (20) valor -> . FLOAT
+    (21) valor -> . VARIABLE
+    (22) valor -> . estructura_lista
+    (23) valor -> . TRUE
+    (24) valor -> . FALSE
+    (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
+    (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
+
+    NUMBER          shift and go to state 71
+    FLOAT           shift and go to state 72
+    VARIABLE        shift and go to state 73
+    TRUE            shift and go to state 75
+    FALSE           shift and go to state 76
+    LISTOF          shift and go to state 19
+    MUTABLELISTOF   shift and go to state 20
+
+    valor                          shift and go to state 70
+    repiteValores                  shift and go to state 93
+    estructura_lista               shift and go to state 74
+
+state 88
+
+    (52) estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .
+
+    VARIABLE        reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    PRINT           reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    LPAREN          reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    NUMBER          reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    FLOAT           reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    TRUE            reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    FALSE           reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    NOT             reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    LISTOF          reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    MUTABLELISTOF   reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    VAL             reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    VAR             reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    $end            reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    COMMA           reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+    RPAREN          reduce using rule 52 (estructura_lista -> LISTOF LPAREN elementos_lista RPAREN .)
+
+
+state 89
+
+    (50) elementos_lista -> valor COMMA . elementos_lista
+    (50) elementos_lista -> . valor COMMA elementos_lista
+    (51) elementos_lista -> . valor
+    (19) valor -> . NUMBER
+    (20) valor -> . FLOAT
+    (21) valor -> . VARIABLE
+    (22) valor -> . estructura_lista
+    (23) valor -> . TRUE
+    (24) valor -> . FALSE
+    (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
+    (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
+
+    NUMBER          shift and go to state 71
+    FLOAT           shift and go to state 72
+    VARIABLE        shift and go to state 73
+    TRUE            shift and go to state 75
+    FALSE           shift and go to state 76
+    LISTOF          shift and go to state 19
+    MUTABLELISTOF   shift and go to state 20
+
+    valor                          shift and go to state 82
+    elementos_lista                shift and go to state 94
+    estructura_lista               shift and go to state 74
+
+state 90
+
+    (53) estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .
+
+    VARIABLE        reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    PRINT           reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    LPAREN          reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    NUMBER          reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    FLOAT           reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    TRUE            reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    FALSE           reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    NOT             reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    LISTOF          reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    MUTABLELISTOF   reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    VAL             reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    VAR             reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    $end            reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    COMMA           reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+    RPAREN          reduce using rule 53 (estructura_lista -> MUTABLELISTOF LPAREN elementos_lista RPAREN .)
+
+
+state 91
+
+    (11) declaracion_variable -> VAL VARIABLE ASIGN valor .
+
+    VARIABLE        reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    PRINT           reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    LPAREN          reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    NUMBER          reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    FLOAT           reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    TRUE            reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    FALSE           reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    NOT             reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    LISTOF          reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    MUTABLELISTOF   reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    VAL             reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    VAR             reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+    $end            reduce using rule 11 (declaracion_variable -> VAL VARIABLE ASIGN valor .)
+
+
+state 92
+
+    (12) declaracion_variable -> VAR VARIABLE ASIGN valor .
+
+    VARIABLE        reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    PRINT           reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    LPAREN          reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    NUMBER          reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    FLOAT           reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    TRUE            reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    FALSE           reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    NOT             reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    LISTOF          reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    MUTABLELISTOF   reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    VAL             reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    VAR             reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+    $end            reduce using rule 12 (declaracion_variable -> VAR VARIABLE ASIGN valor .)
+
+
+state 93
+
+    (25) repiteValores -> valor COMMA repiteValores .
+
+    LPAREN          reduce using rule 25 (repiteValores -> valor COMMA repiteValores .)
+
+
+state 94
+
+    (50) elementos_lista -> valor COMMA elementos_lista .
+
+    RPAREN          reduce using rule 50 (elementos_lista -> valor COMMA elementos_lista .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for RPAREN in state 40 resolved as shift
+WARNING: shift/reduce conflict for AND in state 42 resolved as shift
+WARNING: shift/reduce conflict for OR in state 42 resolved as shift
+WARNING: shift/reduce conflict for AND in state 42 resolved as shift
+WARNING: shift/reduce conflict for OR in state 42 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 43 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 43 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 43 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 43 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 43 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 43 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 43 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 43 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 43 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 43 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 43 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 49 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 49 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 49 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 49 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 49 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 49 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 49 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 49 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 49 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 49 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 49 resolved as shift
+WARNING: shift/reduce conflict for AND in state 50 resolved as shift
+WARNING: shift/reduce conflict for OR in state 50 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 51 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 51 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 51 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 51 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 51 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 51 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 51 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 51 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 51 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 51 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 51 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 52 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 52 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 52 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 52 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 52 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 52 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 52 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 52 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 52 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 52 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 52 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 53 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 53 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 53 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 53 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 53 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 53 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 53 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 53 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 53 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 53 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 54 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 54 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 54 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 54 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 54 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 54 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 54 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 54 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 54 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 54 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 54 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 55 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 55 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 55 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 55 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 55 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 55 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 55 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 55 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 55 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 56 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 56 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 56 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 56 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 56 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 56 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 56 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 56 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 56 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 56 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 56 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 57 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 57 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 57 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 57 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 57 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 57 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 57 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 57 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 57 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 57 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 57 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 58 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 58 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 58 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 58 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 58 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 58 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 58 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 58 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 58 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 58 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 59 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 59 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 59 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 59 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 59 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 59 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 59 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 59 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 59 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 59 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 59 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 60 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 60 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 60 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 60 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 60 resolved as shift
+WARNING: shift/reduce conflict for GREATER in state 60 resolved as shift
+WARNING: shift/reduce conflict for LESS in state 60 resolved as shift
+WARNING: shift/reduce conflict for GREATER_EQUALS in state 60 resolved as shift
+WARNING: shift/reduce conflict for LESS_EQUALS in state 60 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 60 resolved as shift
+WARNING: shift/reduce conflict for NOT_EQUALS in state 60 resolved as shift
+WARNING: shift/reduce conflict for AND in state 61 resolved as shift
+WARNING: shift/reduce conflict for OR in state 61 resolved as shift
+WARNING: shift/reduce conflict for AND in state 63 resolved as shift
+WARNING: shift/reduce conflict for OR in state 63 resolved as shift
+WARNING: shift/reduce conflict for RPAREN in state 79 resolved as shift
+WARNING: reduce/reduce conflict in state 8 resolved using rule (sentencia -> condicion)
+WARNING: rejected rule (expresion -> condicion) in state 8
+WARNING: reduce/reduce conflict in state 42 resolved using rule (expresion -> condicion)
+WARNING: rejected rule (condicion -> NOT condicion) in state 42
+WARNING: reduce/reduce conflict in state 61 resolved using rule (expresion -> condicion)
+WARNING: rejected rule (condicion -> condicion AND condicion) in state 61
+WARNING: reduce/reduce conflict in state 63 resolved using rule (expresion -> condicion)
+WARNING: rejected rule (condicion -> condicion OR condicion) in state 63
+WARNING: reduce/reduce conflict in state 64 resolved using rule (asignacion -> VARIABLE ASIGN VARIABLE)
+WARNING: rejected rule (expresion -> VARIABLE) in state 64
+WARNING: reduce/reduce conflict in state 66 resolved using rule (asignacion -> VARIABLE ASIGN condicion)
+WARNING: rejected rule (expresion -> condicion) in state 66
+WARNING: Rule (condicion -> NOT condicion) is never reduced

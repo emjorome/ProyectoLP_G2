@@ -1,0 +1,7 @@
+Error de sintaxis en la linea 1!
+Entrada: y = 10  ** 3
+Resultado: None
+
+Entrada: y = 20 == (variable - 2)
+Resultado: None
+

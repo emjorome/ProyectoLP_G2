@@ -1,0 +1,22 @@
+Entrada: x = 10 + 20
+Resultado: Correcto
+
+Error de sintaxis en la linea 1!
+Entrada: y = (23 <= 45) || (!false)
+Resultado: Correcto
+
+Error de sintaxis en la linea 1!
+Entrada: y = (23 <= 45) || (!(false == true))
+Resultado: Correcto
+
+Entrada: y = (23 <= 45)
+Resultado: Correcto
+
+Error de sintaxis en la linea 1!
+Entrada: y = (23 <= 45) || (!(false == true))
+Resultado: Correcto
+
+Error de sintaxis en la linea 1!
+Entrada: y = (23 <= 45) || (!false)
+Resultado: Correcto
+
