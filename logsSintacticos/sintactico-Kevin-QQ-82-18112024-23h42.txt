@@ -1,0 +1,51 @@
+Entrada: val list1 = listOf(1, 2, 3)
+Resultado: None
+
+Entrada: val mutableList = mutableListOf("a", "b", "c")
+Resultado: None
+
+Entrada: for (i in 1 .. 10) {a+b}
+Resultado: None
+
+Entrada: val myMap = mapOf("key1" to "value1", "key2" to "value2")
+Resultado: None
+
+Entrada: val numbersMap = mutableMapOf("one" to 1, "two" to 2)
+Resultado: None
+
+Entrada: val numbers = setOf(1, 2, 3, 4)
+Resultado: None
+
+Entrada: val mutableSetOfStrings = mutableSetOf("apple", "banana", "cherry")
+Resultado: None
+
+Entrada: for (i in 1 .. 10) { }
+Resultado: None
+
+Error de sintaxis en el token 'for' (línea 1, posición 9)
+Error de sintaxis en el token '}' (línea 1, posición 33)
+Entrada: kotlin > for (i in 1 .. 10) { a=i} 
+Resultado: None
+
+Entrada: for (i in 1 .. 10) { a=i} 
+Resultado: None
+
+Entrada: fun addNumbers(a: Int, b: Int): Int {}
+Resultado: None
+
+Error de sintaxis en el token ':' (línea 1, posición 7)
+Entrada: Entrada: fun addNumbers(a: Int, b: Int): Int { x=a }
+Resultado: None
+
+Entrada: fun addNumbers(a: Int, b: Int): Int { x=a }
+Resultado: None
+
+Entrada: for (i in 1 .. 10) { }
+Resultado: None
+
+Entrada: fun addNumbers(a: Int, b: Int): Int {}
+Resultado: None
+
+Entrada: fun addNumbers(a: Int, b: Int): Int {}
+Resultado: None
+

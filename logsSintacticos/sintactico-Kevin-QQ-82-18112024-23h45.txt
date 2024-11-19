@@ -1,0 +1,10 @@
+Entrada: for (i in 1 .. 10) { a=i}
+Resultado: None
+
+Entrada: fun addNumbers(a: Int, b: Int): Int {}
+Resultado: None
+
+Entrada: fun addNumbers(a: Int, b: Int): Int { x=a }
+Resultado: None
+
+Error de sintaxis en el token 'x' (línea 1, posición 32)

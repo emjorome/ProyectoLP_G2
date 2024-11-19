@@ -11,7 +11,7 @@ reserved= {'if':'IF',
            'do':'DO',
            'continue':'CONTINUE',
            'break':'BREAK',
-            'return':'return',
+            'return':'RETURN',     
           #Modificadores de visibilidad y tipo
            'public':'PUBLIC',
            'private':'PRIVATE',
@@ -95,7 +95,7 @@ reserved= {'if':'IF',
            #Fin aporte de palabras reservadas de Emilio Romero
             'print':'PRINT',
            'println':'PRINTLN',
-            'TO': 'TO_FROM_KV'
+            'to': 'TO_FROM_KV'
            }
 
 # List of token names.   This is always required

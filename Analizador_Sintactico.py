@@ -11,28 +11,35 @@ def p_programa(p):
 def p_sentencias(p):
     '''sentencias : sentencia
                 | sentencias sentencia'''
-    
+#declaracion de variables -----------Aporte kEVIN Quintuña
+
+def p_empty(p):
+    '''empty :'''
+    pass
+
 def p_sentencia(p):
     '''sentencia : asignacion 
-                | impresion
-                | impresion_vacia
-                | expresion
-                | condicion
-                | estructura_lista
-                | declaracion_variable''' #-----------------'''
-    
-#declaracion de variables -----------Aporte kQ
+                 | impresion
+                 | impresion_vacia
+                 | expresion
+                 | condicion
+                 | estructura
+                 | declaracion_variable
+                 | funcion
+                | empty'''   
+
 def p_declaracion_variable(p):
-    """declaracion_variable : VAL VARIABLE ASIGN valor
-                | VAR VARIABLE ASIGN valor
-                """   
-#--------------------------------------- 
+    '''declaracion_variable : VAL VARIABLE ASIGN valor
+                            | VAR VARIABLE ASIGN valor
+                            | VAL VARIABLE ASIGN estructura
+                            | VAR VARIABLE ASIGN estructura''' 
+#--------------------------------------- Aporte kEVIN Quintuña
 
 def p_asignacion(p):
     '''asignacion : VARIABLE ASIGN VARIABLE
                     | VARIABLE ASIGN expresion
                     | VARIABLE ASIGN condicion
-                    | VARIABLE ASIGN estructura_lista''' #---------agrega la estructura de lista
+                    | VARIABLE ASIGN estructura''' #---------agrega la estructura de lista
 
 def p_impresionVacia(p):
     'impresion_vacia : PRINT RPAREN LPAREN'
@@ -44,7 +51,7 @@ def p_valor(p):
   '''valor : NUMBER
           | FLOAT
           | VARIABLE
-         | estructura_lista'''
+        | STRING'''
 
 def p_valor_bol(p):
   '''valor : TRUE
@@ -96,51 +103,77 @@ def p_condicionParentecis(p):
 
 #Aporte kevin Quintuña-----------
 #reglas para la listas
-def p_elementos_lista(p):
-    """elementos_lista : valor COMMA elementos_lista
-                       | valor"""
 
-
+# Listas
 def p_estructura_lista(p):
-    """estructura_lista : LISTOF LPAREN elementos_lista RPAREN
-                  | MUTABLELISTOF LPAREN elementos_lista RPAREN"""
+    '''estructura : LISTOF LPAREN repiteValores RPAREN
+                  | LISTOF LPAREN RPAREN
+                  | MUTABLELISTOF LPAREN repiteValores RPAREN
+                  | MUTABLELISTOF LPAREN RPAREN'''
 
-#reglas para mapas
+# Mapas
 def p_estructura_mapa(p):
-    """estructura_mapa : MAPOF LPAREN pareskv_mapa RPAREN
-                  | MUTABLEMAPOF LPAREN pareskv_mapa RPAREN"""
+    '''estructura : MAPOF LPAREN pareskv_mapa RPAREN
+                  | MUTABLEMAPOF LPAREN pareskv_mapa RPAREN'''
 
+def p_pares_kv_mapa(p):
+    '''pareskv_mapa : valor TO_FROM_KV valor COMMA pareskv_mapa
+                    | valor TO_FROM_KV valor'''
 
-def p_pareskv_mapa(p):
-    """pareskv_mapa : clave TO_FROM_KV valor COMMA pareskv_mapa
-                    | clave TO_FROM_KV valor"""
-
-# reglas para conjuntos
-def p_clave(p):
-    """clave : valor"""
-
+# Conjuntos
 def p_estructura_conjunto(p):
-    """estructura_conjunto : MUTABLESETOF LPAREN elementos_lista RPAREN"""
+    '''estructura : SETOF LPAREN repiteValores RPAREN
+                  | SETOF LPAREN RPAREN
+                  | MUTABLESETOF LPAREN repiteValores RPAREN
+                  | MUTABLESETOF LPAREN RPAREN'''
 
-
-
-#Guardar datos
-# Guardar datos
-# now = datetime.datetime.now()
-# usuario = "emjorome"
-# log_filename = f"logsSintacticos/sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
-
-# def guardar_log(mensaje):
-#     with open(log_filename, 'a') as log_file:
-#         log_file.write(mensaje + '\n')
-
-# Error rule for syntax errors
+# Manejo de errores
 def p_error(p):
-    msg_error = "Error de sintaxis en la linea %d!" % p.lineno
-    print(msg_error)
-    #guardar_log(msg_error)
+    if p:
+        print(f"Error de sintaxis en el token '{p.value}' (tipo: {p.type}, línea: {p.lineno}, posición: {p.lexpos})")
+    else:
+        print("Error de sintaxis: Fin inesperado de entrada")
 
+# ESTRUCTURAS DE CONTROL
+def p_estructura_control_for(p):
+    '''estructura : FOR LPAREN VARIABLE IN valor RANGE_TO valor RPAREN LLLAVE sentencias RLLAVE'''
+# DECLARACION DE TIPOS DE FUNCIONES
+# Declaración de funciones
+
+# Parámetros de funciones
+def p_parametros(p):
+    '''parametros : VARIABLE COLON VARIABLE ASIGN valor COMMA parametros
+                  | VARIABLE COLON VARIABLE ASIGN valor
+                  | VARIABLE COLON VARIABLE COMMA parametros
+                  | VARIABLE COLON VARIABLE
+                  | empty'''
     
+
+def p_funcion(p):
+    '''funcion : FUN VARIABLE LPAREN parametros RPAREN COLON VARIABLE LLLAVE sentencias RLLAVE
+               | FUN VARIABLE LPAREN parametros RPAREN LLLAVE empty RLLAVE'''
+
+
+#Aporte kevin Quintuña-----------
+
+# Guardar datos
+import datetime  # Asegúrate de importar este módulo si aún no lo has hecho
+now = datetime.datetime.now()
+usuario = "Kevin-QQ-82"
+
+log_filename = f"logsSintacticos/sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
+
+def guardar_log(mensaje):
+    with open(log_filename, 'a') as log_file:
+        log_file.write(mensaje + '\n')
+
+def p_error(p):
+    if p:
+        msg_error = f"Error de sintaxis en el token '{p.value}' (línea {p.lineno}, posición {p.lexpos})"
+    else:
+        msg_error = "Error de sintaxis: Fin inesperado de entrada"
+    guardar_log(msg_error)
+    print(msg_error)
 
 # Build the parser
 parser = yacc.yacc(debug=True)
@@ -156,5 +189,4 @@ while True:
    mensaje = f"Entrada: {s}\nResultado: {result}\n"
 
    print(result)
-   print(mensaje)
-   #guardar_log(mensaje)
+   guardar_log(mensaje)

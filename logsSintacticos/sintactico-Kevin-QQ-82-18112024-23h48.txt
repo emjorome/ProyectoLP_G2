@@ -1,0 +1,3 @@
+Entrada: fun addNumbers(a: Int, b: Int): Int { x=a }
+Resultado: None
+
