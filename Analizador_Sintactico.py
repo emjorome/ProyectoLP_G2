@@ -33,12 +33,12 @@ def p_asignacion(p):
                     | VARIABLE ASIGN expresion
                     | VARIABLE ASIGN condicion
                     | VARIABLE ASIGN estructura_lista''' #---------agrega la estructura de lista
-
+#Inicia aporte Pedro Luna
 def p_impresionVacia(p):
-    'impresion_vacia : PRINT RPAREN LPAREN'
+    'impresion_vacia : PRINT LPAREN RPAREN'
 
 def p_impresion(p):
-    'impresion : PRINT RPAREN repiteValores LPAREN'
+    'impresion : PRINT LPAREN repiteValores RPAREN'
 
 def p_valor(p):
   '''valor : NUMBER
@@ -53,7 +53,7 @@ def p_valor_bol(p):
 def p_repiteValores(p):
   '''repiteValores : valor COMMA repiteValores
                   | valor'''
-
+#Termina Aporte Pedro Luna
 def p_expresionAritmetica(p):
     """expresion : expresion PLUS expresion 
                 | expresion MINUS expresion

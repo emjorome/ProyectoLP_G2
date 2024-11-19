@@ -111,8 +111,8 @@ Rule 13    asignacion -> VARIABLE ASIGN VARIABLE
 Rule 14    asignacion -> VARIABLE ASIGN expresion
 Rule 15    asignacion -> VARIABLE ASIGN condicion
 Rule 16    asignacion -> VARIABLE ASIGN estructura_lista
-Rule 17    impresion_vacia -> PRINT RPAREN LPAREN
-Rule 18    impresion -> PRINT RPAREN repiteValores LPAREN
+Rule 17    impresion_vacia -> PRINT LPAREN RPAREN
+Rule 18    impresion -> PRINT LPAREN repiteValores RPAREN
 Rule 19    valor -> NUMBER
 Rule 20    valor -> FLOAT
 Rule 21    valor -> VARIABLE
@@ -319,8 +319,8 @@ state 0
     (14) asignacion -> . VARIABLE ASIGN expresion
     (15) asignacion -> . VARIABLE ASIGN condicion
     (16) asignacion -> . VARIABLE ASIGN estructura_lista
-    (18) impresion -> . PRINT RPAREN repiteValores LPAREN
-    (17) impresion_vacia -> . PRINT RPAREN LPAREN
+    (18) impresion -> . PRINT LPAREN repiteValores RPAREN
+    (17) impresion_vacia -> . PRINT LPAREN RPAREN
     (27) expresion -> . expresion PLUS expresion
     (28) expresion -> . expresion MINUS expresion
     (29) expresion -> . expresion TIMES expresion
@@ -394,8 +394,8 @@ state 2
     (14) asignacion -> . VARIABLE ASIGN expresion
     (15) asignacion -> . VARIABLE ASIGN condicion
     (16) asignacion -> . VARIABLE ASIGN estructura_lista
-    (18) impresion -> . PRINT RPAREN repiteValores LPAREN
-    (17) impresion_vacia -> . PRINT RPAREN LPAREN
+    (18) impresion -> . PRINT LPAREN repiteValores RPAREN
+    (17) impresion_vacia -> . PRINT LPAREN RPAREN
     (27) expresion -> . expresion PLUS expresion
     (28) expresion -> . expresion MINUS expresion
     (29) expresion -> . expresion TIMES expresion
@@ -701,10 +701,10 @@ state 11
 
 state 12
 
-    (18) impresion -> PRINT . RPAREN repiteValores LPAREN
-    (17) impresion_vacia -> PRINT . RPAREN LPAREN
+    (18) impresion -> PRINT . LPAREN repiteValores RPAREN
+    (17) impresion_vacia -> PRINT . LPAREN RPAREN
 
-    RPAREN          shift and go to state 38
+    LPAREN          shift and go to state 38
 
 
 state 13
@@ -1506,8 +1506,8 @@ state 37
 
 state 38
 
-    (18) impresion -> PRINT RPAREN . repiteValores LPAREN
-    (17) impresion_vacia -> PRINT RPAREN . LPAREN
+    (18) impresion -> PRINT LPAREN . repiteValores RPAREN
+    (17) impresion_vacia -> PRINT LPAREN . RPAREN
     (25) repiteValores -> . valor COMMA repiteValores
     (26) repiteValores -> . valor
     (19) valor -> . NUMBER
@@ -1519,7 +1519,7 @@ state 38
     (52) estructura_lista -> . LISTOF LPAREN elementos_lista RPAREN
     (53) estructura_lista -> . MUTABLELISTOF LPAREN elementos_lista RPAREN
 
-    LPAREN          shift and go to state 69
+    RPAREN          shift and go to state 69
     NUMBER          shift and go to state 71
     FLOAT           shift and go to state 72
     VARIABLE        shift and go to state 73
@@ -2999,28 +2999,28 @@ state 67
 
 state 68
 
-    (18) impresion -> PRINT RPAREN repiteValores . LPAREN
+    (18) impresion -> PRINT LPAREN repiteValores . RPAREN
 
-    LPAREN          shift and go to state 86
+    RPAREN          shift and go to state 86
 
 
 state 69
 
-    (17) impresion_vacia -> PRINT RPAREN LPAREN .
+    (17) impresion_vacia -> PRINT LPAREN RPAREN .
 
-    VARIABLE        reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    PRINT           reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    LPAREN          reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    NUMBER          reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    FLOAT           reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    TRUE            reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    FALSE           reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    NOT             reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    LISTOF          reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    MUTABLELISTOF   reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    VAL             reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    VAR             reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
-    $end            reduce using rule 17 (impresion_vacia -> PRINT RPAREN LPAREN .)
+    VARIABLE        reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    PRINT           reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    LPAREN          reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    NUMBER          reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    FLOAT           reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    TRUE            reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    FALSE           reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    NOT             reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    LISTOF          reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    MUTABLELISTOF   reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    VAL             reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    VAR             reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
+    $end            reduce using rule 17 (impresion_vacia -> PRINT LPAREN RPAREN .)
 
 
 state 70
@@ -3029,7 +3029,7 @@ state 70
     (26) repiteValores -> valor .
 
     COMMA           shift and go to state 87
-    LPAREN          reduce using rule 26 (repiteValores -> valor .)
+    RPAREN          reduce using rule 26 (repiteValores -> valor .)
 
 
 state 71
@@ -3037,10 +3037,10 @@ state 71
     (19) valor -> NUMBER .
 
     COMMA           reduce using rule 19 (valor -> NUMBER .)
-    LPAREN          reduce using rule 19 (valor -> NUMBER .)
     RPAREN          reduce using rule 19 (valor -> NUMBER .)
     VARIABLE        reduce using rule 19 (valor -> NUMBER .)
     PRINT           reduce using rule 19 (valor -> NUMBER .)
+    LPAREN          reduce using rule 19 (valor -> NUMBER .)
     NUMBER          reduce using rule 19 (valor -> NUMBER .)
     FLOAT           reduce using rule 19 (valor -> NUMBER .)
     TRUE            reduce using rule 19 (valor -> NUMBER .)
@@ -3058,10 +3058,10 @@ state 72
     (20) valor -> FLOAT .
 
     COMMA           reduce using rule 20 (valor -> FLOAT .)
-    LPAREN          reduce using rule 20 (valor -> FLOAT .)
     RPAREN          reduce using rule 20 (valor -> FLOAT .)
     VARIABLE        reduce using rule 20 (valor -> FLOAT .)
     PRINT           reduce using rule 20 (valor -> FLOAT .)
+    LPAREN          reduce using rule 20 (valor -> FLOAT .)
     NUMBER          reduce using rule 20 (valor -> FLOAT .)
     FLOAT           reduce using rule 20 (valor -> FLOAT .)
     TRUE            reduce using rule 20 (valor -> FLOAT .)
@@ -3079,10 +3079,10 @@ state 73
     (21) valor -> VARIABLE .
 
     COMMA           reduce using rule 21 (valor -> VARIABLE .)
-    LPAREN          reduce using rule 21 (valor -> VARIABLE .)
     RPAREN          reduce using rule 21 (valor -> VARIABLE .)
     VARIABLE        reduce using rule 21 (valor -> VARIABLE .)
     PRINT           reduce using rule 21 (valor -> VARIABLE .)
+    LPAREN          reduce using rule 21 (valor -> VARIABLE .)
     NUMBER          reduce using rule 21 (valor -> VARIABLE .)
     FLOAT           reduce using rule 21 (valor -> VARIABLE .)
     TRUE            reduce using rule 21 (valor -> VARIABLE .)
@@ -3100,10 +3100,10 @@ state 74
     (22) valor -> estructura_lista .
 
     COMMA           reduce using rule 22 (valor -> estructura_lista .)
-    LPAREN          reduce using rule 22 (valor -> estructura_lista .)
     RPAREN          reduce using rule 22 (valor -> estructura_lista .)
     VARIABLE        reduce using rule 22 (valor -> estructura_lista .)
     PRINT           reduce using rule 22 (valor -> estructura_lista .)
+    LPAREN          reduce using rule 22 (valor -> estructura_lista .)
     NUMBER          reduce using rule 22 (valor -> estructura_lista .)
     FLOAT           reduce using rule 22 (valor -> estructura_lista .)
     TRUE            reduce using rule 22 (valor -> estructura_lista .)
@@ -3121,10 +3121,10 @@ state 75
     (23) valor -> TRUE .
 
     COMMA           reduce using rule 23 (valor -> TRUE .)
-    LPAREN          reduce using rule 23 (valor -> TRUE .)
     RPAREN          reduce using rule 23 (valor -> TRUE .)
     VARIABLE        reduce using rule 23 (valor -> TRUE .)
     PRINT           reduce using rule 23 (valor -> TRUE .)
+    LPAREN          reduce using rule 23 (valor -> TRUE .)
     NUMBER          reduce using rule 23 (valor -> TRUE .)
     FLOAT           reduce using rule 23 (valor -> TRUE .)
     TRUE            reduce using rule 23 (valor -> TRUE .)
@@ -3142,10 +3142,10 @@ state 76
     (24) valor -> FALSE .
 
     COMMA           reduce using rule 24 (valor -> FALSE .)
-    LPAREN          reduce using rule 24 (valor -> FALSE .)
     RPAREN          reduce using rule 24 (valor -> FALSE .)
     VARIABLE        reduce using rule 24 (valor -> FALSE .)
     PRINT           reduce using rule 24 (valor -> FALSE .)
+    LPAREN          reduce using rule 24 (valor -> FALSE .)
     NUMBER          reduce using rule 24 (valor -> FALSE .)
     FLOAT           reduce using rule 24 (valor -> FALSE .)
     TRUE            reduce using rule 24 (valor -> FALSE .)
@@ -3350,21 +3350,21 @@ state 85
 
 state 86
 
-    (18) impresion -> PRINT RPAREN repiteValores LPAREN .
+    (18) impresion -> PRINT LPAREN repiteValores RPAREN .
 
-    VARIABLE        reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    PRINT           reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    LPAREN          reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    NUMBER          reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    FLOAT           reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    TRUE            reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    FALSE           reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    NOT             reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    LISTOF          reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    MUTABLELISTOF   reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    VAL             reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    VAR             reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
-    $end            reduce using rule 18 (impresion -> PRINT RPAREN repiteValores LPAREN .)
+    VARIABLE        reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    PRINT           reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    LPAREN          reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    NUMBER          reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    FLOAT           reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    TRUE            reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    FALSE           reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    NOT             reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    LISTOF          reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    MUTABLELISTOF   reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    VAL             reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    VAR             reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
+    $end            reduce using rule 18 (impresion -> PRINT LPAREN repiteValores RPAREN .)
 
 
 state 87
@@ -3503,7 +3503,7 @@ state 93
 
     (25) repiteValores -> valor COMMA repiteValores .
 
-    LPAREN          reduce using rule 25 (repiteValores -> valor COMMA repiteValores .)
+    RPAREN          reduce using rule 25 (repiteValores -> valor COMMA repiteValores .)
 
 
 state 94
