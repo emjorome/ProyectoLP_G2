@@ -4,6 +4,7 @@ import datetime
 # Get the token map from the lexer.  This is required.
 from Analizador_Lexico import tokens
 
+# APORTE DE EMILIO ROMERO
 def p_programa(p):
     '''programa : sentencias '''
 
@@ -79,6 +80,8 @@ def p_condicinNegacion(p):
 
 def p_condicionParentecis(p):
     """condicion : LPAREN condicion RPAREN"""
+
+#FIN DE APORTE DE EMILIO ROMERO
 
 #Guardar datos
 now = datetime.datetime.now()
