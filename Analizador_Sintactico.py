@@ -16,6 +16,11 @@ def p_sentencias(p):
 def p_empty(p):
     '''empty :'''
     pass
+#Aporte Pedro Luna 11/26
+#Agregar todas las variables y estructuras declaradas y creadas
+variables = {}
+estructuras = {}
+#Final Aporte Pedro Luna
 
 def p_sentencia(p):
     '''sentencia : asignacion 
@@ -34,16 +39,40 @@ def p_declaracion_variable(p):
     '''declaracion_variable : VAL VARIABLE ASIGN valor
                             | VAR VARIABLE ASIGN valor
                             | VAL VARIABLE ASIGN estructura
-                            | VAR VARIABLE ASIGN estructura''' 
+                            | VAR VARIABLE ASIGN estructura'''
+    # Aporte Pedro Luna 11/26
+    # Guardar variable en el diccionario
+    if p[1] == 'VAL' or p[1] == 'VAR':
+        variables[p[2]] = p[4]  # Asignar valor o estructura a la variable
+    # Final Aporte Pedro Luna
 #--------------------------------------- Aporte kEVIN Quintuña
 
 def p_asignacion(p):
     '''asignacion : VARIABLE ASIGN VARIABLE
                     | VARIABLE ASIGN expresion
                     | VARIABLE ASIGN condicion
-<<<<<<< HEAD
                     | VARIABLE ASIGN estructura''' #---------agrega la estructura de lista
+    #Aporte Pedro Luna 11/26
+    # Comprobamos que la variable está declarada
+    if p[1] not in variables:
+        mensaje = f"Error semántico: La variable {p[1]} no ha sido declarada."
+        guardar_log(mensaje)
+        print(mensaje)
+        return
 
+    # Si la asignación es con otra variable, verificamos que ambas tengan el mismo tipo
+    if isinstance(p[3], str) and p[3] in variables:
+        if type(variables[p[1]]) != type(variables[p[3]]):
+            mensaje = f"Error semántico: Incompatibilidad de tipos entre {p[1]} y {p[3]}."
+            guardar_log(mensaje)
+            print(mensaje)
+            return
+        variables[p[1]] = variables[p[3]]
+
+    # Si la asignación es con una expresión o estructura, verificamos que el tipo sea compatible
+    if isinstance(p[3], (int, float, str, bool)):
+        variables[p[1]] = p[3]
+#Final Aporte Pedro Luna
 
 #Inicia aporte Pedro Luna
 def p_impresionVacia(p):
@@ -79,7 +108,22 @@ def p_expresionAritmetica(p):
                 | expresion TIMES expresion 
                 | expresion DIVIDE expresion
                 | expresion MOD expresion"""
+    # Aporte Pedro Luna 11/26
+    # Verificar si las variables están declaradas
+    if isinstance(p[1], str) and p[1] not in variables:
+        print(f"Error semántico: La variable {p[1]} no ha sido inicializada.")
+        return
+    if isinstance(p[3], str) and p[3] not in variables:
+        print(f"Error semántico: La variable {p[3]} no ha sido inicializada.")
+        return
 
+    # Validar que los tipos de las variables sean compatibles para la operación
+    valor1 = variables[p[1]] if isinstance(p[1], str) else p[1]
+    valor3 = variables[p[3]] if isinstance(p[3], str) else p[3]
+    if type(valor1) != type(valor3):
+        print(f"Error semántico: Los tipos de {p[1]} y {p[3]} son incompatibles para la operación.")
+        return
+    # Final Aporte Pedro Luna
 def p_expresionParentesis(p):
     """expresion : LPAREN expresion RPAREN"""
 
@@ -92,7 +136,13 @@ def p_expresionConstante(p):
 
 def p_expresionVariable(p):
     """expresion : VARIABLE"""
-
+    # Aporte Pedro Luna 11/26
+    if p[1] not in variables:
+        mensaje = f"Error semántico: La variable {p[1]} no ha sido declarada."
+        guardar_log(mensaje)
+        print(mensaje)
+        return
+    #Final Aporte Pedro Luna
 def p_condicionComparacion(p):
     """condicion : expresion GREATER expresion 
     | expresion LESS expresion 
@@ -122,6 +172,8 @@ def p_estructura_lista(p):
                   | LISTOF LPAREN RPAREN
                   | MUTABLELISTOF LPAREN repiteValores RPAREN
                   | MUTABLELISTOF LPAREN RPAREN'''
+    estructuras[p[1]] = p[3]  # Guardar la lista en la estructura
+
 
 # Mapas
 def p_estructura_mapa(p):
