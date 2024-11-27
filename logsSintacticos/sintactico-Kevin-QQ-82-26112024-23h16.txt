@@ -1,0 +1,7 @@
+Error de sintaxis en el token ':' (línea 20, posición 8)
+Error semántico: La variable LONG no ha sido declarada.
+Entrada: var fun1: LONG = 3 
+Resultado: None
+
+Error semántico: La variable funcion1 no ha sido declarada.
+Error semántico: La variable funcion2 no ha sido declarada.

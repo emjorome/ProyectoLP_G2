@@ -1,0 +1,5 @@
+Entrada: fun funcion(): LONG { }
+Resultado: None
+
+Error semántico: La variable fun1 no ha sido declarada.
+Error semántico: La variable fun2 no ha sido declarada.

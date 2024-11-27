@@ -1,0 +1,15 @@
+Entrada: (2 + 2)
+Resultado: None
+
+Error semántico: La variable vari no ha sido declarada.
+Entrada: vari
+Resultado: None
+
+Error de sintaxis: Fin inesperado de entrada
+Entrada: fun funcion()
+Resultado: None
+
+Error de sintaxis en el token 'LONG' (línea 20, posición 15)
+Entrada: fun funcion(): LONG { }
+Resultado: None
+

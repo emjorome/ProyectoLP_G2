@@ -255,9 +255,9 @@ def p_parametros(p):
                   | empty'''
     
 def p_funcion(p):
-    '''funcion : FUN VARIABLE LPAREN parametros RPAREN COLON tipoDato LLLAVE sentencias RLLAVE
+    '''funcion : FUN VARIABLE LPAREN parametros RPAREN COLON VARIABLE LLLAVE sentencias RLLAVE
                | FUN VARIABLE LPAREN parametros RPAREN LLLAVE empty RLLAVE
-               | FUN VARIABLE LPAREN parametros RPAREN COLON tipoDato ASIGN sentencias'''
+               | FUN VARIABLE LPAREN parametros RPAREN COLON VARIABLE ASIGN sentencias'''
 
 #TEMRMINA Aporte kevin Quintuña-----------
 
