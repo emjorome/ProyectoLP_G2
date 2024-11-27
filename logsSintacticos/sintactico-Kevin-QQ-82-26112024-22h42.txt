@@ -1,0 +1,29 @@
+Error semántico: La variable RETURN no ha sido declarada.
+Entrada: RETURN 3
+Resultado: None
+
+Error de sintaxis en el token 'BOOLEAN' (línea 1, posición 27)
+Error semántico: La variable variable1 no ha sido declarada.
+Error semántico: La variable vaiable2 no ha sido declarada.
+Entrada: fun varIAn(hola: BOOLEAN): BOOLEAN = variable1 == vaiable2
+Resultado: None
+
+Error de sintaxis en el token ':' (línea 1, posición 13)
+Error semántico: La variable BOOLEAN no ha sido declarada.
+Entrada: var variable1: BOOLEAN = True
+Resultado: None
+
+Error de sintaxis en el token ':' (línea 1, posición 14)
+Error semántico: La variable BOOL no ha sido declarada.
+Entrada: var variable1 : BOOL = True
+Resultado: None
+
+Error semántico: La variable var1 no ha sido declarada.
+Entrada: var1 = var2
+Resultado: None
+
+Error de sintaxis en el token 'BOOLEAN' (línea 1, posición 51)
+Error semántico: La variable variable no ha sido declarada.
+Entrada: var variable1 = hola fun funcion (valor: BOOLEAN): BOOLEAN = variable = adios
+Resultado: None
+

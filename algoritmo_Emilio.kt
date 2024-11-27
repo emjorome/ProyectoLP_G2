@@ -1,7 +1,7 @@
 // Comentario de una sola linea
 /* Comentario de varias lineas */
 
-val lista = listOf(1, 2, 3)  //Lista de enteros
+val lista :  = listOf(1, 2, 3)  //Lista de enteros
 val mapa = mapOf("clave1" to "valor1", "clave2" to "valor2")  //Mapa con claves y valores
 val conjunto = setOf(true, false, false) //conjunto de booleanos
 

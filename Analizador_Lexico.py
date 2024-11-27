@@ -368,7 +368,7 @@ fun main() {
 }
 
 '''
-"""
+
 
 
 #Extraer datos de algoritmo_Emilio.kt
@@ -392,7 +392,7 @@ with open(log_emjorome,"w") as log_file: #creacion archivo log
         print(tok)
         log_file.write(f"{tok}\n") #escribir el archivo
 
-#Extraer datos
+""""#Extraer datos
 with open("algoritmoKevinQuintuna.kt", "r") as file:
     data_ = file.read()
 
@@ -433,8 +433,8 @@ with open(log_LunaPedro17,"w") as log_file: #creacion archivo log
         if not tok:
             break      # No more input
         print(tok)
-        log_file.write(f"{tok}\n") #escribir el archivo
-"""
+        log_file.write(f"{tok}\n") #escribir el archivo"""
+
 
 
 

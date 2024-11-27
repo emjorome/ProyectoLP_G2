@@ -4,13 +4,15 @@ import datetime
 # Get the token map from the lexer.  This is required.
 from Analizador_Lexico import tokens
 
-# APORTE DE EMILIO ROMERO
+# Inicio del programa ----------- APORTE DE EMILIO ROMERO 
 def p_programa(p):
     '''programa : sentencias '''
-
+# sentencias
 def p_sentencias(p):
     '''sentencias : sentencia
                 | sentencias sentencia'''
+# fin de aporte ----------------- Aporte de EMILIO ROMERO
+
 #declaracion de variables -----------Aporte kEVIN Quintuña
 
 def p_empty(p):
@@ -24,7 +26,6 @@ estructuras = {}
 
 def p_sentencia(p):
     '''sentencia : asignacion 
-<<<<<<< HEAD
                  | impresion
                  | impresion_vacia
                  | expresion
@@ -32,7 +33,8 @@ def p_sentencia(p):
                  | estructura
                  | declaracion_variable
                  | funcion
-                | empty'''   
+                 | empty 
+                 | retorno'''   
     
 #declaracion de variables -----------Aporte kQ
 def p_declaracion_variable(p):
@@ -101,7 +103,7 @@ def p_solicitud(p):
 
 #Termina Aporte Pedro Luna
 
-
+#Funcion para armar aritmetica --------------  APORTE DE EMILIO ROMERO
 def p_expresionAritmetica(p):
     """expresion : expresion PLUS expresion 
                 | expresion MINUS expresion
@@ -124,9 +126,12 @@ def p_expresionAritmetica(p):
         print(f"Error semántico: Los tipos de {p[1]} y {p[3]} son incompatibles para la operación.")
         return
     # Final Aporte Pedro Luna
+
+#Funcion que permite a una expresion estar en parentesis
 def p_expresionParentesis(p):
     """expresion : LPAREN expresion RPAREN"""
 
+#Funcion que señala que valores puede tomar la expresion
 def p_expresionConstante(p):
     """expresion : NUMBER
                 | FLOAT
@@ -134,6 +139,7 @@ def p_expresionConstante(p):
                 | FALSE
                 | condicion"""
 
+#Funcion si la expresion esta en una variable
 def p_expresionVariable(p):
     """expresion : VARIABLE"""
     # Aporte Pedro Luna 11/26
@@ -143,6 +149,8 @@ def p_expresionVariable(p):
         print(mensaje)
         return
     #Final Aporte Pedro Luna
+
+#Funcion que permite como es la estructura de una condicion
 def p_condicionComparacion(p):
     """condicion : expresion GREATER expresion 
     | expresion LESS expresion 
@@ -151,17 +159,21 @@ def p_condicionComparacion(p):
     | expresion EQUALS expresion 
     | expresion NOT_EQUALS expresion"""
 
+#Funcion con condicionales logicos
 def p_condicionLogica(p):
     """condicion : condicion AND condicion 
                 | condicion OR condicion"""
 
+#Funcion con condicional not
 def p_condicinNegacion(p):
     """condicion : NOT condicion
                 | NOT expresion"""
 
+#Funcion que permite que una condicion este entre parentesis
 def p_condicionParentecis(p):
     """condicion : LPAREN condicion RPAREN"""
-#FIN DE APORTE DE EMILIO ROMERO
+
+#------------------------------------------------FIN DE APORTE DE EMILIO ROMERO
 
 #Aporte kevin Quintuña-----------
 #reglas para la listas
@@ -199,10 +211,38 @@ def p_error(p):
     else:
         print("Error de sintaxis: Fin inesperado de entrada")
 
+#Funcion que reconoce los tipos de datos -------- APORTE DE EMILIO ROMERO
+def p_tipoDato(p):
+    '''tipoDato : INT 
+                | BOOLEAN
+                | LONG
+                | DOUBLE
+                | CHAR
+                | BYTE'''
+
+#Funcion que almacena la estructura del retorno    
+def p_retorno(p):
+    '''retorno : RETURN objetoRetorno'''
+
+#Funcion que devuelve los retornos posibles
+def p_objetoRetorno(p):
+    '''objetoRetorno : valor
+                    | condicion
+                    | expresion
+                    | TRUE
+                    | FALSE
+                    | estructura
+                    | empty'''
+
+#----------------- ----------------------------FIN APORTE DE EMILIO ROMERO
 
 # ESTRUCTURAS DE CONTROL
 def p_estructura_control_for(p):
     '''estructura : FOR LPAREN VARIABLE IN valor RANGE_TO valor RPAREN LLLAVE sentencias RLLAVE'''
+
+def p_estructura_control_while(p): # --------APORTE DE EMILIO ROMERO
+    '''estructura : WHILE condicion LLLAVE sentencias RLLAVE'''
+
 # DECLARACION DE TIPOS DE FUNCIONES
 # Declaración de funciones
 
@@ -214,11 +254,10 @@ def p_parametros(p):
                   | VARIABLE COLON VARIABLE
                   | empty'''
     
-
 def p_funcion(p):
-    '''funcion : FUN VARIABLE LPAREN parametros RPAREN COLON VARIABLE LLLAVE sentencias RLLAVE
-               | FUN VARIABLE LPAREN parametros RPAREN LLLAVE empty RLLAVE'''
-
+    '''funcion : FUN VARIABLE LPAREN parametros RPAREN COLON tipoDato LLLAVE sentencias RLLAVE
+               | FUN VARIABLE LPAREN parametros RPAREN LLLAVE empty RLLAVE
+               | FUN VARIABLE LPAREN parametros RPAREN COLON tipoDato ASIGN sentencias'''
 
 #TEMRMINA Aporte kevin Quintuña-----------
 

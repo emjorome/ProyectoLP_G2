@@ -1,0 +1,26 @@
+Error de sintaxis en el token 'INT' (línea 1, posición 41)
+Error semántico: La variable vari1 no ha sido declarada.
+Entrada: var vari1 = hola fun funcion(gsgs: INT): INT = vari1 = adios
+Resultado: None
+
+Error de sintaxis en el token ':' (línea 1, posición 9)
+Error semántico: La variable string no ha sido declarada.
+Error de sintaxis en el token 'int' (línea 1, posición 50)
+Error semántico: La variable vari1 no ha sido declarada.
+Entrada: var vari1: string = hola fun funcion (gsgs: int): int = vari1 = adios
+Resultado: None
+
+Error semántico: La variable esto no ha sido declarada.
+Error semántico: La variable funciona no ha sido declarada.
+Entrada: esto funciona
+Resultado: None
+
+Error de sintaxis: Fin inesperado de entrada
+Entrada: fun
+Resultado: None
+
+Error de sintaxis en el token 'INT' (línea 1, posición 24)
+Error semántico: La variable dado no ha sido declarada.
+Entrada: fun funcion(dado: INT): INT = dado == 3
+Resultado: None
+
