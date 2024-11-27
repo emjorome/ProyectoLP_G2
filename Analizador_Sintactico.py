@@ -34,14 +34,18 @@ def p_sentencia(p):
                  | declaracion_variable
                  | funcion
                  | empty 
-                 | retorno'''   
+                 | retorno
+                 | clase
+                 | constructorPri'''   
     
 #declaracion de variables -----------Aporte kQ
 def p_declaracion_variable(p):
     '''declaracion_variable : VAL VARIABLE ASIGN valor
                             | VAR VARIABLE ASIGN valor
                             | VAL VARIABLE ASIGN estructura
-                            | VAR VARIABLE ASIGN estructura'''
+                            | VAR VARIABLE ASIGN estructura
+                            | VAL VARIABLE ASIGN creacionObjeto
+                            | VAR VARIABLE ASIGN creacionObjeto'''
     # Aporte Pedro Luna 11/26
     # Guardar variable en el diccionario
     if p[1] == 'VAL' or p[1] == 'VAR':
@@ -53,7 +57,8 @@ def p_asignacion(p):
     '''asignacion : VARIABLE ASIGN VARIABLE
                     | VARIABLE ASIGN expresion
                     | VARIABLE ASIGN condicion
-                    | VARIABLE ASIGN estructura''' #---------agrega la estructura de lista
+                    | VARIABLE ASIGN estructura
+                    | VARIABLE ASIGN creacionObjeto''' #---------agrega la estructura de lista
     #Aporte Pedro Luna 11/26
     # Comprobamos que la variable está declarada
     if p[1] not in variables:
@@ -203,7 +208,6 @@ def p_estructura_conjunto(p):
                   | MUTABLESETOF LPAREN repiteValores RPAREN
                   | MUTABLESETOF LPAREN RPAREN'''
 
-
 # Manejo de errores
 def p_error(p):
     if p:
@@ -212,13 +216,13 @@ def p_error(p):
         print("Error de sintaxis: Fin inesperado de entrada")
 
 #Funcion que reconoce los tipos de datos -------- APORTE DE EMILIO ROMERO
-def p_tipoDato(p):
+"""def p_tipoDato(p):
     '''tipoDato : INT 
                 | BOOLEAN
                 | LONG
                 | DOUBLE
                 | CHAR
-                | BYTE'''
+                | BYTE''' """
 
 #Funcion que almacena la estructura del retorno    
 def p_retorno(p):
@@ -261,6 +265,43 @@ def p_funcion(p):
 
 #TEMRMINA Aporte kevin Quintuña-----------
 
+#Clases y Herencia -------------------- APORTE DE EMILIO ROMERO
+def p_repetirThis(p):
+    '''repetirThis : THIS DOT VARIABLE ASIGN valor repetirThis
+                | THIS DOT VARIABLE ASIGN valor'''
+
+def p_formarThis(p):
+    '''formarThis : THIS LPAREN repiteValores RPAREN'''
+
+def p_repetir_declaracion_variable(p):
+    '''repetirDeclaracion : declaracion_variable repetirDeclaracion
+                        | declaracion_variable'''
+    
+def p_creacionObjeto(p):
+    '''creacionObjeto : VARIABLE LPAREN RPAREN
+                    | VARIABLE LPAREN repiteValores RPAREN'''
+
+def p_clase(p):
+    '''clase : CLASS VARIABLE LLLAVE sentencias RLLAVE
+            | CLASS VARIABLE LLLAVE RLLAVE
+            | OPEN CLASS VARIABLE LLLAVE sentencias RLLAVE
+            | OPEN CLASS VARIABLE LLLAVE RLLAVE
+            | CLASS VARIABLE COLON VARIABLE LPAREN RPAREN LLLAVE sentencias RLLAVE
+            | CLASS VARIABLE COLON VARIABLE LPAREN RPAREN LLLAVE RLLAVE'''
+    
+def p_constructorPri(p):
+    '''constructorPri : CLASS VARIABLE LPAREN parametros RPAREN LLLAVE repetirDeclaracion RLLAVE
+                    | CLASS VARIABLE LPAREN parametros RPAREN LLLAVE RLLAVE
+                    | CLASS VARIABLE LPAREN parametros RPAREN LLLAVE repetirDeclaracion constructorSec RLLAVE'''
+    
+def p_constructorSecundario(p):
+    '''constructorSec : CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis RLLAVE
+                    | CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE repetirThis RLLAVE
+                    | CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE RLLAVE
+                    | CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE RLLAVE'''
+
+#------------------------------- FIN APORTE DE EMILIO ROMERO
+
 #Guardar datos
 #Guardar datos
 now = datetime.datetime.now()
@@ -280,7 +321,8 @@ def guardar_log(mensaje):
 # Guardar datos
 import datetime  # Asegúrate de importar este módulo si aún no lo has hecho
 now = datetime.datetime.now()
-usuario = "Kevin-QQ-82"
+#usuario = "Kevin-QQ-82"
+usuario = "emjorome"
 
 log_filename = f"logsSintacticos/sintactico-{usuario}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
 

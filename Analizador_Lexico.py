@@ -92,6 +92,7 @@ reserved= {'if':'IF',
            'mutableListOf': 'MUTABLELISTOF',
            'mutableMapOf': 'MUTABLEMAPOF',
            'mutableSetOf': 'MUTABLESETOF',
+           'constructor': 'CONSTRUCTOR',
            #Fin aporte de palabras reservadas de Emilio Romero
             'print':'PRINT',
            'println':'PRINTLN',

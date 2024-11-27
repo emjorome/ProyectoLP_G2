@@ -1,0 +1,18 @@
+Error de sintaxis en el token 'var' (línea 20, posición 28)
+Entrada: class clase(nombre: String, var edad: Int){}
+Resultado: None
+
+Entrada: class clase(nombre: String, edad: Int){}
+Resultado: None
+
+Entrada: class clase(nombre: String, edad: Int){val edad = 23}
+Resultado: None
+
+Error de sintaxis en el token 'this.edad' (línea 20, posición 80)
+Entrada: class clase(nombre: String, edad: Int){val edad = 23 constructor(): this(name) {this.edad = 45} }
+Resultado: None
+
+Error de sintaxis en el token '45' (línea 20, posición 94)
+Entrada: class clase(nombre: String, edad: Int){val edad = 23 constructor(): this(name) {this . edad = 45} }
+Resultado: None
+

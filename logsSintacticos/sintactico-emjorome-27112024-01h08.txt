@@ -1,0 +1,23 @@
+Entrada: class clase2 {}
+Resultado: None
+
+Error de sintaxis en el token 'val' (línea 20, posición 12)
+Entrada: class clase(val nombre: String, var edad: Int){}
+Resultado: None
+
+Error de sintaxis en el token 'val' (línea 20, posición 12)
+Error de sintaxis en el token '}' (línea 20, posición 58)
+Entrada: class clase(val nombre: String, var edad: Int){val doc = 3}
+Resultado: None
+
+Entrada: open class clase { 3 }
+Resultado: None
+
+Error de sintaxis en el token 'val' (línea 20, posición 12)
+Entrada: class clase(val nombre: String, var edad: Int){}
+Resultado: None
+
+Error de sintaxis en el token 'var' (línea 20, posición 12)
+Entrada: class clase(var nombre: String, var edad: Int){}
+Resultado: None
+
