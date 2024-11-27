@@ -1,6 +1,9 @@
 #Aporte de PEDRO LUNA
 import ply.lex as lex
 
+resultados = []
+validar_lexico = True
+
             #Modificadores de flujo
 reserved= {'if':'IF',
            'else':'ELSE',
@@ -299,14 +302,49 @@ t_ignore  = ' \t'
 # Error handling rule
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
+    resultados.append("Illegal character '%s'" % t.value[0])
+    #aseguro que el validador lexico indique que el codigo no es validado
+    global validar_lexico
+    validar_lexico = False
     t.lexer.skip(1)
-
 
 # Build the lexer
 lexer = lex.lex()
 
 # Test it out
-data = '''
+data = ""
+
+# Give the lexer some input
+lexer.input(data)
+
+while True:
+        tok = lexer.token()
+        if not tok:
+            break      # No more input
+        print(tok)
+
+def vaciar_resultados():
+    resultados.clear()
+
+def analizar_lexico(codigo):
+    #Inicializo que el la variable para una siguiente ejecucion de codigo
+    global validar_lexico
+    validar_lexico = True
+
+    lexer.input(codigo)
+
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+
+        resultados.append(f"(Token -> {tok.type} | Valor -> {tok.value} | Linea -> {tok.lineno})")
+
+    print(validar_lexico)
+    return resultados
+
+
+'''
 
 
 // Clase con propiedades y funciones

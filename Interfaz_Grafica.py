@@ -1,4 +1,4 @@
-#import Analizador_Lexico as a_l
+import Analizador_Lexico as a_l
 #import Analizador_Sintactico as a_s
 import tkinter as tk
 from tkinter import ttk
@@ -10,10 +10,32 @@ def analizar_codigo():
         salida_resultados.insert(tk.END, "Error: No se ingresó código.\n")
         return
     
-    # Aquí integrar el analizador léxico, sintáctico y semántico. ----PENDIENTE
+    #Borrar resultados anteriores de la pantalla
     salida_resultados.delete("1.0", tk.END)  # Limpia resultados anteriores
+
+    #ANALIZADOR LEXICO
+    #Se extraen los resultados del analizador lexico
+    resultados_lexicos = a_l.analizar_lexico(codigo.strip())
+
+    # Muestra los resultados en la pantalla
+    if resultados_lexicos:
+        salida_resultados.insert(tk.END, "Resultados del análisis léxico:\n")
+        for resultado in resultados_lexicos:
+            salida_resultados.insert(tk.END, resultado + "\n")
+    else:
+        salida_resultados.insert(tk.END, "No se encontraron tokens.\n")
+        return
+
+    a_l.vaciar_resultados()
+
+    if a_l.validar_lexico:
+        salida_resultados.insert(tk.END, "✓ Léxico: Sin errores.\n")
+    else:
+        salida_resultados.insert(tk.END, "ERROR en el léxico, por favor verifique.\n")
+        return
+
+    # Aquí integrar el analizador sintáctico y semántico. ----PENDIENTE
     salida_resultados.insert(tk.END, "Análisis completado:\n")
-    salida_resultados.insert(tk.END, "✓ Léxico: Sin errores.\n")
     salida_resultados.insert(tk.END, "✓ Sintáctico: Sin errores.\n")
     salida_resultados.insert(tk.END, "✓ Semántico: Sin errores.\n")
 
