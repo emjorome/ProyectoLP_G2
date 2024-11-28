@@ -2,6 +2,7 @@ import ply.yacc as yacc
 import datetime
 
 resultados_sintactico = []
+resultados_semantico = []
 validar_sintaxis = True
 
 # Get the token map from the lexer.  This is required.
@@ -66,6 +67,7 @@ def p_asignacion(p):
     # Comprobamos que la variable está declarada
     if p[1] not in variables:
         mensaje = f"Error semántico: La variable {p[1]} no ha sido declarada."
+        resultados_semantico.append(mensaje) #Para la Interfaz ---- Emilio Romero
         #guardar_log(mensaje)
         print(mensaje)
         return
@@ -74,6 +76,7 @@ def p_asignacion(p):
     if isinstance(p[3], str) and p[3] in variables:
         if type(variables[p[1]]) != type(variables[p[3]]):
             mensaje = f"Error semántico: Incompatibilidad de tipos entre {p[1]} y {p[3]}."
+            resultados_semantico.append(mensaje) #Para la Interfaz ---- Emilio Romero
             #guardar_log(mensaje)
             print(mensaje)
             return
@@ -121,17 +124,23 @@ def p_expresionAritmetica(p):
     # Aporte Pedro Luna 11/26
     # Verificar si las variables están declaradas
     if isinstance(p[1], str) and p[1] not in variables:
-        print(f"Error semántico: La variable {p[1]} no ha sido inicializada.")
+        mensaje = f"Error semántico: La variable {p[1]} no ha sido inicializada."
+        resultados_semantico.append(mensaje) #Para la Interfaz ---- Emilio Romero
+        print(mensaje)
         return
     if isinstance(p[3], str) and p[3] not in variables:
-        print(f"Error semántico: La variable {p[3]} no ha sido inicializada.")
+        mensaje2 =  f"Error semántico: La variable {p[3]} no ha sido inicializada."
+        resultados_semantico.append(mensaje2) #Para la Interfaz ---- Emilio Romero
+        print(mensaje2)
         return
 
     # Validar que los tipos de las variables sean compatibles para la operación
     valor1 = variables[p[1]] if isinstance(p[1], str) else p[1]
     valor3 = variables[p[3]] if isinstance(p[3], str) else p[3]
     if type(valor1) != type(valor3):
-        print(f"Error semántico: Los tipos de {p[1]} y {p[3]} son incompatibles para la operación.")
+        mensaje3 = f"Error semántico: Los tipos de {p[1]} y {p[3]} son incompatibles para la operación."
+        resultados_semantico.append(mensaje3) #Para la Interfaz ---- Emilio Romero
+        print(mensaje3)
         return
     # Final Aporte Pedro Luna
 
@@ -153,6 +162,7 @@ def p_expresionVariable(p):
     # Aporte Pedro Luna 11/26
     if p[1] not in variables:
         mensaje = f"Error semántico: La variable {p[1]} no ha sido declarada."
+        resultados_semantico.append(mensaje)  # Para la Interfaz ---- Emilio Romero
         #guardar_log(mensaje)
         print(mensaje)
         return
@@ -176,6 +186,10 @@ def p_condicionLogica(p):
 def p_condicinNegacion(p):
     """condicion : NOT condicion
                 | NOT expresion"""
+
+def p_condicinTrueFalse(p):
+    """condicion : TRUE
+                | FALSE"""
 
 #Funcion que permite que una condicion este entre parentesis
 def p_condicionParentecis(p):
@@ -249,6 +263,16 @@ def p_estructura_control_for(p):
 
 def p_estructura_control_while(p): # --------APORTE DE EMILIO ROMERO
     '''estructura : WHILE condicion LLLAVE sentencias RLLAVE'''
+
+def p_estructura_control_if(p): #------------APORTE DE EMILIO ROMERO
+    '''estructura : IF condicion LLLAVE sentencias RLLAVE
+                    | IF condicion LLLAVE sentencias RLLAVE repetirElseIf ELSE LLLAVE sentencias RLLAVE
+                    | IF condicion LLLAVE sentencias RLLAVE repetirElseIf
+                    | IF condicion LLLAVE sentencias RLLAVE ELSE LLLAVE sentencias RLLAVE'''
+
+def p_repetirElseIf(p): # ----------------APORTE DE EMILIO ROMERO
+    '''repetirElseIf : ELSE IF condicion LLLAVE sentencias RLLAVE
+                      | ELSE IF condicion LLLAVE sentencias RLLAVE repetirElseIf'''
 
 # DECLARACION DE TIPOS DE FUNCIONES
 # Declaración de funciones
@@ -345,7 +369,7 @@ def p_error(p):
     print(msg_error)
 
 # Build the parser
-parser = yacc.yacc(debug=True)
+#parser = yacc.yacc(debug=True)
 
 """while True:
    try:
@@ -364,6 +388,7 @@ def vaciar_resultados_sintactios():
     resultados_sintactico.clear()
 
 def analizar_sintaxis(codigo):
+    parser = yacc.yacc(debug=True)
     global validar_sintaxis
     validar_sintaxis = True
 

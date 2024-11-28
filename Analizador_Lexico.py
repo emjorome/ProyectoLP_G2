@@ -327,6 +327,7 @@ def vaciar_resultados():
     resultados.clear()
 
 def analizar_lexico(codigo):
+    lexer.lineno = 1
     #Inicializo que el la variable para una siguiente ejecucion de codigo
     global validar_lexico
     validar_lexico = True

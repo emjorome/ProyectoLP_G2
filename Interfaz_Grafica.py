@@ -3,6 +3,9 @@ import Analizador_Sintactico as a_s
 import tkinter as tk
 from tkinter import ttk
 
+from Analizador_Sintactico import resultados_semantico
+
+
 def analizar_codigo():
     """Simula el análisis del código y muestra resultados en la pantalla derecha."""
     codigo = entrada_codigo.get("1.0", tk.END)  # Obtener el texto ingresado
@@ -35,8 +38,9 @@ def analizar_codigo():
         return
 
     #ANALIZADOR SINTACTICO
-    # Se extraen los resultados del analizador sintactico
+    # Se extraen los resultados del analizador sintactico y semanticos
     resultados_sintacticos = a_s.analizar_sintaxis(codigo.strip())
+    resultados_semanticos = a_s.resultados_semantico
 
     # Muestra los resultados en la pantalla
     if resultados_sintacticos:
@@ -55,9 +59,21 @@ def analizar_codigo():
         salida_resultados.insert(tk.END, "ERROR en la sintaxis, por favor verifique.\n")
         return
 
-    # Aquí integrar el analizador sintáctico y semántico. ----PENDIENTE
-    salida_resultados.insert(tk.END, "Análisis completado:\n")
-    salida_resultados.insert(tk.END, "✓ Semántico: Sin errores.\n")
+    #ANALIZADOR SEMANTICO
+    if resultados_semanticos:
+        for resultado in resultados_semanticos:
+            salida_resultados.insert(tk.END, resultado + "\n")
+        salida_resultados.insert(tk.END, "ERROR en la semántica, por favor verifique.\n")
+        return
+    else:
+        salida_resultados.insert(tk.END, "Resultado del análisis semántico:\n")
+        salida_resultados.insert(tk.END, "✓ Semántico: Sin errores.\n\n")
+
+    a_s.resultados_semantico.clear()
+
+    # Mensaje de verificacion exitosa
+    salida_resultados.insert(tk.END, "Análisis completado.\n")
+    salida_resultados.insert(tk.END, "TODO CORRECTO\n")
 
 
 # Crear la ventana principal
@@ -77,14 +93,14 @@ frame_izquierdo.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=5, pady=5)
 frame_derecho.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=5, pady=5)
 
 # Área de entrada (izquierda)
-label_izquierdo = ttk.Label(frame_izquierdo, text="Código Kotlin", background="grey")
+label_izquierdo = ttk.Label(frame_izquierdo, text="Código Kotlin", background="black", foreground="white")
 label_izquierdo.pack(anchor="nw", padx=5, pady=5)
 
 entrada_codigo = tk.Text(frame_izquierdo, wrap=tk.WORD, background = "black", foreground="white")
 entrada_codigo.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
 # Área de salida (derecha)
-label_derecho = ttk.Label(frame_derecho, text="Resultados del Análisis", background="grey")
+label_derecho = ttk.Label(frame_derecho, text="Resultados del Análisis", background="black", foreground="white")
 label_derecho.pack(anchor="nw", padx=5, pady=5)
 
 salida_resultados = tk.Text(frame_derecho, wrap=tk.WORD, state=tk.NORMAL, background= "black", foreground="white")
