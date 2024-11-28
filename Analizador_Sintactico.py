@@ -1,6 +1,9 @@
 import ply.yacc as yacc
 import datetime
 
+resultados_sintactico = []
+validar_sintaxis = True
+
 # Get the token map from the lexer.  This is required.
 from Analizador_Lexico import tokens
 
@@ -63,7 +66,7 @@ def p_asignacion(p):
     # Comprobamos que la variable está declarada
     if p[1] not in variables:
         mensaje = f"Error semántico: La variable {p[1]} no ha sido declarada."
-        guardar_log(mensaje)
+        #guardar_log(mensaje)
         print(mensaje)
         return
 
@@ -71,7 +74,7 @@ def p_asignacion(p):
     if isinstance(p[3], str) and p[3] in variables:
         if type(variables[p[1]]) != type(variables[p[3]]):
             mensaje = f"Error semántico: Incompatibilidad de tipos entre {p[1]} y {p[3]}."
-            guardar_log(mensaje)
+            #guardar_log(mensaje)
             print(mensaje)
             return
         variables[p[1]] = variables[p[3]]
@@ -150,7 +153,7 @@ def p_expresionVariable(p):
     # Aporte Pedro Luna 11/26
     if p[1] not in variables:
         mensaje = f"Error semántico: La variable {p[1]} no ha sido declarada."
-        guardar_log(mensaje)
+        #guardar_log(mensaje)
         print(mensaje)
         return
     #Final Aporte Pedro Luna
@@ -209,12 +212,12 @@ def p_estructura_conjunto(p):
                   | MUTABLESETOF LPAREN RPAREN'''
 
 # Manejo de errores
-def p_error(p):
+"""def p_error(p):
     if p:
         print(f"Error de sintaxis en el token '{p.value}' (tipo: {p.type}, línea: {p.lineno}, posición: {p.lexpos})")
     else:
         print("Error de sintaxis: Fin inesperado de entrada")
-
+"""
 #Funcion que reconoce los tipos de datos -------- APORTE DE EMILIO ROMERO
 """def p_tipoDato(p):
     '''tipoDato : INT 
@@ -335,13 +338,16 @@ def p_error(p):
         msg_error = f"Error de sintaxis en el token '{p.value}' (línea {p.lineno}, posición {p.lexpos})"
     else:
         msg_error = "Error de sintaxis: Fin inesperado de entrada"
-    guardar_log(msg_error)
+    #guardar_log(msg_error)
+    resultados_sintactico.append(msg_error)
+    global validar_sintaxis
+    validar_sintaxis = False
     print(msg_error)
 
 # Build the parser
 parser = yacc.yacc(debug=True)
 
-while True:
+"""while True:
    try:
        s = input('kotlin > ')
    except EOFError:
@@ -352,4 +358,27 @@ while True:
    mensaje = f"Entrada: {s}\nResultado: {result}\n"
 
    print(result)
-   guardar_log(mensaje)
+   guardar_log(mensaje)"""
+
+def vaciar_resultados_sintactios():
+    resultados_sintactico.clear()
+
+def analizar_sintaxis(codigo):
+    global validar_sintaxis
+    validar_sintaxis = True
+
+    #while True:
+    """try:
+        s = codigo
+    except EOFError:
+        break
+    if not s: continue"""
+    s = codigo
+    result = parser.parse(s)
+    mensaje = f"Entrada: {s}\nResultado: {result}\n"
+
+    if validar_sintaxis:
+        resultados_sintactico.append(mensaje)
+    print(mensaje)
+
+    return resultados_sintactico

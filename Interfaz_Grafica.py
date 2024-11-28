@@ -1,5 +1,5 @@
 import Analizador_Lexico as a_l
-#import Analizador_Sintactico as a_s
+import Analizador_Sintactico as a_s
 import tkinter as tk
 from tkinter import ttk
 
@@ -29,14 +29,34 @@ def analizar_codigo():
     a_l.vaciar_resultados()
 
     if a_l.validar_lexico:
-        salida_resultados.insert(tk.END, "✓ Léxico: Sin errores.\n")
+        salida_resultados.insert(tk.END, "✓ Léxico: Sin errores.\n\n")
     else:
         salida_resultados.insert(tk.END, "ERROR en el léxico, por favor verifique.\n")
         return
 
+    #ANALIZADOR SINTACTICO
+    # Se extraen los resultados del analizador sintactico
+    resultados_sintacticos = a_s.analizar_sintaxis(codigo.strip())
+
+    # Muestra los resultados en la pantalla
+    if resultados_sintacticos:
+        salida_resultados.insert(tk.END, "Resultados del análisis sintáctico:\n")
+        for resultado in resultados_sintacticos:
+            salida_resultados.insert(tk.END, resultado + "\n")
+    else:
+        salida_resultados.insert(tk.END, "Error en el compilador. No se encuentra sintaxis.\n")
+        return
+
+    a_s.vaciar_resultados_sintactios()
+
+    if a_s.validar_sintaxis:
+        salida_resultados.insert(tk.END, "✓ Sintáctico: Sin errores.\n\n")
+    else:
+        salida_resultados.insert(tk.END, "ERROR en la sintaxis, por favor verifique.\n")
+        return
+
     # Aquí integrar el analizador sintáctico y semántico. ----PENDIENTE
     salida_resultados.insert(tk.END, "Análisis completado:\n")
-    salida_resultados.insert(tk.END, "✓ Sintáctico: Sin errores.\n")
     salida_resultados.insert(tk.END, "✓ Semántico: Sin errores.\n")
 
 

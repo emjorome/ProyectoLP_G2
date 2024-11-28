@@ -1,0 +1,2 @@
+Error semántico: La variable String no ha sido declarada.
+Error semántico: La variable String no ha sido declarada.
