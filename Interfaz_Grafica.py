@@ -64,12 +64,13 @@ def analizar_codigo():
         for resultado in resultados_semanticos:
             salida_resultados.insert(tk.END, resultado + "\n")
         salida_resultados.insert(tk.END, "ERROR en la semántica, por favor verifique.\n")
+        a_s.vaciar_resultados_semanticos()
         return
     else:
         salida_resultados.insert(tk.END, "Resultado del análisis semántico:\n")
         salida_resultados.insert(tk.END, "✓ Semántico: Sin errores.\n\n")
 
-    a_s.resultados_semantico.clear()
+    a_s.vaciar_resultados_semanticos()
 
     # Mensaje de verificacion exitosa
     salida_resultados.insert(tk.END, "Análisis completado.\n")

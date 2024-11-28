@@ -5,6 +5,7 @@ resultados_sintactico = []
 resultados_semantico = []
 validar_sintaxis = True
 
+en_ciclo = False
 # Get the token map from the lexer.  This is required.
 from Analizador_Lexico import tokens
 
@@ -40,7 +41,17 @@ def p_sentencia(p):
                  | empty 
                  | retorno
                  | clase
-                 | constructorPri'''   
+                 | constructorPri
+                 | CONTINUE
+                 | BREAK'''
+    print(p[1])
+    if p[1] in ['continue', 'break']:
+        global en_ciclo
+        if not en_ciclo:
+            mensaje = f"Error semántico: '{p[1]}' solo puede usarse dentro de un ciclo."
+            resultados_semantico.append(mensaje)
+            print(mensaje)
+        en_ciclo = False
     
 #declaracion de variables -----------Aporte kQ
 def p_declaracion_variable(p):
@@ -254,15 +265,19 @@ def p_objetoRetorno(p):
                     | FALSE
                     | estructura
                     | empty'''
-
 #----------------- ----------------------------FIN APORTE DE EMILIO ROMERO
 
 # ESTRUCTURAS DE CONTROL
 def p_estructura_control_for(p):
     '''estructura : FOR LPAREN VARIABLE IN valor RANGE_TO valor RPAREN LLLAVE sentencias RLLAVE'''
+    global en_ciclo
+    en_ciclo = True
 
 def p_estructura_control_while(p): # --------APORTE DE EMILIO ROMERO
-    '''estructura : WHILE condicion LLLAVE sentencias RLLAVE'''
+    '''estructura : WHILE condicion LLLAVE sentencias RLLAVE
+                    | WHILE condicion LLLAVE RLLAVE'''
+    global en_ciclo
+    en_ciclo = True
 
 def p_estructura_control_if(p): #------------APORTE DE EMILIO ROMERO
     '''estructura : IF condicion LLLAVE sentencias RLLAVE
@@ -273,6 +288,12 @@ def p_estructura_control_if(p): #------------APORTE DE EMILIO ROMERO
 def p_repetirElseIf(p): # ----------------APORTE DE EMILIO ROMERO
     '''repetirElseIf : ELSE IF condicion LLLAVE sentencias RLLAVE
                       | ELSE IF condicion LLLAVE sentencias RLLAVE repetirElseIf'''
+
+def p_estructura_control_dowhile(p): # ------------- APORTE DE EMILIO ROMERO
+    '''estructura : DO LLLAVE sentencias RLLAVE WHILE condicion
+                    | DO LLLAVE RLLAVE WHILE condicion '''
+    global en_ciclo
+    en_ciclo = True
 
 # DECLARACION DE TIPOS DE FUNCIONES
 # Declaración de funciones
@@ -386,6 +407,9 @@ def p_error(p):
 
 def vaciar_resultados_sintactios():
     resultados_sintactico.clear()
+
+def vaciar_resultados_semanticos():
+    resultados_semantico.clear()
 
 def analizar_sintaxis(codigo):
     parser = yacc.yacc(debug=True)
