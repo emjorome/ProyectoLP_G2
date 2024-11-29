@@ -344,9 +344,9 @@ def p_constructorPri(p):
     
 def p_constructorSecundario(p):
     '''constructorSec : CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis RLLAVE
-                    | CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE repetirThis RLLAVE
+                    | CONSTRUCTOR LPAREN parametros RPAREN LLLAVE repetirThis RLLAVE
                     | CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE RLLAVE
-                    | CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE RLLAVE'''
+                    | CONSTRUCTOR LPAREN parametros RPAREN LLLAVE RLLAVE'''
 
 #------------------------------- FIN APORTE DE EMILIO ROMERO
 
@@ -415,6 +415,7 @@ def analizar_sintaxis(codigo):
     parser = yacc.yacc(debug=True)
     global validar_sintaxis
     validar_sintaxis = True
+    print(en_ciclo)
 
     #while True:
     """try:

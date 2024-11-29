@@ -1,19 +1,22 @@
-// Comentario de una sola linea
-/* Comentario de varias lineas */
+val x = 9
+var y = 7
 
-val lista :  = listOf(1, 2, 3)  //Lista de enteros
-val mapa = mapOf("clave1" to "valor1", "clave2" to "valor2")  //Mapa con claves y valores
-val conjunto = setOf(true, false, false) //conjunto de booleanos
+fun funcion & (a: String, b: String): String{
+	return x
+}
 
-val lista2 = mutableListOf(4, 5, 6)
-val mapa2 = mutableMapOf("clave3" to "valor3")
-val conjunto2 = mutableSetOf(false, true)
+class Persona {
+	val nombre = "Juan"
+	val apellido = "Pedro"
+}
 
-val nombre = "Jenny"
+class PersonaPri(nombre: String) {
+	val nombre = "roberto"
+	constructor(edad: Int): this(nombre) {
+		this . apellido =
+	}
+}
 
-println("Hola, $nombre $")
+val persona1 = Persona("Pablo")
 
-//FUNCIONAAAAAA
-//2+2 ES cuatro
-
-/**/
+continue

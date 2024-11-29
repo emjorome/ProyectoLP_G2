@@ -195,9 +195,9 @@ Rule 118   constructorPri -> CLASS VARIABLE LPAREN parametros RPAREN LLLAVE repe
 Rule 119   constructorPri -> CLASS VARIABLE LPAREN parametros RPAREN LLLAVE RLLAVE
 Rule 120   constructorPri -> CLASS VARIABLE LPAREN parametros RPAREN LLLAVE repetirDeclaracion constructorSec RLLAVE
 Rule 121   constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis RLLAVE
-Rule 122   constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE repetirThis RLLAVE
+Rule 122   constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN LLLAVE repetirThis RLLAVE
 Rule 123   constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE RLLAVE
-Rule 124   constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE RLLAVE
+Rule 124   constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN LLLAVE RLLAVE
 
 Terminals, with rules where they appear
 
@@ -212,7 +212,7 @@ BYTE                 :
 CATCH                : 
 CHAR                 : 
 CLASS                : 112 113 114 115 116 117 118 119 120
-COLON                : 97 98 99 100 102 104 116 117 121 122 123 124
+COLON                : 97 98 99 100 102 104 116 117 121 123
 COMMA                : 38 72 97 99
 COMMENTLINEA         : 
 COMMENTMULTI         : 
@@ -10854,9 +10854,9 @@ state 217
     (118) constructorPri -> CLASS VARIABLE LPAREN parametros RPAREN LLLAVE repetirDeclaracion . RLLAVE
     (120) constructorPri -> CLASS VARIABLE LPAREN parametros RPAREN LLLAVE repetirDeclaracion . constructorSec RLLAVE
     (121) constructorSec -> . CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis RLLAVE
-    (122) constructorSec -> . CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE repetirThis RLLAVE
+    (122) constructorSec -> . CONSTRUCTOR LPAREN parametros RPAREN LLLAVE repetirThis RLLAVE
     (123) constructorSec -> . CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE RLLAVE
-    (124) constructorSec -> . CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE RLLAVE
+    (124) constructorSec -> . CONSTRUCTOR LPAREN parametros RPAREN LLLAVE RLLAVE
 
     RLLAVE          shift and go to state 231
     CONSTRUCTOR     shift and go to state 233
@@ -12013,9 +12013,9 @@ state 232
 state 233
 
     (121) constructorSec -> CONSTRUCTOR . LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis RLLAVE
-    (122) constructorSec -> CONSTRUCTOR . LPAREN parametros RPAREN COLON LLLAVE repetirThis RLLAVE
+    (122) constructorSec -> CONSTRUCTOR . LPAREN parametros RPAREN LLLAVE repetirThis RLLAVE
     (123) constructorSec -> CONSTRUCTOR . LPAREN parametros RPAREN COLON formarThis LLLAVE RLLAVE
-    (124) constructorSec -> CONSTRUCTOR . LPAREN parametros RPAREN COLON LLLAVE RLLAVE
+    (124) constructorSec -> CONSTRUCTOR . LPAREN parametros RPAREN LLLAVE RLLAVE
 
     LPAREN          shift and go to state 244
 
@@ -13141,9 +13141,9 @@ state 243
 state 244
 
     (121) constructorSec -> CONSTRUCTOR LPAREN . parametros RPAREN COLON formarThis LLLAVE repetirThis RLLAVE
-    (122) constructorSec -> CONSTRUCTOR LPAREN . parametros RPAREN COLON LLLAVE repetirThis RLLAVE
+    (122) constructorSec -> CONSTRUCTOR LPAREN . parametros RPAREN LLLAVE repetirThis RLLAVE
     (123) constructorSec -> CONSTRUCTOR LPAREN . parametros RPAREN COLON formarThis LLLAVE RLLAVE
-    (124) constructorSec -> CONSTRUCTOR LPAREN . parametros RPAREN COLON LLLAVE RLLAVE
+    (124) constructorSec -> CONSTRUCTOR LPAREN . parametros RPAREN LLLAVE RLLAVE
     (97) parametros -> . VARIABLE COLON VARIABLE ASIGN valor COMMA parametros
     (98) parametros -> . VARIABLE COLON VARIABLE ASIGN valor
     (99) parametros -> . VARIABLE COLON VARIABLE COMMA parametros
@@ -13611,9 +13611,9 @@ state 249
 state 250
 
     (121) constructorSec -> CONSTRUCTOR LPAREN parametros . RPAREN COLON formarThis LLLAVE repetirThis RLLAVE
-    (122) constructorSec -> CONSTRUCTOR LPAREN parametros . RPAREN COLON LLLAVE repetirThis RLLAVE
+    (122) constructorSec -> CONSTRUCTOR LPAREN parametros . RPAREN LLLAVE repetirThis RLLAVE
     (123) constructorSec -> CONSTRUCTOR LPAREN parametros . RPAREN COLON formarThis LLLAVE RLLAVE
-    (124) constructorSec -> CONSTRUCTOR LPAREN parametros . RPAREN COLON LLLAVE RLLAVE
+    (124) constructorSec -> CONSTRUCTOR LPAREN parametros . RPAREN LLLAVE RLLAVE
 
     RPAREN          shift and go to state 253
 
@@ -13699,11 +13699,12 @@ state 252
 state 253
 
     (121) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN . COLON formarThis LLLAVE repetirThis RLLAVE
-    (122) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN . COLON LLLAVE repetirThis RLLAVE
+    (122) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN . LLLAVE repetirThis RLLAVE
     (123) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN . COLON formarThis LLLAVE RLLAVE
-    (124) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN . COLON LLLAVE RLLAVE
+    (124) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN . LLLAVE RLLAVE
 
     COLON           shift and go to state 256
+    LLLAVE          shift and go to state 257
 
 
 state 254
@@ -13753,35 +13754,32 @@ state 255
 state 256
 
     (121) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON . formarThis LLLAVE repetirThis RLLAVE
-    (122) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON . LLLAVE repetirThis RLLAVE
     (123) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON . formarThis LLLAVE RLLAVE
-    (124) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON . LLLAVE RLLAVE
     (107) formarThis -> . THIS LPAREN repiteValores RPAREN
 
-    LLLAVE          shift and go to state 258
     THIS            shift and go to state 259
 
-    formarThis                     shift and go to state 257
+    formarThis                     shift and go to state 258
 
 state 257
+
+    (122) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN LLLAVE . repetirThis RLLAVE
+    (124) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN LLLAVE . RLLAVE
+    (105) repetirThis -> . THIS DOT VARIABLE ASIGN valor repetirThis
+    (106) repetirThis -> . THIS DOT VARIABLE ASIGN valor
+
+    RLLAVE          shift and go to state 261
+    THIS            shift and go to state 262
+
+    repetirThis                    shift and go to state 260
+
+state 258
 
     (121) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis . LLLAVE repetirThis RLLAVE
     (123) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis . LLLAVE RLLAVE
 
-    LLLAVE          shift and go to state 260
+    LLLAVE          shift and go to state 263
 
-
-state 258
-
-    (122) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE . repetirThis RLLAVE
-    (124) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE . RLLAVE
-    (105) repetirThis -> . THIS DOT VARIABLE ASIGN valor repetirThis
-    (106) repetirThis -> . THIS DOT VARIABLE ASIGN valor
-
-    RLLAVE          shift and go to state 262
-    THIS            shift and go to state 263
-
-    repetirThis                    shift and go to state 261
 
 state 259
 
@@ -13792,37 +13790,37 @@ state 259
 
 state 260
 
+    (122) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN LLLAVE repetirThis . RLLAVE
+
+    RLLAVE          shift and go to state 265
+
+
+state 261
+
+    (124) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN LLLAVE RLLAVE .
+
+    RLLAVE          reduce using rule 124 (constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN LLLAVE RLLAVE .)
+
+
+state 262
+
+    (105) repetirThis -> THIS . DOT VARIABLE ASIGN valor repetirThis
+    (106) repetirThis -> THIS . DOT VARIABLE ASIGN valor
+
+    DOT             shift and go to state 266
+
+
+state 263
+
     (121) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE . repetirThis RLLAVE
     (123) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE . RLLAVE
     (105) repetirThis -> . THIS DOT VARIABLE ASIGN valor repetirThis
     (106) repetirThis -> . THIS DOT VARIABLE ASIGN valor
 
-    RLLAVE          shift and go to state 266
-    THIS            shift and go to state 263
+    RLLAVE          shift and go to state 268
+    THIS            shift and go to state 262
 
-    repetirThis                    shift and go to state 265
-
-state 261
-
-    (122) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE repetirThis . RLLAVE
-
-    RLLAVE          shift and go to state 267
-
-
-state 262
-
-    (124) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE RLLAVE .
-
-    RLLAVE          reduce using rule 124 (constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE RLLAVE .)
-
-
-state 263
-
-    (105) repetirThis -> THIS . DOT VARIABLE ASIGN valor repetirThis
-    (106) repetirThis -> THIS . DOT VARIABLE ASIGN valor
-
-    DOT             shift and go to state 268
-
+    repetirThis                    shift and go to state 267
 
 state 264
 
@@ -13848,31 +13846,31 @@ state 264
 
 state 265
 
-    (121) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis . RLLAVE
+    (122) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN LLLAVE repetirThis RLLAVE .
 
-    RLLAVE          shift and go to state 270
+    RLLAVE          reduce using rule 122 (constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN LLLAVE repetirThis RLLAVE .)
 
 
 state 266
 
-    (123) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE RLLAVE .
+    (105) repetirThis -> THIS DOT . VARIABLE ASIGN valor repetirThis
+    (106) repetirThis -> THIS DOT . VARIABLE ASIGN valor
 
-    RLLAVE          reduce using rule 123 (constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE RLLAVE .)
+    VARIABLE        shift and go to state 270
 
 
 state 267
 
-    (122) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE repetirThis RLLAVE .
+    (121) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis . RLLAVE
 
-    RLLAVE          reduce using rule 122 (constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON LLLAVE repetirThis RLLAVE .)
+    RLLAVE          shift and go to state 271
 
 
 state 268
 
-    (105) repetirThis -> THIS DOT . VARIABLE ASIGN valor repetirThis
-    (106) repetirThis -> THIS DOT . VARIABLE ASIGN valor
+    (123) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE RLLAVE .
 
-    VARIABLE        shift and go to state 271
+    RLLAVE          reduce using rule 123 (constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE RLLAVE .)
 
 
 state 269
@@ -13884,17 +13882,17 @@ state 269
 
 state 270
 
-    (121) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis RLLAVE .
-
-    RLLAVE          reduce using rule 121 (constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis RLLAVE .)
-
-
-state 271
-
     (105) repetirThis -> THIS DOT VARIABLE . ASIGN valor repetirThis
     (106) repetirThis -> THIS DOT VARIABLE . ASIGN valor
 
     ASIGN           shift and go to state 273
+
+
+state 271
+
+    (121) constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis RLLAVE .
+
+    RLLAVE          reduce using rule 121 (constructorSec -> CONSTRUCTOR LPAREN parametros RPAREN COLON formarThis LLLAVE repetirThis RLLAVE .)
 
 
 state 272
@@ -13932,7 +13930,7 @@ state 274
     (106) repetirThis -> . THIS DOT VARIABLE ASIGN valor
 
     RLLAVE          reduce using rule 106 (repetirThis -> THIS DOT VARIABLE ASIGN valor .)
-    THIS            shift and go to state 263
+    THIS            shift and go to state 262
 
     repetirThis                    shift and go to state 275
 
