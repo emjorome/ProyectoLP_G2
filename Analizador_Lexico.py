@@ -97,7 +97,7 @@ reserved= {'if':'IF',
            'mutableSetOf': 'MUTABLESETOF',
            'constructor': 'CONSTRUCTOR',
            #Fin aporte de palabras reservadas de Emilio Romero
-            'print':'PRINT',
+           'print':'PRINTED',
            'println':'PRINTLN',
             'to': 'TO_FROM_KV',
            'input':'INPUT',
@@ -231,7 +231,7 @@ t_RANGE_TO = r'\.\.'
 #---------aportes extra kevin q------------revisar el string no funciona
 
 
-def t_STRING(t):
+def to_STRING(t):
     r'"([^"\\]|\\.)*"'
     return t
 def t_GENERIC_TYPE(t):
@@ -343,140 +343,3 @@ def analizar_lexico(codigo):
 
     print(validar_lexico)
     return resultados
-
-
-'''
-
-
-// Clase con propiedades y funciones
-class Calculator {
-    var history: MutableList<String> = mutableListOf()
-
-    // Función para sumar
-    fun add(a: Int, b: Int): Int {
-        val result = listOf(1, 2,3 )
-        history.add("Sum: $a + $b = $result")
-        return result
-    }
-
-    // Función para multiplicar
-    fun multiply(a: Int, b: Int): Int {
-        val result = a * b
-        history.add("Multiply: $a * $b = $result")
-        return result
-    }
-
-    // Función para mostrar el historial
-    fun showHistory() {
-        history.forEach { println(it) }
-    }
-}
-
-// Función principal
-fun main() {
-    val calc = Calculator()
-    
-    val x = 15
-    val y = 10
-    val sum = calc.add(x, y)
-    val product = calc.multiply(x, y)
-    
-    // Expresiones condicionales
-    if (sum > 20) {
-        println("The sum is greater than 20")
-    } else {
-        println("The sum is less or equal to 20")
-    }
-
-    // Expresión when
-    when {
-        product % 2 == 0 -> println("The product is even")
-        else -> println("The product is odd")
-    }
-
-    // Bucle con lambda
-    (1..5).forEach { i ->
-        println("Lambda iteration: $i")
-    }
-
-    // Uso de una función anónima
-    val square = { num: Int -> num * num }
-    println("Square of 5: ${square(5)}")
-    
-    // Invocar el historial
-    calc.showHistory()
-}
-
-'''
-
-
-
-"""#Extraer datos de algoritmo_Emilio.kt
-with open("algoritmo_Emilio.kt", "r") as file:
-    data_Emilio = file.read()
-
-#Creacion de archivo log
-import datetime
-now = datetime.datetime.now()
-log_emjorome = f"lexico-emjorome-{now.strftime('%d%m%Y-%Hh%M')}.txt"
-
-# Give the lexer some input
-lexer.input(data_Emilio)
-
-# Tokenize
-with open(log_emjorome,"w") as log_file: #creacion archivo log
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break      # No more input
-        print(tok)
-        log_file.write(f"{tok}\n") #escribir el archivo"""
-
-""""#Extraer datos
-with open("algoritmoKevinQuintuna.kt", "r") as file:
-    data_ = file.read()
-
-#Creacion de archivo log
-import datetime
-now = datetime.datetime.now()
-#creacion de logs
-log_ = f"lexico-Kevin-QQ-82-{now.strftime('%d%m%Y-%Hh%M')}.txt"
-
-# Give the lexer some input
-lexer.input(data_)
-
-# Tokenize
-with open(log_,"w") as log_file: #creacion archivo log
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break      # No more input
-        print(tok)
-        log_file.write(f"{tok}\n") #escribir el archivo
-
-#Extraer datos de algoritmo_Emilio.kt
-with open("algoritmo_Pedro.kt", "r") as file:
-    data_Pedro = file.read()
-
-#Creacion de archivo log
-import datetime
-now = datetime.datetime.now()
-log_LunaPedro17 = f"lexico-LunaPedro17-{now.strftime('%d%m%Y-%Hh%M')}.txt"
-
-# Give the lexer some input
-lexer.input(data_Pedro)
-
-# Tokenize
-with open(log_LunaPedro17,"w") as log_file: #creacion archivo log
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break      # No more input
-        print(tok)
-        log_file.write(f"{tok}\n") #escribir el archivo"""
-
-
-
-
-
-

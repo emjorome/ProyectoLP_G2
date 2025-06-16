@@ -99,7 +99,7 @@ def p_asignacion(p):
 #Final Aporte Pedro Luna
 
 #Inicia aporte Pedro Luna
-def p_impresionVacia(p):
+def p_impresion_Vacia(p):
     'impresion_vacia : PRINT LPAREN RPAREN'
 
 def p_impresion(p):
